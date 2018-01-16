@@ -1,5 +1,5 @@
 *.pid
-*.xml
+.HA_VERSION
 *.csr
 *.crt
 *.key

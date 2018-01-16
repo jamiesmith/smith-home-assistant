@@ -9,7 +9,7 @@ services:
       - '8123:8123'
       - '8943:8943'
     volumes:
-      - '/home/jamie/docker-data/home-assistant:/config'
+      - '/home/jamie/docker-data/smith-home-assistant:/config'
     devices:
       - '/dev/ttyACM0'
     environment:
