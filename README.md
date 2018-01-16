@@ -1,0 +1,1 @@
+# smith-home-assistant
