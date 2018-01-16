@@ -2,8 +2,8 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: !secret latitude
-  longitude: !secret longitude
+  latitude: 35.0653538
+  longitude: -80.725869
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 207
   # metric for Metric, imperial for Imperial
@@ -22,10 +22,11 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  api_password: !secret http_password
+  # api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: nuclet:8123
-  
+  # base_url: nuclet:8123
+  base_url: otto.nuclet.jamieandamy.com
+
 # Checks for available updates
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.
@@ -81,7 +82,7 @@ zwave:
 
 cover:
   - platform: myq
-    username: myq_user
+    username: myq@jamieandamy.com
     password: !secret myq_password
     type: chamberlain
 
@@ -89,9 +90,11 @@ remote:
   - platform: harmony
     name: Office
     # let it discover the matching name
+    # host: 192.168.1.99
   - platform: harmony
     name: Family Room
     # let it discover the matching name
+    # host: 192.168.1.98
 
 # Yamaha
 media_player:

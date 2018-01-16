@@ -1,0 +1,28 @@
+version: '2.1'
+services:
+  homeassistant:
+    image: homeassistant/home-assistant:latest
+    container_name: home-assistant
+    restart: always
+    network_mode: 'host'
+    ports:
+      - '8123:8123'
+      - '8943:8943'
+    volumes:
+      - '/home/jamie/docker-data/home-assistant:/config'
+    devices:
+      - '/dev/ttyACM0'
+    environment:
+      - 'TZ=America/New_York'
+      - VIRTUAL_HOST=otto.nuclet.jamieandamy.com
+
+# JRS-TMP hadash:
+# JRS-TMP   build: 'hadashboard/'
+# JRS-TMP   ports:
+# JRS-TMP     - '3030:3030'
+# JRS-TMP   environment:
+# JRS-TMP     - 'TZ=America/New_York'
+# JRS-TMP   volumes:
+# JRS-TMP     - './config/hadash/dashboards:/app/dashboards'
+# JRS-TMP     - './config/hadash/ha_conf.rb:/app/lib/ha_conf.rb'
+# JRS-TMP     - './config/hadash/hapush.cfg:/app/hapush/hapush.cfg'
