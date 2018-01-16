@@ -1,0 +1,8 @@
+"sensor.*_alarm_*":
+  hidden: true
+
+"sensor.*_landscape_lights_heat":
+  hidden: true
+
+"sensor.*_landscape_lights_sourcenodeid":
+  hidden: true

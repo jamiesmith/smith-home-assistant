@@ -1,0 +1,51 @@
+# Some handling for dual-outlet things.
+
+# Living_Room
+#
+switch.living_room_outlet_switch:
+  hidden: true
+
+switch.living_room_outlet_switch_2:
+  friendly_name: Living Room Lamp
+
+switch.living_room_outlet_switch_3:
+  friendly_name: Living Room Garland
+
+# Foyer
+#
+switch.foyer_outlet_switch:
+  hidden: true
+
+switch.foyer_outlet_switch_2:
+  friendly_name: Foyer Lamp
+
+switch.foyer_outlet_switch_3:
+  friendly_name: Foyer Other
+
+# Extra
+#
+switch.extra_outlet_switch:
+  hidden: true
+
+switch.extra_outlet_switch_2:
+  friendly_name: Extra Lamp
+
+switch.extra_outlet_switch_3:
+  friendly_name: Extra Other
+
+# Landscape Lights
+#
+switch.front_landscape_lights_switch:
+  hidden: true
+
+switch.rear_landscape_lights_switch:
+  friendly_name: Rear Landscape Lights
+  
+switch.front_landscape_lights_switch_2:
+  friendly_name: Front Landscape Lights
+
+switch.front_landscape_lights_switch_3:
+  friendly_name: Front Extra Outlet
+  
+group.automation:
+  hidden: true

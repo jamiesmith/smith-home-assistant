@@ -1,0 +1,10 @@
+#Forecast.io weather sensors
+  - platform: darksky
+    api_key: !secret darksky_key
+    monitored_conditions:
+      - wind_speed
+      - cloud_cover
+      - hourly_summary
+      - daily_summary
+
+  - platform: yr

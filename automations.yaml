@@ -1,0 +1,104 @@
+# This is the automations file
+#
+- id: accent_lighting_on_time
+  alias: Turn On Accent Lighting around sunset
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    - service: scene.turn_on
+      entity_id: scene.evening
+
+- id: accent_lighting_off_time
+  alias: Turn Off Accent Lighting
+  trigger:
+    platform: time
+    at: "22:15:00"
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.accent_lighting
+
+# Do I want to make this a toggle?
+#
+- id: cabinet_lighting_on_switch
+  alias: Turn On Cabinet Lighting
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.kitchen_light
+      scene_data: 3 # double-tap
+      scene_id: 1   # On
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.cabinet_lighting
+
+- id: cabinet_lighting_off_switch
+  alias: Turn Off Cabinet Lighting
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.kitchen_light
+      scene_data: 3 # double-tap
+      scene_id: 2   # Off
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.cabinet_lighting
+
+- id: foyer_lighting_off
+  alias: Turn Off Foyer Lighting
+  trigger:
+    platform: time
+    at: "23:00:00"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.foyer_outlet_switch_2
+      
+
+- id: landscape_lighting_on
+  alias: Turn On Landscape Lighting around sunset
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "+00:15:00"
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.landscape_lights
+
+- id: landscape_lighting_off
+  alias: Turn Off Landscape Lighting
+  trigger:
+    platform: time
+    at: "23:59:00"
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.landscape_lights
+
+- id: jamie_bedtime_music
+  alias: Turn on Jamies bedtime music
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.kitchen_light
+      scene_data: 4 # triple-tap
+      scene_id: 2   # Off
+  action:
+    - service: media_player.sonos_set_sleep_timer
+      entity_id:
+        - media_player.guest_room
+      data:
+        sleep_time: 14400
+    - service: script.jamie_bedtime_music
+      
+- id: family_room_sonos_classic_rewind
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.kitchen_light
+      scene_data: 4 # triple-tap
+      scene_id: 1   # On
+  action:
+    - service: script.family_room_sonos_play_classic_rewind

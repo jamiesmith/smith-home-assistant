@@ -1,0 +1,10 @@
+- name: Evening
+  entities:
+    group.accent_lighting: on
+    group.landscape_lights: on
+    group.foyer_lighting: on
+
+- name: Bedtime
+  entities:
+    group.accent_lighting: off
+    group.foyer_lighting: off

@@ -1,0 +1,93 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.kitchen
+    - group.landscape_lights
+    - group.accent_lighting
+    
+kitchen:
+ # view: yes
+  name: Kitchen
+  entities:
+    - switch.cabinet_lights_switch
+    - switch.cabinet_lights_small_switch
+    - group.cabinet_lighting
+    - light.kitchen_light_level
+
+landscape_lights:
+  # view: yes
+  name: Landscape Lights
+  entities:
+    - switch.rear_landscape_lights_switch
+    - switch.front_landscape_lights_switch_2
+    - switch.front_landscape_lights_switch_3 # This one is pending
+
+foyer_lighting:
+  name: Foyer Lighting
+  entities:
+    - switch.foyer_outlet_switch_2
+    - switch.foyer_outlet_switch_3
+
+accent_lighting:
+  name: Accent Lighting
+  entities:
+    - switch.morning_room_lamp_switch
+    - switch.living_room_outlet_switch_2
+    - switch.living_room_outlet_switch_3
+    - group.cabinet_lighting
+
+cabinet_lighting:
+  name: Cabinet Lighting
+  entities:
+    - switch.cabinet_lights_switch
+    - switch.cabinet_lights_small_switch
+    
+media_players:
+  view: yes
+  name: Media Players
+  entities:
+    - media_player.patio
+    - media_player.garage
+    - media_player.family_room
+    - media_player.guest_room
+    - media_player.payton
+    - media_player.family_room_receiver
+    - media_player.office_receiver
+    - remote.office
+    - remote.family_room
+
+comfort:
+  view: yes
+  name: Comfort & Climate
+  entities:
+    - binary_sensor.downstairs_thermostat_fan
+    - binary_sensor.downstairs_thermostat_has_leaf
+    - binary_sensor.downstairs_thermostat_is_locked
+    - binary_sensor.downstairs_thermostat_is_using_emergency_heat
+    - binary_sensor.downstairs_thermostat_online
+    - binary_sensor.upstairs_thermostat_fan
+    - binary_sensor.upstairs_thermostat_has_leaf
+    - binary_sensor.upstairs_thermostat_is_locked
+    - binary_sensor.upstairs_thermostat_is_using_emergency_heat
+    - binary_sensor.upstairs_thermostat_online
+    - climate.downstairs
+    - climate.upstairs
+    
+    - sqensor.downstairs_thermostat_humidity
+    - sensor.downstairs_thermostat_hvac_state
+    - sensor.downstairs_thermostat_operation_mode
+    - sensor.downstairs_thermostat_target
+    
+    - sensor.upstairs_thermostat_humidity
+    - sensor.upstairs_thermostat_hvac_state
+    - sensor.upstairs_thermostat_operation_mode
+    - sensor.upstairs_thermostat_target
+    - sensor.upstairs_thermostat_temperature
+    
+# JRS-TMP awesome_people:
+# JRS-TMP   name: Awesome People
+# JRS-TMP   view: no
+# JRS-TMP   entities:
+# JRS-TMP     - device_tracker.dad_smith
+# JRS-TMP     - device_tracker.mom_smith
