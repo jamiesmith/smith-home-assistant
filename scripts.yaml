@@ -1,16 +1,16 @@
 family_room_sonos_play_classic_rewind:
   alias: 'Play Classic Rewind in the Family Room'
   sequence:
-    - service: remote.turn_on
-      entity_id:
-        - remote.family_room
-      data:
-        activity: 16224446
     - service: media_player.select_source
       entity_id:
         - media_player.family_room
       data:
         source: "25 - Classic Rewind"
+    - service: remote.turn_on
+      entity_id:
+        - remote.family_room
+      data:
+        activity: 16224446
 
 turn_off_family_room:
   alias: 'Turn off Family Room'

@@ -5,7 +5,7 @@ default_view:
     - group.kitchen
     - group.landscape_lights
     - group.accent_lighting
-    - group.foyer_dual
+    - group.foyer_lighting
     
 kitchen:
  # view: yes
@@ -25,7 +25,7 @@ landscape_lights:
     - switch.front_landscape_lights_switch_3 # This one is pending
 
     
-foyer_dual:
+foyer_lighting:
 #  view: yes
   name: Foyer Lights
   entities:

@@ -1,12 +1,12 @@
 #!/bin/bash
 
 
-git pull --rebase
-if [ $? -ne 0 ]
-then
-    echo "Git pull failed"
-    exit 9
-fi
+# JRS-TMP git pull --rebase
+# JRS-TMP if [ $? -ne 0 ]
+# JRS-TMP then
+# JRS-TMP     echo "Git pull failed"
+# JRS-TMP     exit 9
+# JRS-TMP fi
 
 if [ $(docker-compose ps homeassistant | grep -c Up) ]
 then
