@@ -8,12 +8,12 @@
 # JRS-TMP     exit 9
 # JRS-TMP fi
 
-if [ $(docker-compose ps homeassistant | grep -c Up) ]
+if [ $(docker-compose ps homeassistant | grep -c Up) -gt 0 ]
 then
     echo "Up!"
     docker-compose restart
 else
     echo "Down"
-    docker-compose start -d
+    docker-compose up -d
 fi
 
