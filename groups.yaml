@@ -38,6 +38,7 @@ accent_lighting:
     - switch.morning_room_lamp_switch
     - switch.living_room_outlet_switch_2
     - switch.living_room_outlet_switch_3
+    - switch.dining_room_lamp_switch_3
     - group.cabinet_lighting
 
 cabinet_lighting:
