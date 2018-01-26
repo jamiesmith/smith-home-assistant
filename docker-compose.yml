@@ -14,7 +14,6 @@ services:
       - '/dev/ttyACM0'
     environment:
       - 'TZ=America/New_York'
-      - VIRTUAL_HOST=otto.nuclet.jamieandamy.com
 
 # JRS-TMP hadash:
 # JRS-TMP   build: 'hadashboard/'
