@@ -38,9 +38,6 @@ shutdown_office:
     - service: remote.turn_off
       entity_id:
         - remote.office
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.family_room
         
 jamie_bedtime_music:
   alias: Turn on Jamies bedtime music
@@ -55,4 +52,3 @@ jamie_bedtime_music:
         - media_player.guest_room
       data:
         source: '23 - Grateful Dead'
-
