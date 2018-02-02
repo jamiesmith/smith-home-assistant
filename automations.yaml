@@ -77,18 +77,16 @@
 - id: jamie_bedtime_music
   alias: Turn on Jamies bedtime music
   trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.kitchen_light
-      scene_data: 4 # triple-tap
-      scene_id: 2   # Off
-  trigger:
-    platform: time
-    at: "22:00:00"
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.kitchen_light
+        scene_data: 4 # triple-tap
+        scene_id: 2   # Off
+    - platform: time
+      at: "22:00:00"
   action:
-    - service: scripts.jamie_bedtime_music
-
+    - service: script.jamie_bedtime_music
     
 - id: family_room_sonos_classic_rewind
   trigger:

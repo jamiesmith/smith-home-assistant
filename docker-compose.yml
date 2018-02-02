@@ -14,6 +14,9 @@ services:
       - '/dev/ttyACM0'
     environment:
       - 'TZ=America/New_York'
+    logging:
+      options:
+        max-size: 25m
 
 # JRS-TMP hadash:
 # JRS-TMP   build: 'hadashboard/'

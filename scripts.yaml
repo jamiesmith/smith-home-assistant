@@ -38,7 +38,7 @@ shutdown_office:
     - service: remote.turn_off
       entity_id:
         - remote.office
-        
+
 jamie_bedtime_music:
   alias: Turn on Jamies bedtime music
   sequence:
