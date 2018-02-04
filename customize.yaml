@@ -49,3 +49,15 @@ switch.front_landscape_lights_switch_3:
   
 group.automation:
   hidden: true
+
+input_boolean.sunset_offset:
+  hidden: true
+
+sensor.dark_outside:
+  icon: mdi:theme-light-dark
+
+# JRS-TMP sensor.bad_weather:
+# JRS-TMP   icon: mdi:weather-snowy-rainy
+                                          
+
+  

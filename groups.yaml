@@ -95,3 +95,16 @@ comfort:
 # JRS-TMP   entities:
 # JRS-TMP     - device_tracker.dad_smith
 # JRS-TMP     - device_tracker.mom_smith
+
+state_tests:
+  name: State Tests
+  view: yes
+  control: hidden
+  entities:
+    - sensor.dark_outside
+    - sensor.bad_weather
+    - sensor.time_of_day
+    # JRS-TMP - sensor.test_notification_time
+    # JRS-TMP - input_number.test_notification_hour
+    # JRS-TMP - input_number.test_notification_minute
+                                          

@@ -13,6 +13,7 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
+  packages: !include_dir_named packages/
 
 # Enables the frontend
 frontend:
@@ -22,7 +23,7 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  # api_password: !secret http_password
+  api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: nuclet:8123
 
@@ -53,6 +54,7 @@ map:
 # Track the sun
 sun:
 
+  
 # Weather prediction
 
 # Text to speech
@@ -119,11 +121,20 @@ media_player:
     zone_names:
       Main_Zone: "Office"
 
-
+ios:
+  
+notify:
+  - name: ios_devices
+    platform: group
+    services:
+      - service: ios_jamies_iphone
+        
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 sensor: !include sensor.yaml
 scene: !include scenes.yaml
 # device_tracker: !include device_tracker.yaml
+
+
 
