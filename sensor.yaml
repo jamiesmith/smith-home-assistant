@@ -15,69 +15,104 @@
     update_interval:
       minutes: 2
     monitored_conditions:
-      - summary
-      - precip_type
-      - precip_intensity
-      - precip_probability
-      - temperature
       - apparent_temperature
-      - dew_point
-      - wind_speed
-      - wind_bearing
-      - cloud_cover
-      - humidity
-      - pressure
-      - visibility
-      - ozone
-      - minutely_summary
-      - hourly_summary
-      - daily_summary
-      - temperature_max
-      - temperature_min
       - apparent_temperature_max
       - apparent_temperature_min
+      - cloud_cover
+      - daily_summary
+      - dew_point
+      - hourly_summary
+      - humidity
+      - minutely_summary
+      - ozone
+      - precip_intensity
       - precip_intensity_max
+      - precip_probability
+      - precip_type
+      - pressure
+      - summary
+      - temperature
+      - temperature_max
+      - temperature_min
+      - visibility
+      - wind_bearing
+      - wind_speed
       
   - platform: template
     sensors: 
       dark_outside:
         friendly_name: 'Dark Outside'
         value_template: >-
-          {% if (states.input_boolean.sunset_offset.state == 'on') %}true
-          {% elif (states.sun.sun.attributes.elevation | int < 3) %}true
-          {% elif ( (states.sun.sun.attributes.elevation | int < 4.5) and (states.sensor.dark_sky_cloud_coverage.state | int > 80)) %}true
-          {% elif ( (states.sun.sun.attributes.elevation | int < 6.5) and (states.sensor.dark_sky_cloud_coverage.state | int > 85)) %}true
-          {% elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) %}true
-          {% else %}false
+          {% if (states.input_boolean.sunset_offset.state == 'on') %}
+          true
+          {% elif (states.sun.sun.attributes.elevation | int < 3) %}
+          true
+          {% elif ( (states.sun.sun.attributes.elevation | int < 4.5) and (states.sensor.dark_sky_cloud_coverage.state | int > 80)) %}
+          true
+          {% elif ( (states.sun.sun.attributes.elevation | int < 6.5) and (states.sensor.dark_sky_cloud_coverage.state | int > 85)) %}
+          true
+          {% elif ( (states.sensor.dark_sky_cloud_coverage.state | int > 70) )  %}
+          true
+          {% elif ( (states.sensor.dark_sky_cloud_coverage.state | int > 70) and (states.sensor.bad_weather.state == 'rain' ) )  %}
+          true
+          {% elif ( (states.sensor.dark_sky_cloud_coverage.state | int > 50)
+          and ( (states.sensor.bad_weather.state == 'heavy_rain' ) or (states.sensor.bad_weather.state == 'rain' ) ) ) %}
+          true
+          {% elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) %}
+          true
+          {% else %}
+          false
           {% endif %}
 
       bad_weather:
         friendly_name: 'Bad weather'
         value_template: >-
-          {% if (states.sensor.dark_sky_precip.state == "snow") %}snow
-          {% elif ((states.sensor.dark_sky_daily_low_temperature.state | int < 4) and (states.sensor.dark_sky_dew_point.state | int < 6) and (states.sensor.dark_sky_wind_speed.state | int < 12) and (states.sensor.dark_sky_cloud_coverage.state | int < 20) and (states.sensor.dark_sky_humidity.state | int > 50)) %} frost
-          {% elif (states.sensor.dark_sky_precip_intensity | int > 7) %} heavy_rain
-          {% else %} clear
+          {% if (states.sensor.dark_sky_precip.state == "snow") %}
+          snow
+          {% elif ((states.sensor.dark_sky_daily_low_temperature.state | int < 4)
+          and (states.sensor.dark_sky_dew_point.state | int < 6)
+          and (states.sensor.dark_sky_wind_speed.state | int < 12)
+          and (states.sensor.dark_sky_cloud_coverage.state | int < 20)
+          and (states.sensor.dark_sky_humidity.state | int > 50)) %}
+          frost
+          {% elif ( (states.sensor.dark_sky_precip.state == "rain")
+          and (states.sensor.dark_sky_precip_intensity.state | float > 0.01) ) %}
+          rain
+          {% elif ( (states.sensor.dark_sky_precip.state == "rain")
+          and (states.sensor.dark_sky_precip_intensity.state | int > 1) ) %}
+          heavy_rain
+          {% else %}
+          clear
           {% endif %}
 
+
+      current_time_float:
+        entity_id:
+          - sensor.current_time_float
+          - date_time.time
+        value_template: >-
+          {{ (states.sensor.time.state.split(':')[0] | float) + (states.sensor.time.state.split(':')[1] | float / 60) }}
+            
       time_of_day:
         friendly_name: 'Time of Day'
         entity_id:
           - sensor.time_of_day
+          - sensor.current_time_float
+          - sun.sun
         value_template: >-
-          {% if as_timestamp(now()) >= as_timestamp(now().date() ~ ' 00:00:00') and as_timestamp(now()) < as_timestamp(now().date() ~ ' 06:00:00') %}
+          {% if ((states.sensor.current_time_float.state | float) > 0) and ((states.sensor.current_time_float.state | float) < 6) %}
           wee_hours
-          {% elif states.sun.sun.state == 'above_horizon' and as_timestamp(now()) < as_timestamp(now().date() ~ ' 12:00:00') %}
+          {% elif ((states.sun.sun.state == 'above_horizon') and ((states.sensor.current_time_float.state | float) < 12.0)) %}
           morning
-          {% elif states.sun.sun.state == 'above_horizon' and as_timestamp(now()) >= as_timestamp(now().date() ~ ' 12:00:00') %}
+          {% elif ((states.sun.sun.state == 'above_horizon') and ((states.sensor.current_time_float.state | float) > 12.0)) %}
           afternoon
           {% elif states.sun.sun.state == 'below_horizon' and now().date() == states.sun.sun.attributes.next_rising | truncate(10, True, '') %}
           twilight
-          {% elif states.sun.sun.state == 'below_horizon' and as_timestamp(now()) < as_timestamp(now().date() ~ ' 18:00:00') %}
+          {% elif ((states.sun.sun.state == 'below_horizon') and ((states.sensor.current_time_float.state | float) < 18.0)) %}
           early_evening
-          {% elif states.sun.sun.state == 'below_horizon' and as_timestamp(now()) < as_timestamp(now().date() ~ ' 20:30:00') %}
+          {% elif ((states.sun.sun.state == 'below_horizon') and ((states.sensor.current_time_float.state | float) < 20.5)) %}
           evening
-          {% elif states.sun.sun.state == 'below_horizon' and as_timestamp(now()) >= as_timestamp(now().date() ~ ' 20:30:00') %}
+          {% elif ((states.sun.sun.state == 'below_horizon') and ((states.sensor.current_time_float.state | float) >= 20.5)) %}
           late_evening
           {% else %}
           nobody_knows
@@ -85,3 +120,12 @@
 
   - platform: yr
 
+    
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'

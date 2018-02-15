@@ -3,8 +3,8 @@
 - id: accent_lighting_on_time
   alias: Turn On Accent Lighting around sunset
   trigger:
-    platform: sun
-    event: sunset
+    - platform: sun
+      event: sunset
   action:
     - service: scene.turn_on
       entity_id: scene.evening
@@ -23,12 +23,15 @@
 - id: cabinet_lighting_on_switch
   alias: Turn On Cabinet Lighting
   trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.kitchen_light
-      scene_data: 3 # double-tap
-      scene_id: 1   # On
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.kitchen_light
+        scene_data: 3 # double-tap
+        scene_id: 1   # On
+    # JRS-TMP - platform: state
+    # JRS-TMP   entity_id: sensor.dark_outside
+    # JRS-TMP   to: 'true' 
   action:
     - service: homeassistant.turn_on
       entity_id: group.cabinet_lighting
@@ -36,12 +39,15 @@
 - id: cabinet_lighting_off_switch
   alias: Turn Off Cabinet Lighting
   trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.kitchen_light
-      scene_data: 3 # double-tap
-      scene_id: 2   # Off
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.kitchen_light
+        scene_data: 3 # double-tap
+        scene_id: 2   # Off
+    - platform: state
+      entity_id: sensor.dark_outside
+      to: 'false' 
   action:
     - service: homeassistant.turn_off
       entity_id: group.cabinet_lighting
