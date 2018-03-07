@@ -5,6 +5,7 @@
   trigger:
     - platform: sun
       event: sunset
+      offset: "-00:30:00"
   action:
     - service: scene.turn_on
       entity_id: scene.evening
@@ -113,3 +114,29 @@
   action:
     - service: script.turn_off_office
       
+- id: quad4_scene1
+  alias: Kitchen QuadMote
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.quad4
+      scene_id: 1
+      # scene_data: 0
+  action:
+    - service: script.family_room_sonos_play_classic_rewind
+
+- id: quad4_scene2
+  alias: Kitchen QuadMote
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.quad4
+      scene_id: 2
+      # scene_data: 0
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.cabinet_lighting
