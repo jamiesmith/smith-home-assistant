@@ -1,0 +1,129 @@
+climate.upstairs:
+  platform: nest
+  unique_id: E3BCXwxzZxnaM4_zCJHPZT_3mj_p3Nf0
+climate.downstairs:
+  platform: nest
+  unique_id: lmisTI4L-OZ5Gh6ONd6jOT_3mj_p3Nf0
+sensor.jamies_iphone_battery_state:
+  platform: ios
+  unique_id: state_jamies_iphone
+sensor.jamies_iphone_battery_level:
+  platform: ios
+  unique_id: level_jamies_iphone
+media_player.payton:
+  platform: sonos
+  unique_id: RINCON_B8E937B3996A01400
+media_player.patio:
+  platform: sonos
+  unique_id: RINCON_000E5838B6DA01400
+media_player.family_room:
+  platform: sonos
+  unique_id: RINCON_000E582B45D601400
+media_player.garage:
+  platform: sonos
+  unique_id: RINCON_B8E937922BDE01400
+media_player.guest_room:
+  platform: sonos
+  unique_id: RINCON_949F3E1ABFF201400
+switch.rear_landscape_lights_switch:
+  platform: zwave
+  unique_id: 2-72057594076282880
+sensor.rear_landscape_lights_alarm_type:
+  platform: zwave
+  unique_id: 2-72057594077528065
+sensor.rear_landscape_lights_alarm_level:
+  platform: zwave
+  unique_id: 2-72057594077528081
+sensor.rear_landscape_lights_sourcenodeid:
+  platform: zwave
+  unique_id: 2-72057594077528097
+sensor.rear_landscape_lights_heat:
+  platform: zwave
+  unique_id: 2-72057594077528177
+switch.cabinet_lights_switch:
+  platform: zwave
+  unique_id: 3-72057594093060096
+sensor.cabinet_lights_alarm_type:
+  platform: zwave
+  unique_id: 3-72057594094305281
+sensor.cabinet_lights_alarm_level:
+  platform: zwave
+  unique_id: 3-72057594094305297
+switch.cabinet_lights_small_switch:
+  platform: zwave
+  unique_id: 4-72057594109837312
+sensor.cabinet_lights_small_alarm_type:
+  platform: zwave
+  unique_id: 4-72057594111082497
+sensor.cabinet_lights_small_alarm_level:
+  platform: zwave
+  unique_id: 4-72057594111082513
+switch.front_landscape_lights_switch:
+  platform: zwave
+  unique_id: 5-72057594126614528
+switch.front_landscape_lights_switch_2:
+  platform: zwave
+  unique_id: 5-144115188164542464
+switch.front_landscape_lights_switch_3:
+  platform: zwave
+  unique_id: 5-216172782202470400
+sensor.front_landscape_lights_alarm_type:
+  platform: zwave
+  unique_id: 5-72057594127859713
+sensor.front_landscape_lights_alarm_level:
+  platform: zwave
+  unique_id: 5-72057594127859729
+sensor.front_landscape_lights_sourcenodeid:
+  platform: zwave
+  unique_id: 5-72057594127859745
+sensor.front_landscape_lights_heat:
+  platform: zwave
+  unique_id: 5-72057594127859825
+switch.morning_room_lamp_switch:
+  platform: zwave
+  unique_id: 6-72057594143391744
+switch.living_room_outlet_switch:
+  platform: zwave
+  unique_id: 7-72057594160168960
+switch.living_room_outlet_switch_2:
+  platform: zwave
+  unique_id: 7-144115188198096896
+switch.living_room_outlet_switch_3:
+  platform: zwave
+  unique_id: 7-216172782236024832
+switch.foyer_outlet_switch:
+  platform: zwave
+  unique_id: 8-72057594176946176
+switch.foyer_outlet_switch_2:
+  platform: zwave
+  unique_id: 8-144115188214874112
+switch.foyer_outlet_switch_3:
+  platform: zwave
+  unique_id: 8-216172782252802048
+switch.dining_room_lamp_switch:
+  platform: zwave
+  unique_id: 9-72057594193723392
+switch.dining_room_lamp_switch_2:
+  platform: zwave
+  unique_id: 9-144115188231651328
+switch.dining_room_lamp_switch_3:
+  platform: zwave
+  unique_id: 9-216172782269579264
+switch.quad4_switch:
+  platform: zwave
+  unique_id: 12-72057594244055040
+light.kitchen_light_level:
+  platform: zwave
+  unique_id: 11-72057594227294209
+sensor.quad4_alarm_type:
+  platform: zwave
+  unique_id: 12-72057594245300225
+sensor.quad4_alarm_level:
+  platform: zwave
+  unique_id: 12-72057594245300241
+sensor.quad4_sourcenodeid:
+  platform: zwave
+  unique_id: 12-72057594245300257
+sensor.quad4_power_management:
+  platform: zwave
+  unique_id: 12-72057594245300401

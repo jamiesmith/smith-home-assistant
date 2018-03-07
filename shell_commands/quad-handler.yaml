@@ -1,0 +1,2 @@
+quad_button_handler: '/config/bin/quaddebug.sh "{{ entity_id }}"  "{{ scene_id }}" "{{ scene_data }}"'
+
