@@ -54,3 +54,17 @@ family_room_sonos_play_80s:
       data:
         activity: 16224446
         
+family_room_sonos_play_tom_petty:
+  alias: 'Play Tom Petty Radio in the Family Room'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.family_room
+      data:
+        source: "31 - Tom Petty Radio"
+    - service: remote.turn_on
+      entity_id:
+        - remote.family_room
+      data:
+        activity: 16224446
+        

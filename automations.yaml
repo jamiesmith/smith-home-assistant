@@ -144,8 +144,8 @@
   action:
     - service: script.family_room_sonos_play_80s
       
-- id: quad4_scene2_GDs
-  alias: Kitchen QuadMote grateful dead
+- id: quad4_scene2_tom_petty_radio
+  alias: Kitchen QuadMote Tom Petty Radio
 #  hide_entity: true
   trigger:
     platform: event
@@ -155,7 +155,7 @@
       scene_id: 2
       scene_data: 1
   action:
-    - service: script.family_room_sonos_play_grateful_dead
+    - service: script.family_room_sonos_play_tom_petty
       
 - id: quad4_scene3_volume_up
   alias: Kitchen QuadMote Volume Up
