@@ -127,3 +127,9 @@ sensor.quad4_sourcenodeid:
 sensor.quad4_power_management:
   platform: zwave
   unique_id: 12-72057594245300401
+media_player.family_room_2:
+  platform: apple_tv
+  unique_id: e82f0a1129889229d878e2cd15e82f987fb83bcd686a1c23b32d467e78be93bc
+remote.family_room_2:
+  platform: apple_tv
+  unique_id: e82f0a1129889229d878e2cd15e82f987fb83bcd686a1c23b32d467e78be93bc

@@ -32,7 +32,7 @@ jamie_bedtime_music:
       entity_id:
         - media_player.guest_room
       data:
-        sleep_time: 14400
+        sleep_time: 18000
     - service: media_player.select_source
       entity_id:
         - media_player.guest_room
