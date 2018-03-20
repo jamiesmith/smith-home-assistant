@@ -89,7 +89,7 @@
         scene_data: 4 # triple-tap
         scene_id: 2   # Off
     - platform: time
-      at: "22:00:00"
+      at: "22:30:00"
   action:
     - service: script.jamie_bedtime_music
     
