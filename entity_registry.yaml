@@ -142,3 +142,33 @@ media_player.apple_tv:
 remote.apple_tv:
   platform: apple_tv
   unique_id: f404a5d635d7affa4a632ada597f19012f374e5c45e7acaba08c37948e4875e7
+sensor.alarm_type:
+  platform: zwave
+  unique_id: 14-72057594278854657
+sensor.alarm_level:
+  platform: zwave
+  unique_id: 14-72057594278854673
+switch.switch:
+  platform: zwave
+  unique_id: 14-72057594277609472
+sensor.aeotec_zw130_wallmote_quad_sourcenodeid:
+  platform: zwave
+  unique_id: 14-72057594278854689
+sensor.aeotec_zw130_wallmote_quad_power_management:
+  platform: zwave
+  unique_id: 14-72057594278854833
+sensor.alarm_type_2:
+  platform: zwave
+  unique_id: 13-72057594262077441
+sensor.alarm_level_2:
+  platform: zwave
+  unique_id: 13-72057594262077457
+switch.switch_2:
+  platform: zwave
+  unique_id: 13-72057594260832256
+sensor.aeotec_zw130_wallmote_quad_sourcenodeid_2:
+  platform: zwave
+  unique_id: 13-72057594262077473
+sensor.aeotec_zw130_wallmote_quad_power_management_2:
+  platform: zwave
+  unique_id: 13-72057594262077617
