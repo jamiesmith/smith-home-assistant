@@ -1,0 +1,66 @@
+garage_play_grateful_dead:
+  alias: 'Play Greatful Dead in the Garage'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.garage
+      data:
+        source: "23 - Grateful Dead"
+
+garage_play_classic_rewind:
+  alias: 'Play Classic Rewind in the Garage'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.garage
+      data:
+        source: "25 - Classic Rewind"
+
+garage_play_classic_vinyl:
+  alias: 'Play Classic Vinyl in the Garage'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.garage
+      data:
+        source: "26 - Classic Vinyl"
+        
+garage_play_80s:
+  alias: 'Play 80s on Eight in the Garage'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.garage
+      data:
+        source: "8 - 80s on 8"
+        
+garage_play_tom_petty:
+  alias: 'Play Tom Petty Radio in the Garage'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.garage
+      data:
+        source: "31 - Tom Petty Radio"
+
+garage_media_stop:
+  alias: 'Stop Garage'
+  sequence:
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.garage
+
+garage_volume_up:
+  alias: 'Garage Volume Up'
+  sequence:
+    - service: media_player.volume_up
+      entity_id:
+        - media_player.garage
+        
+garage_volume_down:
+  alias: 'Garage Volume Down'
+  sequence:
+    - service: media_player.volume_down
+      entity_id:
+        - media_player.garage
+        

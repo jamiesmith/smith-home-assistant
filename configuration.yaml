@@ -123,14 +123,15 @@ media_player:
 
 ios:
   
-notify:
-  - name: ios_devices
-    platform: group
-    services:
-      - service: ios_jamies_iphone
+# JRS-TMP notify:
+# JRS-TMP   - name: ios_devices
+# JRS-TMP     platform: group
+# JRS-TMP     services:
+# JRS-TMP       - service: ios_jamies_iphone
         
 group: !include groups.yaml
-automation: !include automations.yaml
+# automation: !include automations.yaml
+automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
 sensor: !include sensor.yaml
 scene: !include scenes.yaml

@@ -1,0 +1,45 @@
+patio_sonos_play_grateful_dead:
+  alias: 'Play Greatful Dead in the Patio'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.patio
+      data:
+        source: "23 - Grateful Dead"
+
+patio_sonos_play_classic_rewind:
+  alias: 'Play Classic Rewind in the Patio'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.patio
+      data:
+        source: "25 - Classic Rewind"
+
+patio_sonos_play_classic_vinyl:
+  alias: 'Play Classic Vinyl in the Patio'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.patio
+      data:
+        source: "26 - Classic Vinyl"
+        
+patio_sonos_play_80s:
+  alias: 'Play 80s on Eight in the Patio'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.patio
+      data:
+        source: "8 - 80s on 8"
+        
+patio_sonos_play_tom_petty:
+  alias: 'Play Tom Petty Radio in the Patio'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.patio
+      data:
+        source: "31 - Tom Petty Radio"
+        
