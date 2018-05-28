@@ -1,0 +1,104 @@
+- id: patioquad_scene_1_play_classic_rewind
+  alias: patio QuadMote play_classic_rewind
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 1
+      scene_data: 0
+  action:
+    - service: script.patio_play_classic_rewind
+
+- id: patioquad_scene_1_play_classic_vinyl
+  alias: patio QuadMote play_classic_vinyl
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 1
+      scene_data: 1
+  action:
+    - service: script.patio_play_classic_vinyl
+
+- id: patioquad_scene_2_play_tom_petty
+  alias: patio QuadMote play_tom_petty
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 2
+      scene_data: 0
+  action:
+    - service: script.patio_play_tom_petty
+
+- id: patioquad_scene_2_play_grateful_dead
+  alias: patio QuadMote play_grateful_dead
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 2
+      scene_data: 1
+  action:
+    - service: script.patio_play_grateful_dead
+
+- id: patioquad_scene_3_volume_down
+  alias: patio QuadMote volume_down
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 3
+      scene_data: 0
+  action:
+    - service: script.patio_volume_down
+
+- id: patioquad_scene_3_play_80s
+  alias: patio QuadMote play_80s
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 3
+      scene_data: 1
+  action:
+    - service: script.patio_play_80s
+
+- id: patioquad_scene_4_volume_up
+  alias: patio QuadMote volume_up
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 4
+      scene_data: 0
+  action:
+    - service: script.patio_volume_up
+
+- id: patioquad_scene_4_media_stop
+  alias: patio QuadMote media_stop
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 4
+      scene_data: 1
+  action:
+    - service: script.patio_media_stop
+

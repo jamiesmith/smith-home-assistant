@@ -187,3 +187,6 @@ sensor.aeotec_zw130_wallmote_quad_sourcenodeid_3:
 sensor.aeotec_zw130_wallmote_quad_power_management_3:
   platform: zwave
   unique_id: 15-72057594295632049
+switch.switch_4:
+  platform: zwave
+  unique_id: 16-72057594311163904

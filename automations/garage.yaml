@@ -1,0 +1,104 @@
+- id: garagequad_scene_1_play_classic_rewind
+  alias: garage QuadMote play_classic_rewind
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_id: 1
+      scene_data: 0
+  action:
+    - service: script.garage_play_classic_rewind
+
+- id: garagequad_scene_1_play_classic_vinyl
+  alias: garage QuadMote play_classic_vinyl
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_id: 1
+      scene_data: 1
+  action:
+    - service: script.garage_play_classic_vinyl
+
+- id: garagequad_scene_2_play_tom_petty
+  alias: garage QuadMote play_tom_petty
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_id: 2
+      scene_data: 0
+  action:
+    - service: script.garage_play_tom_petty
+
+- id: garagequad_scene_2_play_grateful_dead
+  alias: garage QuadMote play_grateful_dead
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_id: 2
+      scene_data: 1
+  action:
+    - service: script.garage_play_grateful_dead
+
+- id: garagequad_scene_3_volume_down
+  alias: garage QuadMote volume_down
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_id: 3
+      scene_data: 0
+  action:
+    - service: script.garage_volume_down
+
+- id: garagequad_scene_3_play_80s
+  alias: garage QuadMote play_80s
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_id: 3
+      scene_data: 1
+  action:
+    - service: script.garage_play_80s
+
+- id: garagequad_scene_4_volume_up
+  alias: garage QuadMote volume_up
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_id: 4
+      scene_data: 0
+  action:
+    - service: script.garage_volume_up
+
+- id: garagequad_scene_4_media_stop
+  alias: garage QuadMote media_stop
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_id: 4
+      scene_data: 1
+  action:
+    - service: script.garage_media_stop
+
