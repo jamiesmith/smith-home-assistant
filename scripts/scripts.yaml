@@ -1,4 +1,4 @@
-turn_off_family_room:
+family_room_turn_off:
   alias: 'Turn off Family Room'
   sequence:
     - service: remote.turn_off
@@ -14,16 +14,6 @@ turn_off_office:
     - service: remote.turn_off
       entity_id:
         - remote.office
-
-turn_off_family_room:
-  alias: 'Turn off Family Room'
-  sequence:
-    - service: remote.turn_off
-      entity_id:
-        - remote.family_room
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.family_room
 
 jamie_bedtime_music:
   alias: Turn on Jamies bedtime music
@@ -42,6 +32,20 @@ jamie_bedtime_music:
 family_room_volume_up:
   alias: Family Room Volume Up
   sequence:
+    - service: media_player.volume_up
+      entity_id:
+        - media_player.family_room
+
+family_room_volume_down:
+  alias: Family Room Volume Down
+  sequence:
+    - service: media_player.volume_down
+      entity_id:
+        - media_player.family_room
+
+family_room_receiver_volume_up:
+  alias: Family Room Receiver Volume Up
+  sequence:
     - service: remote.send_command
       data:
         entity_id: remote.family_room
@@ -50,8 +54,8 @@ family_room_volume_up:
         num_repeats: 5
         delay_secs: 0.1
         
-family_room_volume_down:
-  alias: Family Room Volume Down
+family_room_receiver_volume_down:
+  alias: Family Room Receiver Volume Down
   sequence:
     - service: remote.send_command
       data:
@@ -60,3 +64,17 @@ family_room_volume_down:
         device: 31060662
         num_repeats: 5
         delay_secs: 0.1
+        
+family_room_receiver_and_sonos_on:
+  alias: Family Room Receiver On Set Sonos Volume
+  sequence:
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.family_room
+      data:
+        volume_level: .6
+    - service: remote.turn_on
+      entity_id:
+        - remote.family_room
+      data:
+        activity: 16224446

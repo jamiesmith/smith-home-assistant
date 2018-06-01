@@ -1,0 +1,11 @@
+turn_on_accent_lighting:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: group.accent_lighting
+
+turn_off_accent_lighting:
+  sequence:
+    - service: homeassistant.turn_off
+      entity_id: group.accent_lighting
+
+      

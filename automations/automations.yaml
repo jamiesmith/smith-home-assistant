@@ -7,8 +7,7 @@
       event: sunset
       offset: "-00:30:00"
   action:
-    - service: scene.turn_on
-      entity_id: scene.evening
+    - service: script.turn_on_accent_lighting
 
 - id: accent_lighting_off_time
   alias: Turn Off Accent Lighting
@@ -16,8 +15,7 @@
     platform: time
     at: "22:15:00"
   action:
-    - service: homeassistant.turn_off
-      entity_id: group.accent_lighting
+    - service: script.turn_off_accent_lighting
 
 - id: cabinet_lighting_on_switch
   alias: Turn On Cabinet Lighting
@@ -95,22 +93,20 @@
   action:
     - service: script.jamie_bedtime_music
     
-- id: family_room_sonos_classic_rewind
+# Bulk one for quad testing
+#
+- id: bulk_quad_detector
+  alias: Bulk Quad Detector
+#  hide_entity: true
   trigger:
-    - platform: event
-      event_type: zwave.scene_activated
-      event_data:
-        entity_id: zwave.kitchen_light
-        scene_id: 1   # On
-        scene_data: 4 # triple-tap
-    - platform: event
-      event_type: zwave.scene_activated
-      event_data:
-        entity_id: zwave.quad4
-        scene_id: 1
-        scene_data: 0
+    platform: event
+    event_type: zwave.scene_activated
   action:
-    - service: script.family_room_sonos_play_classic_rewind
+    - service: shell_command.quad_button_handler
+      data_template:
+        scene_id: "{{ trigger.event.data.scene_id }}"
+        scene_data: "{{ trigger.event.data.scene_data }}"
+        entity_id: "{{ trigger.event.data.entity_id }}"
 
 - id: turn_off_office
   alias: Turn Off the Office Receiver
@@ -120,111 +116,3 @@
   action:
     - service: script.turn_off_office
       
-- id: quad4_scene1_classic_vinyl
-  alias: Kitchen QuadMote Classic Vinyl
-#  hide_entity: true
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.quad4
-      scene_id: 1
-      scene_data: 1
-  action:
-    - service: script.family_room_sonos_play_classic_vinyl
-
-- id: quad4_scene2_80s
-  alias: Kitchen QuadMote 80s on 8
-#  hide_entity: true
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.quad4
-      scene_id: 2
-      scene_data: 0
-  action:
-    - service: script.family_room_sonos_play_80s
-      
-- id: quad4_scene2_tom_petty_radio
-  alias: Kitchen QuadMote Tom Petty Radio
-#  hide_entity: true
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.quad4
-      scene_id: 2
-      scene_data: 1
-  action:
-    - service: script.family_room_sonos_play_tom_petty
-      
-- id: quad4_scene3_volume_up
-  alias: Kitchen QuadMote Volume Up
-#  hide_entity: true
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.quad4
-      scene_id: 3
-      scene_data: 0
-  action:
-    - service: script.family_room_volume_up
-
-- id: quad4_scene3_volume_down
-  alias: Kitchen QuadMote Volume Down
-#  hide_entity: true
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.quad4
-      scene_id: 3
-      scene_data: 1
-  action:
-    - service: script.family_room_volume_down
-      
-- id: quad4_scene4
-  alias: Kitchen QuadMote Cabinet Lights
-#  hide_entity: true
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.quad4
-      scene_id: 4
-      scene_data: 0
-  action:
-    - service: homeassistant.toggle
-      entity_id: group.cabinet_lighting
-
-- id: quad4_scene4
-  alias: Kitchen QuadMote Family Room Off
-#  hide_entity: true
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.quad4
-      scene_id: 4
-      scene_data: 1
-  action:
-    - service: script.turn_off_family_room
-      
-# Bulk one for testing
-#
-- id: bulk_quad_detector
-  alias: Bulk Quad Detector
-#  hide_entity: true
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    # JRS-TMP event_data:
-    # JRS-TMP   entity_id: zwave.quad4
-  action:
-    - service: shell_command.quad_button_handler
-      data_template:
-        scene_id: "{{ trigger.event.data.scene_id }}"
-        scene_data: "{{ trigger.event.data.scene_data }}"
-        entity_id: "{{ trigger.event.data.entity_id }}"

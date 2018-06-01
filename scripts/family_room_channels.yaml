@@ -1,4 +1,4 @@
-family_room_sonos_play_grateful_dead:
+family_room_play_grateful_dead:
   alias: 'Play Greatful Dead in the Family Room'
   sequence:
     - service: media_player.select_source
@@ -6,13 +6,9 @@ family_room_sonos_play_grateful_dead:
         - media_player.family_room
       data:
         source: "23 - Grateful Dead"
-    - service: remote.turn_on
-      entity_id:
-        - remote.family_room
-      data:
-        activity: 16224446
+    - service: script.family_room_receiver_and_sonos_on
 
-family_room_sonos_play_classic_rewind:
+family_room_play_classic_rewind:
   alias: 'Play Classic Rewind in the Family Room'
   sequence:
     - service: media_player.select_source
@@ -20,13 +16,9 @@ family_room_sonos_play_classic_rewind:
         - media_player.family_room
       data:
         source: "25 - Classic Rewind"
-    - service: remote.turn_on
-      entity_id:
-        - remote.family_room
-      data:
-        activity: 16224446
+    - service: script.family_room_receiver_and_sonos_on
 
-family_room_sonos_play_classic_vinyl:
+family_room_play_classic_vinyl:
   alias: 'Play Classic Vinyl in the Family Room'
   sequence:
     - service: media_player.select_source
@@ -34,13 +26,9 @@ family_room_sonos_play_classic_vinyl:
         - media_player.family_room
       data:
         source: "26 - Classic Vinyl"
-    - service: remote.turn_on
-      entity_id:
-        - remote.family_room
-      data:
-        activity: 16224446
+    - service: script.family_room_receiver_and_sonos_on
         
-family_room_sonos_play_80s:
+family_room_play_80s:
   alias: 'Play 80s on Eight in the Family Room'
   sequence:
     - service: media_player.select_source
@@ -48,13 +36,9 @@ family_room_sonos_play_80s:
         - media_player.family_room
       data:
         source: "8 - 80s on 8"
-    - service: remote.turn_on
-      entity_id:
-        - remote.family_room
-      data:
-        activity: 16224446
+    - service: script.family_room_receiver_and_sonos_on
         
-family_room_sonos_play_tom_petty:
+family_room_play_tom_petty:
   alias: 'Play Tom Petty Radio in the Family Room'
   sequence:
     - service: media_player.select_source
@@ -62,9 +46,22 @@ family_room_sonos_play_tom_petty:
         - media_player.family_room
       data:
         source: "31 - Tom Petty Radio"
-    - service: remote.turn_on
-      entity_id:
-        - remote.family_room
-      data:
-        activity: 16224446
+    - service: script.family_room_receiver_and_sonos_on
         
+family_room_add_patio:
+  alias: 'Add Patio to the Family Room'
+  sequence:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.family_room
+      entity_id:
+        - media_player.patio
+
+family_room_remove_patio:
+  alias: 'Remove Patio from the Family Room'
+  sequence:
+    - service: media_player.sonos_unjoin
+      data:
+        master: media_player.family_room
+      entity_id:
+        - media_player.patio
