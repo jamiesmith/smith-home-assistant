@@ -48,6 +48,26 @@ family_room_play_tom_petty:
         source: "31 - Tom Petty Radio"
     - service: script.family_room_receiver_and_sonos_on
         
+family_room_play_70s:
+  alias: 'Play 70s on 7 in the Family Room'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.family_room
+      data:
+        source: "7 - 70s on 7"
+    - service: script.family_room_receiver_and_sonos_on
+        
+family_room_play_jimmy_buffett:
+  alias: 'Play Jimmy Buffett in the Family Room'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.family_room
+      data:
+        source: "Jimmy Buffett"
+    - service: script.family_room_receiver_and_sonos_on
+        
 family_room_add_patio:
   alias: 'Add Patio to the Family Room'
   sequence:

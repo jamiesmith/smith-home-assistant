@@ -52,11 +52,11 @@ function doKitchen
     
     doOne family_room ${quad}   1 0 play_classic_rewind # Works
     doOne family_room ${quad}   1 1 play_classic_vinyl  # works
-    # doOne family_room ${quad} 2 0 
-    # doOne family_room ${quad} 2 1 
+    doOne family_room ${quad}   2 0 play_70s
+    doOne family_room ${quad}   2 1 play_jimmy_buffett
     doOne family_room ${quad}   3 0 play_tom_petty 
     doOne family_room ${quad}   3 1 play_80s
-    # doOne family_room ${quad} 4 0 
+    doOne family_room ${quad}   4 0 play_grateful_dead
     doOne family_room ${quad}   4 1 play_grateful_dead 
 
     quad=kitchenquad3
@@ -68,8 +68,6 @@ function doKitchen
     doOne ""          ${quad} 3 1 cabinet_lights_toggle 
     doOne family_room ${quad} 4 0 volume_down 
     doOne family_room ${quad} 4 1 remove_patio 
-
-    
 }
 
 commonRooms garage > garage.yaml
