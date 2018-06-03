@@ -24,19 +24,6 @@
   action:
     - service: script.family_room_play_classic_vinyl
 
-- id: kitchenquad4_scene_2_play_70s
-  alias: family_room QuadMote play_70s
-#  hide_entity: true
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.kitchenquad4
-      scene_id: 2
-      scene_data: 0
-  action:
-    - service: script.family_room_play_70s
-
 - id: kitchenquad4_scene_2_play_jimmy_buffett
   alias: family_room QuadMote play_jimmy_buffett
 #  hide_entity: true
@@ -46,9 +33,22 @@
     event_data:
       entity_id: zwave.kitchenquad4
       scene_id: 2
-      scene_data: 1
+      scene_data: 0
   action:
     - service: script.family_room_play_jimmy_buffett
+
+- id: kitchenquad4_scene_2_play_70s
+  alias: family_room QuadMote play_70s
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.kitchenquad4
+      scene_id: 2
+      scene_data: 1
+  action:
+    - service: script.family_room_play_70s
 
 - id: kitchenquad4_scene_3_play_tom_petty
   alias: family_room QuadMote play_tom_petty
