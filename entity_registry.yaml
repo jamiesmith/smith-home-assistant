@@ -1,192 +1,320 @@
 climate.upstairs:
+  name:
   platform: nest
   unique_id: E3BCXwxzZxnaM4_zCJHPZT_3mj_p3Nf0
 climate.downstairs:
+  name:
   platform: nest
   unique_id: lmisTI4L-OZ5Gh6ONd6jOT_3mj_p3Nf0
 sensor.jamies_iphone_battery_state:
+  name:
   platform: ios
   unique_id: state_jamies_iphone
 sensor.jamies_iphone_battery_level:
+  name:
   platform: ios
   unique_id: level_jamies_iphone
 media_player.payton:
+  name:
   platform: sonos
   unique_id: RINCON_B8E937B3996A01400
 media_player.patio:
+  name:
   platform: sonos
   unique_id: RINCON_000E5838B6DA01400
 media_player.family_room:
+  name:
   platform: sonos
   unique_id: RINCON_000E582B45D601400
 media_player.garage:
+  name:
   platform: sonos
   unique_id: RINCON_B8E937922BDE01400
 media_player.guest_room:
+  name:
   platform: sonos
   unique_id: RINCON_949F3E1ABFF201400
 switch.rear_landscape_lights_switch:
+  name:
   platform: zwave
   unique_id: 2-72057594076282880
 sensor.rear_landscape_lights_alarm_type:
+  name:
   platform: zwave
   unique_id: 2-72057594077528065
 sensor.rear_landscape_lights_alarm_level:
+  name:
   platform: zwave
   unique_id: 2-72057594077528081
 sensor.rear_landscape_lights_sourcenodeid:
+  name:
   platform: zwave
   unique_id: 2-72057594077528097
 sensor.rear_landscape_lights_heat:
+  name:
   platform: zwave
   unique_id: 2-72057594077528177
 switch.cabinet_lights_switch:
+  name:
   platform: zwave
   unique_id: 3-72057594093060096
 sensor.cabinet_lights_alarm_type:
+  name:
   platform: zwave
   unique_id: 3-72057594094305281
 sensor.cabinet_lights_alarm_level:
+  name:
   platform: zwave
   unique_id: 3-72057594094305297
 switch.cabinet_lights_small_switch:
+  name:
   platform: zwave
   unique_id: 4-72057594109837312
 sensor.cabinet_lights_small_alarm_type:
+  name:
   platform: zwave
   unique_id: 4-72057594111082497
 sensor.cabinet_lights_small_alarm_level:
+  name:
   platform: zwave
   unique_id: 4-72057594111082513
 switch.front_landscape_lights_switch:
+  name:
   platform: zwave
   unique_id: 5-72057594126614528
 switch.front_landscape_lights_switch_2:
+  name:
   platform: zwave
   unique_id: 5-144115188164542464
 switch.front_landscape_lights_switch_3:
+  name:
   platform: zwave
   unique_id: 5-216172782202470400
 sensor.front_landscape_lights_alarm_type:
+  name:
   platform: zwave
   unique_id: 5-72057594127859713
 sensor.front_landscape_lights_alarm_level:
+  name:
   platform: zwave
   unique_id: 5-72057594127859729
 sensor.front_landscape_lights_sourcenodeid:
+  name:
   platform: zwave
   unique_id: 5-72057594127859745
 sensor.front_landscape_lights_heat:
+  name:
   platform: zwave
   unique_id: 5-72057594127859825
 switch.morning_room_lamp_switch:
+  name:
   platform: zwave
   unique_id: 6-72057594143391744
 switch.living_room_outlet_switch:
+  name:
   platform: zwave
   unique_id: 7-72057594160168960
 switch.living_room_outlet_switch_2:
+  name:
   platform: zwave
   unique_id: 7-144115188198096896
 switch.living_room_outlet_switch_3:
+  name:
   platform: zwave
   unique_id: 7-216172782236024832
 switch.foyer_outlet_switch:
+  name:
   platform: zwave
   unique_id: 8-72057594176946176
 switch.foyer_outlet_switch_2:
+  name:
   platform: zwave
   unique_id: 8-144115188214874112
 switch.foyer_outlet_switch_3:
+  name:
   platform: zwave
   unique_id: 8-216172782252802048
 switch.dining_room_lamp_switch:
+  name:
   platform: zwave
   unique_id: 9-72057594193723392
 switch.dining_room_lamp_switch_2:
+  name:
   platform: zwave
   unique_id: 9-144115188231651328
 switch.dining_room_lamp_switch_3:
+  name:
   platform: zwave
   unique_id: 9-216172782269579264
 switch.quad4_switch:
+  name:
   platform: zwave
   unique_id: 12-72057594244055040
 light.kitchen_light_level:
+  name:
   platform: zwave
   unique_id: 11-72057594227294209
 sensor.quad4_alarm_type:
+  name:
   platform: zwave
   unique_id: 12-72057594245300225
 sensor.quad4_alarm_level:
+  name:
   platform: zwave
   unique_id: 12-72057594245300241
 sensor.quad4_sourcenodeid:
+  name:
   platform: zwave
   unique_id: 12-72057594245300257
 sensor.quad4_power_management:
+  name:
   platform: zwave
   unique_id: 12-72057594245300401
 media_player.family_room_2:
+  name:
   platform: apple_tv
   unique_id: e82f0a1129889229d878e2cd15e82f987fb83bcd686a1c23b32d467e78be93bc
 remote.family_room_2:
+  name:
   platform: apple_tv
   unique_id: e82f0a1129889229d878e2cd15e82f987fb83bcd686a1c23b32d467e78be93bc
 media_player.office:
+  name:
   platform: sonos
   unique_id: RINCON_949F3EB48FE001400
 media_player.apple_tv:
+  name:
   platform: apple_tv
   unique_id: f404a5d635d7affa4a632ada597f19012f374e5c45e7acaba08c37948e4875e7
 remote.apple_tv:
+  name:
   platform: apple_tv
   unique_id: f404a5d635d7affa4a632ada597f19012f374e5c45e7acaba08c37948e4875e7
 sensor.alarm_type:
+  name:
   platform: zwave
   unique_id: 14-72057594278854657
 sensor.alarm_level:
+  name:
   platform: zwave
   unique_id: 14-72057594278854673
 switch.switch:
+  name:
   platform: zwave
   unique_id: 14-72057594277609472
 sensor.aeotec_zw130_wallmote_quad_sourcenodeid:
+  name:
   platform: zwave
   unique_id: 14-72057594278854689
 sensor.aeotec_zw130_wallmote_quad_power_management:
+  name:
   platform: zwave
   unique_id: 14-72057594278854833
 sensor.alarm_type_2:
+  name:
   platform: zwave
   unique_id: 13-72057594262077441
 sensor.alarm_level_2:
+  name:
   platform: zwave
   unique_id: 13-72057594262077457
 switch.switch_2:
+  name:
   platform: zwave
   unique_id: 13-72057594260832256
 sensor.aeotec_zw130_wallmote_quad_sourcenodeid_2:
+  name:
   platform: zwave
   unique_id: 13-72057594262077473
 sensor.aeotec_zw130_wallmote_quad_power_management_2:
+  name:
   platform: zwave
   unique_id: 13-72057594262077617
 sensor.alarm_type_3:
+  name:
   platform: zwave
   unique_id: 15-72057594295631873
 sensor.alarm_level_3:
+  name:
   platform: zwave
   unique_id: 15-72057594295631889
 switch.switch_3:
+  name:
   platform: zwave
   unique_id: 15-72057594294386688
 sensor.aeotec_zw130_wallmote_quad_sourcenodeid_3:
+  name:
   platform: zwave
   unique_id: 15-72057594295631905
 sensor.aeotec_zw130_wallmote_quad_power_management_3:
+  name:
   platform: zwave
   unique_id: 15-72057594295632049
 switch.switch_4:
+  name:
   platform: zwave
   unique_id: 16-72057594311163904
+zwave.aeotec_zw090_zstick_gen5_us:
+  name:
+  platform: zwave
+  unique_id: node-1
+zwave.rear_landscape_lights:
+  name:
+  platform: zwave
+  unique_id: node-2
+zwave.cabinet_lights:
+  name:
+  platform: zwave
+  unique_id: node-3
+zwave.cabinet_lights_small:
+  name:
+  platform: zwave
+  unique_id: node-4
+zwave.front_landscape_lights:
+  name:
+  platform: zwave
+  unique_id: node-5
+zwave.morning_room_lamp:
+  name:
+  platform: zwave
+  unique_id: node-6
+zwave.living_room_outlet:
+  name:
+  platform: zwave
+  unique_id: node-7
+zwave.foyer_outlet:
+  name:
+  platform: zwave
+  unique_id: node-8
+zwave.dining_room_lamp:
+  name:
+  platform: zwave
+  unique_id: node-9
+zwave.kitchen_light:
+  name:
+  platform: zwave
+  unique_id: node-11
+zwave.kitchenquad4:
+  name:
+  platform: zwave
+  unique_id: node-12
+zwave.kitchenquad3:
+  name:
+  platform: zwave
+  unique_id: node-13
+zwave.garagequad:
+  name:
+  platform: zwave
+  unique_id: node-14
+zwave.patioquad:
+  name:
+  platform: zwave
+  unique_id: node-15
+zwave.levitonoutlet:
+  name:
+  platform: zwave
+  unique_id: node-16
+media_player.roku_yy004g397153:
+  name:
+  platform: roku
+  unique_id: YY004G397153

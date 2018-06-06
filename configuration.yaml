@@ -38,7 +38,9 @@ updater:
 
 # Discover some devices automatically
 discovery:
-
+  ignore:
+    - yamaha
+    
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
@@ -103,21 +105,23 @@ media_player:
 # Yamaha
   - platform: yamaha
     host: 192.168.1.31
-    name: 'Family Room Receiver'
+    # name: 'Family Room Receiver'
     zone_ignore:
       - "Zone_2"
       - "Zone_3"
       - "Zone_4"
+      - "zone_4"
     zone_names:
       Main_Zone: "Family Room"
         
   - platform: yamaha
     host: 192.168.1.30
-    name: 'Office Receiver'
+    # name: 'Office Receiver'
     zone_ignore:
       - "Zone_2"
       - "Zone_3"
       - "Zone_4"
+      - "zone_4"
     zone_names:
       Main_Zone: "Office"
 
