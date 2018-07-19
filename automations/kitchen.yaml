@@ -89,8 +89,8 @@
   action:
     - service: script.family_room_play_grateful_dead
 
-- id: kitchenquad4_scene_4_play_grateful_dead
-  alias: family_room QuadMote play_grateful_dead
+- id: kitchenquad4_scene_4_play_grateful_dead_2
+  alias: family_room QuadMote play_grateful_dead_2
 #  hide_entity: true
   trigger:
     platform: event

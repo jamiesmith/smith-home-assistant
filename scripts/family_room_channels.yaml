@@ -78,10 +78,24 @@ family_room_add_patio:
         - media_player.patio
 
 family_room_remove_patio:
-  alias: 'Remove Patio from the Family Room'
+  alias: 'Remove Patio from group'
   sequence:
     - service: media_player.sonos_unjoin
+      entity_id:
+        - media_player.patio
+
+family_room_add_garage:
+  alias: 'Add Garage to the Family Room'
+  sequence:
+    - service: media_player.sonos_join
       data:
         master: media_player.family_room
       entity_id:
-        - media_player.patio
+        - media_player.garage
+
+family_room_remove_garage:
+  alias: 'Remove Garage from group'
+  sequence:
+    - service: media_player.sonos_unjoin
+      entity_id:
+        - media_player.garage

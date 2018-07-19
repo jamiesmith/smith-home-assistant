@@ -65,6 +65,15 @@ family_room_receiver_volume_down:
         num_repeats: 5
         delay_secs: 0.1
         
+family_room_receiver_toggle_mute:
+  alias: Family Room Receiver Toggle Mute
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.family_room
+        command: Mute
+        device: 31060662
+        
 family_room_receiver_and_sonos_on:
   alias: Family Room Receiver On Set Sonos Volume
   sequence:

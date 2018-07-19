@@ -15,6 +15,10 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
   packages: !include_dir_named packages/
 
+weather:
+  - platform: darksky
+    api_key: !secret darksky_key
+  
 # Enables the frontend
 frontend:
 
@@ -94,6 +98,7 @@ remote:
     name: Office
     # let it discover the matching name
     # host: 192.168.1.99
+
   - platform: harmony
     name: Family Room
     # let it discover the matching name
@@ -103,29 +108,29 @@ media_player:
   - platform: sonos
 
 # Yamaha
-  - platform: yamaha
-    host: 192.168.1.31
-    # name: 'Family Room Receiver'
-    zone_ignore:
-      - "Zone_2"
-      - "Zone_3"
-      - "Zone_4"
-      - "zone_4"
-    zone_names:
-      Main_Zone: "Family Room"
+# JRS-TMP   - platform: yamaha
+# JRS-TMP     host: 192.168.1.31
+# JRS-TMP     # name: 'Family Room Receiver'
+# JRS-TMP     zone_ignore:
+# JRS-TMP       - "Zone_2"
+# JRS-TMP       - "Zone_3"
+# JRS-TMP       - "Zone_4"
+# JRS-TMP       - "zone_4"
+# JRS-TMP     zone_names:
+# JRS-TMP       Main_Zone: "Family Room"
         
-  - platform: yamaha
-    host: 192.168.1.30
-    # name: 'Office Receiver'
-    zone_ignore:
-      - "Zone_2"
-      - "Zone_3"
-      - "Zone_4"
-      - "zone_4"
-    zone_names:
-      Main_Zone: "Office"
+# JRS-TMP   - platform: yamaha
+# JRS-TMP     host: 192.168.1.30
+# JRS-TMP     # name: 'Office Receiver'
+# JRS-TMP     zone_ignore:
+# JRS-TMP       - "Zone_2"
+# JRS-TMP       - "Zone_3"
+# JRS-TMP       - "Zone_4"
+# JRS-TMP       - "zone_4"
+# JRS-TMP     zone_names:
+# JRS-TMP       Main_Zone: "Office"
 
-ios:
+# JRS-TMP ios:
   
 # JRS-TMP notify:
 # JRS-TMP   - name: ios_devices

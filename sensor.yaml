@@ -13,7 +13,7 @@
     api_key: !secret darksky_key
     units: auto
     update_interval:
-      minutes: 2
+      minutes: 3
     forecast:
       - 1
       - 2

@@ -42,12 +42,19 @@
         entity_id: zwave.kitchen_light
         scene_data: 3 # double-tap
         scene_id: 2   # Off
-    - platform: state
-      entity_id: sensor.dark_outside
-      to: 'false' 
   action:
     - service: homeassistant.turn_off
       entity_id: group.cabinet_lighting
+
+- id: foyer_lighting_on
+  alias: Turn On Foyer Lighting
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:30:00"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.foyer_outlet_switch_2
 
 - id: foyer_lighting_off
   alias: Turn Off Foyer Lighting
@@ -58,25 +65,6 @@
     - service: switch.turn_off
       entity_id: switch.foyer_outlet_switch_2
 
-- id: landscape_lighting_on
-  alias: Turn On Landscape Lighting around sunset
-  trigger:
-    platform: sun
-    event: sunset
-    offset: "+00:15:00"
-  action:
-    - service: homeassistant.turn_on
-      entity_id: group.landscape_lights
-
-- id: landscape_lighting_off
-  alias: Turn Off Landscape Lighting
-  trigger:
-    platform: time
-    at: "23:59:00"
-  action:
-    - service: homeassistant.turn_off
-      entity_id: group.landscape_lights
-
 - id: jamie_bedtime_music
   alias: Turn on Jamies bedtime music
   trigger:
@@ -85,7 +73,7 @@
       event_data:
         entity_id: zwave.kitchen_light
         scene_data: 4 # triple-tap
-        scene_id: 2   # Off
+        scene_id: 2   # Off/Bottom
     - platform: time
       at: "22:00:00"
     - platform: time
@@ -116,3 +104,18 @@
   action:
     - service: script.turn_off_office
       
+- id: turn_on_receiver_for_sonos
+  alias: Turn On Receiver for Sonos
+  trigger:
+    - platform: event
+      event_type: state_changed
+      event_data:
+        entity_id: media_player.family_room
+  condition:
+    - condition: template
+      value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
+  action:
+    - service: remote.turn_on
+      entity_id: remote.family_room
+      data:
+        activity: 16224446

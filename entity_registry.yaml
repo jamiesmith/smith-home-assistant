@@ -318,3 +318,7 @@ media_player.roku_yy004g397153:
   name:
   platform: roku
   unique_id: YY004G397153
+media_player.roku_2n001n632737:
+  name:
+  platform: roku
+  unique_id: 2N001N632737

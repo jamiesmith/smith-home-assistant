@@ -44,7 +44,7 @@ garage_play_tom_petty:
         source: "31 - Tom Petty Radio"
 
 garage_media_stop:
-  alias: 'Stop Garage'
+  alias: 'Pause Garage'
   sequence:
     - service: media_player.media_stop
       entity_id:
@@ -64,3 +64,9 @@ garage_volume_down:
       entity_id:
         - media_player.garage
         
+garage_stop:
+  alias: 'Garage Stop'
+  sequence:
+    - service: media_player.stop
+      entity_id:
+        - media_player.garage
