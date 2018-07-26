@@ -119,3 +119,7 @@
       entity_id: remote.family_room
       data:
         activity: 16224446
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.family_room
+        volume_level: '0.5'

@@ -63,3 +63,12 @@ patio_volume_down:
     - service: media_player.volume_down
       entity_id:
         - media_player.patio
+
+patio_add_family_room:
+  alias: 'Add Family Room to the Patio'
+  sequence:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.patio
+      entity_id:
+        - media_player.family_room
