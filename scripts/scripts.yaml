@@ -8,6 +8,16 @@ family_room_turn_off:
       entity_id:
         - media_player.family_room
 
+patio_turn_off:
+  alias: 'Turn off Family Room'
+  sequence:
+    - service: remote.turn_off
+      entity_id:
+        - remote.patio
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.patio
+
 turn_off_office:
   alias: 'Turn off Office'
   sequence:
