@@ -97,3 +97,25 @@ family_room_receiver_and_sonos_on:
         - remote.family_room
       data:
         activity: 16224446
+        
+office_volume_up:
+  alias: Volume Up
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.office
+        command: VolumeUp
+        device: 32992555
+        num_repeats: 5
+        # delay_secs: 0.1
+
+office_volume_down:
+  alias: Volume Down
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.office
+        command: VolumeDown
+        device: 32992555
+        num_repeats: 5
+        # delay_secs: 0.1

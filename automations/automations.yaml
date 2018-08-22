@@ -123,3 +123,24 @@
     # JRS-TMP   data_template:
     # JRS-TMP     entity_id: media_player.family_room
     # JRS-TMP     volume_level: '0.5'
+
+- id: turn_on_receiver_for_sonos
+  alias: Turn On Receiver for Sonos
+  trigger:
+    - platform: event
+      event_type: state_changed
+      event_data:
+        entity_id: media_player.office
+  condition:
+    - condition: template
+      value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
+  action:
+    - service: remote.turn_on
+      entity_id: remote.office
+      data:
+        activity: 11378417
+    # JRS-TMP - service: media_player.volume_set
+    # JRS-TMP   data_template:
+    # JRS-TMP     entity_id: media_player.family_room
+    # JRS-TMP     volume_level: '0.5'
+    

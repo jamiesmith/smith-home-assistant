@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   homeassistant:
-    image: homeassistant/home-assistant:0.70.1
+    image: homeassistant/home-assistant:0.75.3
     container_name: home-assistant
     restart: always
     network_mode: 'host'

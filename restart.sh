@@ -1,5 +1,10 @@
 #!/bin/bash
 
+function logit
+{
+    echo $*
+    echo "$(date '+%Y-%m-%d %H:%M:%S') $*" >> /tmp/ha-restart-history.log
+}
 
 # JRS-TMP git pull --rebase
 # JRS-TMP if [ $? -ne 0 ]
@@ -10,10 +15,10 @@
 
 if [ $(docker-compose ps homeassistant | grep -c Up) -gt 0 ]
 then
-    echo "Up!"
+    logit "Up!"
     docker-compose restart
 else
-    echo "Down"
+    logit "Down"
     docker-compose up -d
 fi
 

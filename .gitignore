@@ -13,6 +13,7 @@ home-assistant_v2.db
 *.db-shm
 *.db-wal
 *.sqlite
+.storage
 deps
 __pycache__
 tts
