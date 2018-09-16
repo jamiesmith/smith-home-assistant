@@ -124,8 +124,8 @@
     # JRS-TMP     entity_id: media_player.family_room
     # JRS-TMP     volume_level: '0.5'
 
-- id: turn_on_receiver_for_sonos
-  alias: Turn On Receiver for Sonos
+- id: turn_on_office_receiver_for_sonos
+  alias: Turn On Office Receiver for Sonos
   trigger:
     - platform: event
       event_type: state_changed

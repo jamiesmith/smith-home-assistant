@@ -4,13 +4,13 @@ room=${1:garage}
 
 function doOne
 {
-    room=$1
-    controller=$2
-    scene=$3
-    data=$4
-    command=$5
+    local room=$1
+    local controller=$2
+    local scene=$3
+    local data=$4
+    local command=$5
 
-    roomPrefix="$room"
+    local roomPrefix="$room"
     [ -n "$roomPrefix" ] && roomPrefix="${roomPrefix}_"
   
 cat <<EOF
@@ -32,12 +32,27 @@ EOF
 
 function commonRooms
 {
-    room=$1
-    controller=${room}quad
+    local room=$1
+    local controller=${room}quad
     doOne $room $controller 1 0 play_classic_rewind
     doOne $room $controller 1 1 play_classic_vinyl
     doOne $room $controller 2 0 play_tom_petty
     doOne $room $controller 2 1 play_grateful_dead
+    doOne $room $controller 3 0 volume_down
+    doOne $room $controller 3 1 play_80s
+    doOne $room $controller 4 0 volume_up
+    doOne $room $controller 4 1 media_stop
+}
+
+function patio
+{
+    local room="patio"
+    local main="family_room"
+    local controller=${room}quad
+    doOne $room $controller 1 0 play_classic_rewind
+    doOne $room $controller 1 1 play_tom_petty
+    doOne $main $controller 2 0 add_patio
+    doOne $room $controller 2 1 drop_patio
     doOne $room $controller 3 0 volume_down
     doOne $room $controller 3 1 play_80s
     doOne $room $controller 4 0 volume_up
@@ -59,7 +74,7 @@ function doKitchen
     doOne family_room ${quad}   4 0 play_grateful_dead
     doOne family_room ${quad}   4 1 play_grateful_dead 
 
-    quad=kitchenquad3
+    local quad=kitchenquad3
     doOne ""          ${quad} 1 0 turn_on_accent_lighting 
     doOne ""          ${quad} 1 1 turn_off_accent_lighting 
     doOne family_room ${quad} 2 0 volume_up 
@@ -71,5 +86,5 @@ function doKitchen
 }
 
 commonRooms garage > garage.yaml
-commonRooms patio > patio.yaml
+patio > patio.yaml
 doKitchen > kitchen.yaml

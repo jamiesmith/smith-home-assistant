@@ -11,8 +11,8 @@
   action:
     - service: script.patio_play_classic_rewind
 
-- id: patioquad_scene_1_play_classic_vinyl
-  alias: patio QuadMote play_classic_vinyl
+- id: patioquad_scene_1_play_tom_petty
+  alias: patio QuadMote play_tom_petty
 #  hide_entity: true
   trigger:
     platform: event
@@ -22,10 +22,10 @@
       scene_id: 1
       scene_data: 1
   action:
-    - service: script.patio_play_classic_vinyl
+    - service: script.patio_play_tom_petty
 
-- id: patioquad_scene_2_play_tom_petty
-  alias: patio QuadMote play_tom_petty
+- id: patioquad_scene_2_add_patio
+  alias: family_room QuadMote add_patio
 #  hide_entity: true
   trigger:
     platform: event
@@ -35,10 +35,10 @@
       scene_id: 2
       scene_data: 0
   action:
-    - service: script.patio_play_tom_petty
+    - service: script.family_room_add_patio
 
-- id: patioquad_scene_2_play_grateful_dead
-  alias: patio QuadMote play_grateful_dead
+- id: patioquad_scene_2_drop_patio
+  alias: patio QuadMote drop_patio
 #  hide_entity: true
   trigger:
     platform: event
@@ -48,7 +48,7 @@
       scene_id: 2
       scene_data: 1
   action:
-    - service: script.patio_play_grateful_dead
+    - service: script.patio_drop_patio
 
 - id: patioquad_scene_3_volume_down
   alias: patio QuadMote volume_down
