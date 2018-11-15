@@ -6,6 +6,7 @@ default_view:
     - group.landscape_lights
     - group.accent_lighting
     - group.foyer_lighting
+    - group.holiday_lighting
     
 kitchen:
  # view: yes
@@ -16,6 +17,15 @@ kitchen:
     - group.cabinet_lighting
     - light.kitchen_light_level
 
+holiday_lighting:
+ # view: yes
+  name: Holiday Lights
+  entities:
+    - switch.holiday_dining_room_tree_switch
+    - switch.holiday_office_candles_switch
+    - switch.holiday_living_room_candles_switch
+
+    
 landscape_lights:
   # view: yes
   name: Landscape Lights

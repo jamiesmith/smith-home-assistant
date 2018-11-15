@@ -59,5 +59,12 @@ sensor.dark_outside:
 # JRS-TMP sensor.bad_weather:
 # JRS-TMP   icon: mdi:weather-snowy-rainy
                                           
+# Some holiday lights.  Leviton stuff isn't liking the rename
+switch.holiday_dining_room_tree_switch:
+  friendly_name: Holiday Dining Room Tree
 
+switch.holiday_office_candles_switch:
+  friendly_name: Holiday Office Candles
 
+switch.holiday_living_room_candles_switch:
+  friendly_name: Holiday Living Room Candles
