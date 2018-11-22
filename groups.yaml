@@ -7,6 +7,7 @@ default_view:
     - group.accent_lighting
     - group.foyer_lighting
     - group.holiday_lighting
+    - group.holiday_lighting_family_room
     
 kitchen:
  # view: yes
@@ -21,10 +22,26 @@ holiday_lighting:
  # view: yes
   name: Holiday Lights
   entities:
-    - switch.holiday_dining_room_tree_switch
+    - switch.holiday_master_candles_switch
+    - switch.holiday_garage_candles_switch
     - switch.holiday_office_candles_switch
+    - switch.holiday_payton_candles_switch
     - switch.holiday_living_room_candles_switch
+    - switch.holiday_dining_room_tree_switch
+    - switch.holiday_upstairs_wreath_switch
+    - switch.holiday_front_shrubs_switch
+    - switch.foyer_outlet_switch_2
+    - switch.foyer_outlet_switch_3
+    - switch.living_room_outlet_switch_2
+    - switch.living_room_outlet_switch_3
+    - switch.dining_room_lamp_switch_3
 
+holiday_lighting_family_room:
+ # view: yes
+  name: Tree / Garland
+  entities:
+    # Change to tree and garland
+    - switch.holiday_office_candles_switch
     
 landscape_lights:
   # view: yes

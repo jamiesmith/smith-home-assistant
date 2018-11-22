@@ -433,3 +433,53 @@ remote.family_room_apple_tv:
   name:
   platform: apple_tv
   unique_id: c987e762b74a83036cddd777a780c0cb887bc05109894287262d3f9ae752585d
+zwave.holiday_master_candles_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-19
+switch.holiday_master_candles_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 19-72057594361495552
+zwave.holiday_upstairs_wreath:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-20
+switch.holiday_upstairs_wreath_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 20-72057594378272768
+zwave.holiday_payton_candles:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-22
+switch.holiday_payton_candles_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 22-72057594411827200
+zwave.holiday_front_shrubs:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-23
+switch.holiday_front_shrubs_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 23-72057594428604416
+zwave.holiday_garage_candles:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-24
+switch.holiday_garage_candles_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 24-72057594445381632

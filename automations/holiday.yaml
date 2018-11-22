@@ -1,0 +1,17 @@
+- id: holiday_lighting_on
+  alias: Turn On Holiday Lighting around sunset
+  trigger:
+    platform: time
+    at: "16:00:00"
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.holiday_lights
+
+- id: holiday_lighting_off
+  alias: Turn Off Holiday Lighting
+  trigger:
+    platform: time
+    at: "23:59:00"
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.holiday_lights

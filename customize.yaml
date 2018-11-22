@@ -61,10 +61,27 @@ sensor.dark_outside:
                                           
 # Some holiday lights.  Leviton stuff isn't liking the rename
 switch.holiday_dining_room_tree_switch:
-  friendly_name: Holiday Dining Room Tree
+  friendly_name: Dining Room Tree
 
 switch.holiday_office_candles_switch:
-  friendly_name: Holiday Office Candles
+  friendly_name: Office Candles
 
 switch.holiday_living_room_candles_switch:
-  friendly_name: Holiday Living Room Candles
+  friendly_name: Living Room Candles
+
+switch.holiday_master_candles_switch:
+  friendly_name: Master Candles Switch
+
+switch.holiday_payton_candles_switch:
+  friendly_name: Payton Candles
+  
+switch.holiday_garage_candles_switch:
+  friendly_name: Garage Candles
+
+switch.holiday_upstairs_wreath_switch:
+  friendly_name: Upstairs Wreath 
+
+switch.holiday_front_shrubs_switch:
+  friendly_name: Front Shrubs
+
+
