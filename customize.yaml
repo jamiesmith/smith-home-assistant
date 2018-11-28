@@ -84,4 +84,16 @@ switch.holiday_upstairs_wreath_switch:
 switch.holiday_front_shrubs_switch:
   friendly_name: Front Shrubs
 
+switch.holiday_payton_garland_switch:
+  friendly_name: Payton Garland
 
+switch.holiday_master_garland_switch:
+  friendly_name: Master Garland
+
+switch.holiday_wreath_switch:
+  friendly_name: Wreath
+
+switch.holiday_tree_and_garland_switch:
+  friendly_name: Tree and Garland
+
+        

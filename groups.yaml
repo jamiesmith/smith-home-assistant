@@ -6,7 +6,9 @@ default_view:
     - group.landscape_lights
     - group.accent_lighting
     - group.foyer_lighting
-    - group.holiday_lighting
+    - group.holiday_lights
+    - group.holiday_candles
+    - group.holiday_other
     - group.holiday_lighting_family_room
     
 kitchen:
@@ -18,33 +20,53 @@ kitchen:
     - group.cabinet_lighting
     - light.kitchen_light_level
 
-holiday_lighting:
+holiday_all:
  # view: yes
-  name: Holiday Lights
+  name: Holiday Candles
+  entities:
+    - group.holiday_lights
+    - group.holiday_candles
+    - group.holiday_other
+
+holiday_candles:
+ # view: yes
+  name: Holiday Candles
   entities:
     - switch.holiday_master_candles_switch
     - switch.holiday_garage_candles_switch
     - switch.holiday_office_candles_switch
     - switch.holiday_payton_candles_switch
     - switch.holiday_living_room_candles_switch
+
+holiday_lights:
+ # view: yes
+  name: Holiday Lights
+  entities:
     - switch.holiday_dining_room_tree_switch
     - switch.holiday_upstairs_wreath_switch
     - switch.holiday_front_shrubs_switch
+    - switch.holiday_payton_garland_switch
+    - switch.holiday_master_garland_switch
+    - switch.holiday_wreath_switch
+    - switch.holiday_tree_and_garland_switch   
+
+holiday_other:
+ # view: yes
+  name: Holiday Other
+  entities:
     - switch.foyer_outlet_switch_2
     - switch.foyer_outlet_switch_3
     - switch.living_room_outlet_switch_2
     - switch.living_room_outlet_switch_3
     - switch.dining_room_lamp_switch_3
     - switch.morning_room_lamp_switch
-    - switch.front_landscape_lights_switch_3 # This one is pending
-   
+    - switch.front_landscape_lights_switch_3
 
 holiday_lighting_family_room:
  # view: yes
   name: Tree / Garland
   entities:
-    # Change to tree and garland
-    - switch.holiday_office_candles_switch
+    - switch.holiday_tree_and_garland_switch
     
 landscape_lights:
   # view: yes

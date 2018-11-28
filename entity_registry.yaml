@@ -443,12 +443,12 @@ switch.holiday_master_candles_switch:
   name:
   platform: zwave
   unique_id: 19-72057594361495552
-zwave.holiday_upstairs_wreath:
+zwave.holiday_tree_and_garland:
   config_entry_id:
   name:
   platform: zwave
   unique_id: node-20
-switch.holiday_upstairs_wreath_switch:
+switch.holiday_tree_and_garland_switch:
   config_entry_id:
   name:
   platform: zwave
@@ -483,3 +483,33 @@ switch.holiday_garage_candles_switch:
   name:
   platform: zwave
   unique_id: 24-72057594445381632
+zwave.holiday_wreath:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-25
+switch.holiday_wreath_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 25-72057594462158848
+zwave.holiday_payton_garland:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-26
+switch.holiday_payton_garland_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 26-72057594478936064
+zwave.holiday_master_garland:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-27
+switch.holiday_master_garland_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 27-72057594495713280
