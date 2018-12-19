@@ -1,10 +1,10 @@
 climate.upstairs:
-  config_entry_id: 5acafec2412e433e9454fc9cf75d8d94
+  config_entry_id: 08469ce9742441c697b97b90a9176dd7
   name:
   platform: nest
   unique_id: E3BCXwxzZxnaM4_zCJHPZT_3mj_p3Nf0
 climate.downstairs:
-  config_entry_id: 5acafec2412e433e9454fc9cf75d8d94
+  config_entry_id: 08469ce9742441c697b97b90a9176dd7
   name:
   platform: nest
   unique_id: lmisTI4L-OZ5Gh6ONd6jOT_3mj_p3Nf0
@@ -19,27 +19,27 @@ sensor.jamies_iphone_battery_level:
   platform: ios
   unique_id: level_jamies_iphone
 media_player.payton:
-  config_entry_id: 75917716bfae49408d885967e94e0ae0
+  config_entry_id: f1181543662a460fa398914589f4c857
   name:
   platform: sonos
   unique_id: RINCON_B8E937B3996A01400
 media_player.patio:
-  config_entry_id: 75917716bfae49408d885967e94e0ae0
+  config_entry_id: f1181543662a460fa398914589f4c857
   name:
   platform: sonos
   unique_id: RINCON_000E5838B6DA01400
 media_player.family_room:
-  config_entry_id: 75917716bfae49408d885967e94e0ae0
+  config_entry_id: f1181543662a460fa398914589f4c857
   name:
   platform: sonos
   unique_id: RINCON_000E582B45D601400
 media_player.garage:
-  config_entry_id: 75917716bfae49408d885967e94e0ae0
+  config_entry_id: f1181543662a460fa398914589f4c857
   name:
   platform: sonos
   unique_id: RINCON_B8E937922BDE01400
 media_player.guest_room:
-  config_entry_id: 75917716bfae49408d885967e94e0ae0
+  config_entry_id: f1181543662a460fa398914589f4c857
   name:
   platform: sonos
   unique_id: RINCON_949F3E1ABFF201400
@@ -224,7 +224,7 @@ remote.family_room_2:
   platform: apple_tv
   unique_id: e82f0a1129889229d878e2cd15e82f987fb83bcd686a1c23b32d467e78be93bc
 media_player.office:
-  config_entry_id: 75917716bfae49408d885967e94e0ae0
+  config_entry_id: f1181543662a460fa398914589f4c857
   name:
   platform: sonos
   unique_id: RINCON_949F3EB48FE001400
@@ -513,3 +513,13 @@ switch.holiday_master_garland_switch:
   name:
   platform: zwave
   unique_id: 27-72057594495713280
+zwave.leviton_dzpa12bw_plugin_outlet:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-28
+switch.leviton_dzpa12bw_plugin_outlet_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 28-72057594512490496

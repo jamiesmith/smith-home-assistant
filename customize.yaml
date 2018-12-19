@@ -96,4 +96,6 @@ switch.holiday_wreath_switch:
 switch.holiday_tree_and_garland_switch:
   friendly_name: Tree and Garland
 
+switch.palm_tree_switch:
+  friendly_name: Palm Tree
         

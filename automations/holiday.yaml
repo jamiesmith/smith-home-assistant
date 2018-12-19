@@ -11,7 +11,7 @@
   alias: Turn Off Holiday Lights
   trigger:
     platform: time
-    at: "23:57:00"
+    at: "22:14:00"
   action:
     - service: homeassistant.turn_off
       entity_id: group.holiday_lights
