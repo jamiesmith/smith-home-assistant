@@ -1,19 +1,14 @@
 family_room_turn_off:
   alias: 'Turn off Family Room'
   sequence:
-    - service: remote.turn_off
-      entity_id:
-        - remote.family_room
+    - service: media_player.turn_off
+      entity_id: media_player.yamaha_receiver_family_room
     - service: media_player.media_stop
-      entity_id:
-        - media_player.family_room
+      entity_id: media_player.family_room
 
 patio_turn_off:
-  alias: 'Turn off Family Room'
+  alias: 'Turn off Patio'
   sequence:
-    - service: remote.turn_off
-      entity_id:
-        - remote.patio
     - service: media_player.media_stop
       entity_id:
         - media_player.patio
@@ -21,10 +16,29 @@ patio_turn_off:
 turn_off_office:
   alias: 'Turn off Office'
   sequence:
-    - service: remote.turn_off
-      entity_id:
-        - remote.office
+    - service: media_player.turn_off
+      entity_id: media_player.yamaha_receiver_office
 
+office_input_krypter:
+  alias: 'Office Input Krypter'
+  sequence:
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver_office
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver_office
+        source: AUDIO2
+
+office_input_orion:
+  alias: 'Office Input Orion'
+  sequence:
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver_office
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver_office
+        source: AV2
+        
 jamie_bedtime_music:
   alias: Turn on Jamies bedtime music
   sequence:
@@ -78,11 +92,9 @@ family_room_receiver_volume_down:
 family_room_receiver_toggle_mute:
   alias: Family Room Receiver Toggle Mute
   sequence:
-    - service: remote.send_command
+    - service: media_player.volume_mute
       data:
-        entity_id: remote.family_room
-        command: Mute
-        device: 31060662
+        entity_id: media_player.yamaha_receiver_family_room
         
 family_room_receiver_and_sonos_on:
   alias: Family Room Receiver On Set Sonos Volume
@@ -92,11 +104,12 @@ family_room_receiver_and_sonos_on:
         - media_player.family_room
       data:
         volume_level: .6
-    - service: remote.turn_on
-      entity_id:
-        - remote.family_room
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver_family_room
+    - service: media_player.select_source
       data:
-        activity: 16224446
+        entity_id: media_player.yamaha_receiver_family_room
+        source: AUDIO3
         
 office_volume_up:
   alias: Volume Up

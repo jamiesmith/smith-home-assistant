@@ -111,8 +111,6 @@ media_players:
     - media_player.payton
     - media_player.family_room_receiver
     - media_player.office_receiver
-    - remote.office
-    - remote.family_room
 
 comfort:
   view: yes

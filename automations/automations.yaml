@@ -115,10 +115,12 @@
     - condition: template
       value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
   action:
-    - service: remote.turn_on
-      entity_id: remote.family_room
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver_family_room
+    - service: media_player.select_source
       data:
-        activity: 16224446
+        entity_id: media_player.yamaha_receiver_family_room
+        source: AUDIO3
     # JRS-TMP - service: media_player.volume_set
     # JRS-TMP   data_template:
     # JRS-TMP     entity_id: media_player.family_room
@@ -135,10 +137,12 @@
     - condition: template
       value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
   action:
-    - service: remote.turn_on
-      entity_id: remote.office
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver_office
+    - service: media_player.select_source
       data:
-        activity: 11378417
+        entity_id: media_player.yamaha_receiver_office
+        source: AUDIO1
     # JRS-TMP - service: media_player.volume_set
     # JRS-TMP   data_template:
     # JRS-TMP     entity_id: media_player.family_room
