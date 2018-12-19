@@ -44,6 +44,7 @@ updater:
 discovery:
   ignore:
     - yamaha
+    - harmony
     
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:

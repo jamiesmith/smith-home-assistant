@@ -1,0 +1,88 @@
+office_turn_on:
+  alias: 'Turn on Office'
+  sequence:
+    - service: media_player.turn_on
+      entity_id: media_player.yamaha_receiver_office
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.yamaha_receiver_office
+        volume_level: 0.8
+
+office_turn_off:
+  alias: 'Turn off Office'
+  sequence:
+    - service: media_player.turn_off
+      entity_id: media_player.yamaha_receiver_office
+    - service: media_player.media_stop
+      entity_id: media_player.office
+
+office_receiver_toggle_mute:
+  alias: Office Receiver Toggle Mute
+  sequence:
+    - service: media_player.volume_mute
+      data:
+        entity_id: media_player.yamaha_receiver_office
+      data_template:
+        is_volume_muted: '{{ not states.media_player.yamaha_receiver_office.attributes.is_volume_muted }}'
+                                      
+office_receiver_volume_up:
+  sequence:
+    service: media_player.volume_set
+    entity_id: media_player.yamaha_receiver_office
+    data_template:
+      volume_level: '{{ states.media_player.yamaha_receiver_office.attributes.volume_level | float + 0.02 }}'
+
+office_receiver_volume_down:
+  sequence:
+    service: media_player.volume_set
+    entity_id: media_player.yamaha_receiver_office
+    data_template:
+      volume_level: '{{ states.media_player.yamaha_receiver_office.attributes.volume_level | float - 0.02 }}'
+
+######
+
+office_input_sonos:
+  alias: 'Turn On Office Sonos'
+  sequence:
+    - service: script.office_turn_on
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver_office
+        source: AUDIO1
+
+office_input_krypter:
+  alias: 'Office Input Krypter'
+  sequence:
+    - service: script.office_turn_on
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver_office
+        source: AUDIO2
+
+office_input_orion:
+  alias: 'Office Input Orion'
+  sequence:
+    - service: script.office_turn_on
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver_office
+        source: AV2
+
+office_input_roon:
+  alias: 'Office Input Roon'
+  sequence:
+    - service: script.office_turn_on
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver_office
+        source: AUDIO3
+
+office_input_phono:
+  alias: 'Office Input Phono'
+  sequence:
+    - service: script.office_turn_on
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.yamaha_receiver_office
+        source: PHONO
+     

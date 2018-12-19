@@ -115,12 +115,7 @@
     - condition: template
       value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
   action:
-    - service: media_player.turn_on
-      entity_id: media_player.yamaha_receiver_family_room
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.yamaha_receiver_family_room
-        source: AUDIO3
+    - service: script.family_room_receiver_input_sonos
     # JRS-TMP - service: media_player.volume_set
     # JRS-TMP   data_template:
     # JRS-TMP     entity_id: media_player.family_room
