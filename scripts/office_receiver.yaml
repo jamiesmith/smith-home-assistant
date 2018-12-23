@@ -6,7 +6,7 @@ office_turn_on:
     - service: media_player.volume_set
       data:
         entity_id: media_player.yamaha_receiver_office
-        volume_level: 0.7
+        volume_level: 0.6
 
 office_turn_off:
   alias: 'Turn off Office'
