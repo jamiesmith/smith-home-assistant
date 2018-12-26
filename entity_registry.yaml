@@ -523,3 +523,13 @@ switch.leviton_dzpa12bw_plugin_outlet_switch:
   name:
   platform: zwave
   unique_id: 28-72057594512490496
+media_player.roku_yf0024364582:
+  config_entry_id:
+  name:
+  platform: roku
+  unique_id: YF0024364582
+light.hue_lightstrip_plus_1:
+  config_entry_id: 17408ee32c624a78b05e44fc244f20a2
+  name: office_lightstrip
+  platform: hue
+  unique_id: 00:17:88:01:03:f6:df:81-0b

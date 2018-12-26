@@ -3,10 +3,10 @@ office_turn_on:
   sequence:
     - service: media_player.turn_on
       entity_id: media_player.yamaha_receiver_office
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.yamaha_receiver_office
-        volume_level: 0.6
+    # JRS-TMP - service: media_player.volume_set
+    # JRS-TMP   data:
+    # JRS-TMP     entity_id: media_player.yamaha_receiver_office
+    # JRS-TMP     volume_level: 0.6
 
 office_turn_off:
   alias: 'Turn off Office'
@@ -86,3 +86,12 @@ office_input_phono:
         entity_id: media_player.yamaha_receiver_office
         source: PHONO
      
+lightstrip_on_the_air:
+  sequence:
+    - service: hue.hue_activate_scene
+      data:
+        group_name: "Office"
+        scene_name: "On Air"
+
+
+        

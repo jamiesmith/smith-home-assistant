@@ -112,8 +112,10 @@
       event_data:
         entity_id: media_player.family_room
   condition:
-    - condition: template
-      value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
+    condition: and
+    conditions:    
+      - condition: template
+        value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
   action:
     - service: script.family_room_receiver_input_sonos
     # JRS-TMP - service: media_player.volume_set

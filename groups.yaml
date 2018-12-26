@@ -3,6 +3,7 @@ default_view:
   icon: mdi:home
   entities:
     - group.kitchen
+    - group.office
     - group.landscape_lights
     - group.accent_lighting
     - group.foyer_lighting
@@ -11,6 +12,12 @@ default_view:
     - group.holiday_other
     - group.holiday_lighting_family_room
     
+office:
+ # view: yes
+  name: Office
+  entities:
+    - light.hue_lightstrip_plus_1
+
 kitchen:
  # view: yes
   name: Kitchen
