@@ -433,12 +433,12 @@ remote.family_room_apple_tv:
   name:
   platform: apple_tv
   unique_id: c987e762b74a83036cddd777a780c0cb887bc05109894287262d3f9ae752585d
-zwave.holiday_master_candles_switch:
+zwave.palm_tree:
   config_entry_id:
   name:
   platform: zwave
   unique_id: node-19
-switch.holiday_master_candles_switch:
+switch.palm_tree_switch:
   config_entry_id:
   name:
   platform: zwave
