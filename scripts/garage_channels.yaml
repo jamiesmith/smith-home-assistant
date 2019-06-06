@@ -50,6 +50,13 @@ garage_media_stop:
       entity_id:
         - media_player.garage
 
+garage_media_play_pause:
+  alias: 'Garage Play/Pause'
+  sequence:
+    - service: media_player.media_play_pause
+      entity_id:
+        - media_player.garage
+
 garage_volume_up:
   alias: 'Garage Volume Up'
   sequence:

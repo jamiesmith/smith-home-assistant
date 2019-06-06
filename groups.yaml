@@ -7,11 +7,7 @@ default_view:
     - group.landscape_lights
     - group.accent_lighting
     - group.foyer_lighting
-    # JRS-TMP - group.holiday_lights
-    # JRS-TMP - group.holiday_candles
-    # JRS-TMP - group.holiday_other
-    # JRS-TMP - group.holiday_lighting_family_room
-    
+
 office:
  # view: yes
   name: Office
@@ -45,15 +41,22 @@ holiday_candles:
     - switch.holiday_payton_candles_switch
     - switch.holiday_living_room_candles_switch
 
+party_lights:
+  view: yes
+  name: Party Lights
+  entities:
+    - switch.palm_tree_switch
+    - switch.patio_party_lights_switch
+
 holiday_lights:
  # view: yes
   name: Holiday Lights
   entities:
     - switch.palm_tree_switch
     - switch.holiday_dining_room_tree_switch
-    - switch.holiday_upstairs_wreath_switch
+    - switch.holiday_tree_and_garland
     - switch.holiday_front_shrubs_switch
-    - switch.holiday_payton_garland_switch
+#    - switch.holiday_payton_garland_switch
     - switch.holiday_master_garland_switch
     - switch.holiday_wreath_switch
     - switch.holiday_tree_and_garland_switch   
@@ -98,6 +101,7 @@ accent_lighting:
     - switch.morning_room_lamp_switch
     - switch.living_room_outlet_switch_2
     - switch.dining_room_lamp_switch_3
+#    - switch.palm_tree_switch
     - group.cabinet_lighting
 
 cabinet_lighting:
@@ -117,6 +121,7 @@ media_players:
     - media_player.payton
     - media_player.family_room_receiver
     - media_player.office_receiver
+    - switch.family_room_apple_tv_switch
 
 comfort:
   view: yes
@@ -204,3 +209,11 @@ state_tests:
     # JRS-TMP - input_number.test_notification_hour
     # JRS-TMP - input_number.test_notification_minute
                                           
+holiday:
+  view: yes
+  entities:
+    - group.holiday_lights
+    - group.holiday_candles
+    - group.holiday_other
+    - group.holiday_lighting_family_room
+    

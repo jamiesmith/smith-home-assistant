@@ -15,15 +15,20 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
   packages: !include_dir_named packages/
 
-weather:
-  - platform: darksky
-    api_key: !secret darksky_key
+  auth_providers:
+    - type: homeassistant
+#    - type: legacy_api_password
+      
+# JRS-TMP weather:
+# JRS-TMP   - platform: darksky
+# JRS-TMP     api_key: !secret darksky_key
   
 # Enables the frontend
 frontend:
-
+  
 # Enables configuration UI
 config:
+
 
 http:
   # Secrets are defined in the file secrets.yaml
