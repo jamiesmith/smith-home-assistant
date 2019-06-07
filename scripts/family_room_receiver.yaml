@@ -3,10 +3,6 @@ family_room_turn_on:
   sequence:
     - service: media_player.turn_on
       entity_id: media_player.yamaha_receiver_family_room
-    # JRS-TMP - service: media_player.volume_set
-    # JRS-TMP   data:
-    # JRS-TMP     entity_id: media_player.yamaha_receiver_family_room
-    # JRS-TMP     volume_level: 0.7
 
 family_room_turn_off:
   alias: 'Turn off Family Room'

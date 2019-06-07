@@ -17,7 +17,6 @@ homeassistant:
 
   auth_providers:
     - type: homeassistant
-#    - type: legacy_api_password
       
 # JRS-TMP weather:
 # JRS-TMP   - platform: darksky
@@ -32,7 +31,7 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  api_password: !secret http_password
+  # api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: nuclet:8123
 
@@ -50,6 +49,7 @@ discovery:
   ignore:
     - yamaha
     - harmony
+    - roku
     
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -136,14 +136,6 @@ media_player:
     zone_names:
       Main_Zone: "Office"
 
-# JRS-TMP ios:
-  
-# JRS-TMP notify:
-# JRS-TMP   - name: ios_devices
-# JRS-TMP     platform: group
-# JRS-TMP     services:
-# JRS-TMP       - service: ios_jamies_iphone
-        
 group: !include groups.yaml
 # automation: !include automations.yaml
 automation: !include_dir_merge_list automations

@@ -101,7 +101,6 @@ accent_lighting:
     - switch.morning_room_lamp_switch
     - switch.living_room_outlet_switch_2
     - switch.dining_room_lamp_switch_3
-#    - switch.palm_tree_switch
     - group.cabinet_lighting
 
 cabinet_lighting:
@@ -156,8 +155,6 @@ dark_sky:
   name: Dark Sky Sensors
   entities:
     - sensor.dark_sky_apparent_temperature
-    # JRS-TMP - sensor.dark_sky_apparent_temperature_max
-    # JRS-TMP - sensor.dark_sky_apparent_temperature_min
     - sensor.dark_sky_cloud_coverage
     - sensor.dark_sky_daily_summary
     - sensor.dark_sky_dew_point
@@ -166,14 +163,10 @@ dark_sky:
     - sensor.dark_sky_minutely_summary
     - sensor.dark_sky_ozone
     - sensor.dark_sky_precip_intensity
-    # JRS-TMP - sensor.dark_sky_precip_intensity_max
     - sensor.dark_sky_precip_probability
-    # JRS-TMP - sensor.dark_sky_precip_type
     - sensor.dark_sky_pressure
     - sensor.dark_sky_summary
     - sensor.dark_sky_temperature
-    # JRS-TMP - sensor.dark_sky_temperature_max
-    # JRS-TMP - sensor.dark_sky_temperature_min
     - sensor.dark_sky_visibility
     - sensor.dark_sky_wind_bearing
     - sensor.dark_sky_wind_speed
@@ -186,28 +179,16 @@ dark_sky:
     - sensor.forecast_6
 
     
-# JRS-TMP awesome_people:
-# JRS-TMP   name: Awesome People
-# JRS-TMP   view: no
-# JRS-TMP   entities:
-# JRS-TMP     - device_tracker.dad_smith
-# JRS-TMP     - device_tracker.mom_smith
-
 state_tests:
   name: State Tests
   view: yes
   control: hidden
   entities:
     - sensor.dark_outside
-#    - sensor.bad_weather
     - sensor.time_of_day
     - sensor.time
     - sensor.date
     - sensor.calendar
-
-    # JRS-TMP - sensor.test_notification_time
-    # JRS-TMP - input_number.test_notification_hour
-    # JRS-TMP - input_number.test_notification_minute
                                           
 holiday:
   view: yes

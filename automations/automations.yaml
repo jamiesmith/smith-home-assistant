@@ -7,15 +7,17 @@
       event: sunset
       offset: "-00:30:00"
   action:
-    - service: script.turn_on_accent_lighting
+    - service: homeassistant.turn_on
+      entity_id: group.accent_lighting
 
 - id: accent_lighting_off_time
   alias: Turn Off Accent Lighting
   trigger:
-    platform: time
-    at: "22:15:00"
+    - platform: time
+      at: "22:15:00"
   action:
-    - service: script.turn_off_accent_lighting
+    - service: homeassistant.turn_off
+      entity_id: group.accent_lighting
 
 - id: cabinet_lighting_on_switch
   alias: Turn On Cabinet Lighting
@@ -26,9 +28,6 @@
         entity_id: zwave.kitchen_light
         scene_data: 3 # double-tap
         scene_id: 1   # On
-    # JRS-TMP - platform: state
-    # JRS-TMP   entity_id: sensor.dark_outside
-    # JRS-TMP   to: 'true' 
   action:
     - service: homeassistant.turn_on
       entity_id: group.cabinet_lighting
@@ -118,10 +117,6 @@
         value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
   action:
     - service: script.family_room_receiver_input_sonos
-    # JRS-TMP - service: media_player.volume_set
-    # JRS-TMP   data_template:
-    # JRS-TMP     entity_id: media_player.family_room
-    # JRS-TMP     volume_level: '0.5'
 
 - id: turn_on_office_receiver_for_sonos
   alias: Turn On Office Receiver for Sonos
@@ -140,8 +135,4 @@
       data:
         entity_id: media_player.yamaha_receiver_office
         source: AUDIO1
-    # JRS-TMP - service: media_player.volume_set
-    # JRS-TMP   data_template:
-    # JRS-TMP     entity_id: media_player.family_room
-    # JRS-TMP     volume_level: '0.5'
     
