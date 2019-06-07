@@ -14,7 +14,7 @@ office_turn_off:
     - service: media_player.turn_off
       entity_id: media_player.yamaha_receiver_office
     - service: media_player.media_stop
-      entity_id: media_player.office
+      entity_id: media_player.office_sonos
 
 office_receiver_toggle_mute:
   alias: Office Receiver Toggle Mute
