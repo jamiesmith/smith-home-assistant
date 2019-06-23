@@ -1,11 +1,11 @@
 # This is the automations file
 #
+
 - id: accent_lighting_on_time
-  alias: Turn On Accent Lighting around sunset
+  alias: Turn On Accent Lighting at time
   trigger:
-    - platform: sun
-      event: sunset
-      offset: "-00:30:00"
+    - platform: time
+      at: "20:45:00"
   action:
     - service: homeassistant.turn_on
       entity_id: group.accent_lighting
@@ -64,21 +64,6 @@
     - service: switch.turn_off
       entity_id: switch.foyer_outlet_switch_2
 
-- id: jamie_bedtime_music
-  alias: Turn on Jamies bedtime music
-  trigger:
-    - platform: event
-      event_type: zwave.scene_activated
-      event_data:
-        entity_id: zwave.kitchen_light
-        scene_data: 4 # triple-tap
-        scene_id: 2   # Off/Bottom
-    - platform: time
-      at: "22:00:00"
-    - platform: time
-      at: "01:00:00"
-  action:
-    - service: script.jamie_bedtime_music
     
 # Bulk one for quad testing
 #
@@ -94,74 +79,5 @@
         scene_id: "{{ trigger.event.data.scene_id }}"
         scene_data: "{{ trigger.event.data.scene_data }}"
         entity_id: "{{ trigger.event.data.entity_id }}"
-
-- id: turn_off_office
-  alias: Turn Off the Office Receiver
-  trigger:
-    platform: time
-    at: "20:00:00"
-  action:
-    - service: script.turn_off_office
       
-# JRS-TMP - id: turn_on_receiver_for_sonos
-# JRS-TMP   alias: Turn On Receiver for Sonos
-# JRS-TMP   trigger:
-# JRS-TMP     - platform: event
-# JRS-TMP       event_type: state_changed
-# JRS-TMP       event_data:
-# JRS-TMP         entity_id: media_player.family_room
-# JRS-TMP   condition:
-# JRS-TMP     condition: and
-# JRS-TMP     conditions:    
-# JRS-TMP       - condition: template
-# JRS-TMP         value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
-# JRS-TMP   action:
-# JRS-TMP     - service: script.family_room_receiver_input_sonos
-
-# JRS-TMP - id: turn_on_office_receiver_for_sonos
-# JRS-TMP   alias: Turn On Office Receiver for Sonos
-# JRS-TMP   trigger:
-# JRS-TMP     - platform: event
-# JRS-TMP       event_type: state_changed
-# JRS-TMP       event_data:
-# JRS-TMP         entity_id: media_player.office_sonos
-# JRS-TMP   condition:
-# JRS-TMP     - condition: template
-# JRS-TMP       value_template: "{{ trigger.event.data.new_state.state == 'playing' }}"
-# JRS-TMP   action:
-# JRS-TMP     - service: media_player.turn_on
-# JRS-TMP       entity_id: media_player.yamaha_receiver_office
-# JRS-TMP     - service: media_player.select_source
-# JRS-TMP       data:
-# JRS-TMP         entity_id: media_player.yamaha_receiver_office
-# JRS-TMP         source: AUDIO1
-    
-- id: foobar
-  alias: "office Media player started"
-  trigger:
-    - platform: state
-      entity_id: media_player.office_sonos
-#      from: 'paused'
-      to: 'playing'
-  action:
-    - service: media_player.turn_on
-      entity_id: media_player.yamaha_receiver_office
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.yamaha_receiver_office
-        source: AUDIO1
-
-- id: turn_on_family_room_receiver_for_sonos
-  alias: Turn On Family Room Receiver for Sonos
-  trigger:
-    - platform: state
-      entity_id: media_player.family_room
-#      from: 'paused'
-      to: 'playing'
-  action:
-    - service: media_player.turn_on
-      entity_id: media_player.yamaha_receiver_family_room
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.yamaha_receiver_family_room
-        source: AUDIO3
+ 

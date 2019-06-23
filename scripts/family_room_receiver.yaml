@@ -1,3 +1,15 @@
+family_room_sonos_next_track:
+  alias: 'Family Room Next Track'
+  sequence:
+    - service: media_player.next_track
+      entity_id: media_player.family_room
+
+family_room_sonos_previous_track:
+  alias: 'Family Room Previous Track'
+  sequence:
+    - service: media_player.previous_track
+      entity_id: media_player.family_room
+
 family_room_turn_on:
   alias: 'Turn on Family Room'
   sequence:
@@ -49,7 +61,7 @@ family_room_receiver_input_sonos:
 family_room_add_patio:
   alias: 'Add Patio to the Family Room'
   sequence:
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.family_room
       entity_id:
@@ -58,7 +70,7 @@ family_room_add_patio:
 family_room_add_garage:
   alias: 'Add Garage to the Family Room'
   sequence:
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.family_room
       entity_id:

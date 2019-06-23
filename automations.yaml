@@ -1,0 +1,230 @@
+- id: turn_off_office
+  alias: Turn Off the Office Receiver at Night
+  trigger:
+  - at: '20:00:00'
+    platform: time
+  action:
+  - data:
+      entity_id: media_player.yamaha_receiver_office
+    service: media_player.turn_off
+- id: turn_on_office_receiver_for_sonos
+  alias: Turn on Office Receiver for Sonos
+  trigger:
+  - entity_id: media_player.office_sonos
+    platform: state
+    to: playing
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.yamaha_receiver_office
+    service: media_player.turn_on
+  - data:
+      entity_id: media_player.yamaha_receiver_office
+      source: AUDIO1
+    service: media_player.select_source
+- id: turn_on_family_room_receiver_for_sonos
+  alias: Turn on Family_Room Receiver for Sonos
+  trigger:
+  - entity_id: media_player.family_room
+    platform: state
+    to: playing
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.yamaha_receiver_family_room
+    service: media_player.turn_on
+  - data:
+      entity_id: media_player.yamaha_receiver_family_room
+      source: AUDIO3
+    service: media_player.select_source
+- id: accent_lighting_on_sunset
+  alias: Turn On Accent Lighting around sunset
+  trigger:
+  - event: sunset
+    offset: -00:30:00
+    platform: sun
+  action:
+  - data:
+      entity_id: group.accent_lighting
+    service: homeassistant.turn_on
+- id: jamie_bedtime_music
+  alias: Start Jamies Bedtime Music
+  trigger:
+  - event_data:
+      entity_id: zwave.kitchen_light
+      scene_data: 4
+      scene_id: 2
+    event_type: zwave.scene_activated
+    platform: event
+  - at: '22:00:00'
+    platform: time
+  - at: 01:00:00
+    platform: time
+  condition: []
+  action:
+  - service: script.jamie_bedtime_music
+- id: landscape_lighting_on
+  alias: Turn On Landscape Lighting at sunset
+  trigger:
+  - event: sunset
+    platform: sun
+  action:
+  - data:
+      entity_id: group.landscape_lights
+    service: homeassistant.turn_on
+- id: landscape_lighting_off
+  alias: Turn Off Landscape Lighting at midnight
+  trigger:
+  - at: '23:59:59'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: group.landscape_lights
+    service: homeassistant.turn_off
+- id: patioquad_scene_1_play_classic_rewind
+  alias: patio QuadMote play_classic_rewind
+  trigger:
+  - event_data:
+      entity_id: zwave.patioquad
+      scene_data: 0
+      scene_id: 1
+    event_type: zwave.scene_activated
+    platform: event
+  condition: []
+  action:
+  - service: script.patio_play_classic_rewind
+- id: patioquad_scene_1_play_tom_petty
+  alias: patio QuadMote play_tom_petty
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 1
+      scene_data: 1
+  action:
+  - service: script.patio_play_tom_petty
+- id: patioquad_scene_2_add_patio
+  alias: family_room QuadMote add_patio
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 2
+      scene_data: 0
+  action:
+  - service: script.family_room_add_patio
+- id: patioquad_scene_2_drop_patio
+  alias: patio QuadMote drop_patio
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 2
+      scene_data: 1
+  action:
+  - service: script.patio_drop_patio
+- id: patioquad_scene_3_volume_down
+  alias: patio QuadMote volume_down
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 3
+      scene_data: 0
+  action:
+  - service: script.patio_volume_down
+- id: patioquad_scene_3_play_80s
+  alias: patio QuadMote play_80s
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 3
+      scene_data: 1
+  action:
+  - service: script.patio_play_80s
+- id: patioquad_scene_4_volume_up
+  alias: patio QuadMote volume_up
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 4
+      scene_data: 0
+  action:
+  - service: script.patio_volume_up
+- id: patioquad_scene_4_media_stop
+  alias: patio QuadMote media_stop
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.patioquad
+      scene_id: 4
+      scene_data: 1
+  action:
+  - service: script.patio_media_stop
+- id: cabinet_lighting_on_switch
+  alias: Turn On Cabinet Lighting
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.kitchen_light
+      scene_id: 3
+      scene_data: 1
+  action:
+  - data:
+      entity_id: group.cabinet_lighting
+    service: homeassistant.turn_on
+- id: cabinet_lighting_off_switch
+  alias: Turn Off Cabinet Lighting
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.kitchen_light
+      scene_id: 3
+      scene_data: 2
+  action:
+  - data:
+      entity_id: group.cabinet_lighting
+    service: homeassistant.turn_off
+- id: foyer_light_on
+  alias: Foyer Light On
+  trigger:
+  - event: sunset
+    offset: -00:30:00
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: switch.foyer_outlet_switch_2
+    service: switch.turn_on
+- id: foyer_light_off
+  alias: Foyer Light Off
+  trigger:
+  - at: '23:00:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: switch.foyer_outlet_switch_2
+    service: switch.turn_off
+- id: turn_off_accent_lights_at_bedtime
+  alias: Turn off accent lighting at bedtime
+  trigger:
+  - at: '22:15:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: group.accent_lighting
+    service: homeassistant.turn_off
