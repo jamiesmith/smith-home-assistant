@@ -1,13 +1,13 @@
 family_room_sonos_next_track:
   alias: 'Family Room Next Track'
   sequence:
-    - service: media_player.next_track
+    - service: media_player.media_next_track
       entity_id: media_player.family_room
 
 family_room_sonos_previous_track:
   alias: 'Family Room Previous Track'
   sequence:
-    - service: media_player.previous_track
+    - service: media_player.media_previous_track
       entity_id: media_player.family_room
 
 family_room_turn_on:

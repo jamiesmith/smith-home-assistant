@@ -15,6 +15,6 @@ drop_family_room:
 drop_garage:
   alias: 'Drop Garage from group'
   sequence:
-    - service: media_player.sonos_unjoin
+    - service: sonos.unjoin
       entity_id:
         - media_player.garage

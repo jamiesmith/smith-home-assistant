@@ -127,6 +127,8 @@ remote:
 media_player:
 # JRS-TMP   - platform: sonos
 
+roon:
+
 # Yamaha
   - platform: yamaha
     host: 192.168.1.31

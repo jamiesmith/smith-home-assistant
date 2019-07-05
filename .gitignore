@@ -28,3 +28,4 @@ nest.conf
 .uuid
 ipchange.yaml
 HAL
+custom_components
