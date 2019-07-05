@@ -26,8 +26,6 @@ homeassistant:
 frontend:
 
 recorder:
-  purge_days: 8
-  purge_interval: 1
   
 logger:
   default: info
@@ -60,6 +58,7 @@ discovery:
   ignore:
     - yamaha
     - harmony
+    - plex
     # JRS-TMP - roku
     # JRS-TMP - samsungtv
     # JRS-TMP - apple_tv
@@ -127,7 +126,7 @@ remote:
 media_player:
 # JRS-TMP   - platform: sonos
 
-roon:
+# roon:
 
 # Yamaha
   - platform: yamaha
