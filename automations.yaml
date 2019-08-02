@@ -228,3 +228,58 @@
   - data:
       entity_id: group.accent_lighting
     service: homeassistant.turn_off
+- id: quad_1_guest_schiit_play_pause
+  alias: Guest Quad A - Roon Play/Pause
+  trigger:
+  - event_data:
+      entity_id: zwave.guestquad
+      scene_data: 0
+      scene_id: 1
+    event_type: zwave.scene_activated
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.guest_schiit
+    service: media_player.media_play_pause
+- id: quad_1_guest_schiit_next_track
+  alias: Guest Quad B - Roon Next Track
+  trigger:
+  - event_data:
+      entity_id: zwave.guestquad
+      scene_data: 0
+      scene_id: 2
+    event_type: zwave.scene_activated
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.guest_schiit
+    service: media_player.media_next_track
+- id: quad_1_guest_schiit_bedtime
+  alias: Guest Quad C - Bedtime Music
+  trigger:
+  - event_data:
+      entity_id: zwave.guestquad
+      scene_data: 0
+      scene_id: 3
+    event_type: zwave.scene_activated
+    platform: event
+  condition: []
+  action:
+  - data: {}
+    service: script.jamie_bedtime_music
+- id: '1564754232356'
+  alias: Guest Quad B2 - Roon Previous Track
+  trigger:
+  - event_data:
+      entity_id: zwave.guestquad
+      scene_data: 1
+      scene_id: 2
+    event_type: ''
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.guest_schiit
+    service: media_player.media_previous_track

@@ -58,7 +58,6 @@ discovery:
   ignore:
     - yamaha
     - harmony
-    - plex
     # JRS-TMP - roku
     # JRS-TMP - samsungtv
     # JRS-TMP - apple_tv
