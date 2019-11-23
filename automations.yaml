@@ -1,5 +1,5 @@
 - id: turn_off_office
-  alias: Turn Off the Office Receiver at Night
+  alias: Turn Off the Office at Night
   trigger:
   - at: '20:00:00'
     platform: time
@@ -7,6 +7,9 @@
   - data:
       entity_id: media_player.yamaha_receiver_office
     service: media_player.turn_off
+  - data:
+      entity_id: light.hue_lightstrip_plus_1
+    service: light.turn_off
 - id: turn_on_office_receiver_for_sonos
   alias: Turn on Office Receiver for Sonos
   trigger:
