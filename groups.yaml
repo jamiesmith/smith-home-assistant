@@ -54,14 +54,12 @@ holiday_lights:
   entities:
     - switch.palm_tree_switch
     - switch.holiday_dining_room_tree_switch
-    - switch.holiday_tree_and_garland
-    - switch.holiday_front_shrubs_switch
+#    - switch.holiday_front_shrubs_switch
     - switch.holiday_christmas_tree
     - switch.holiday_garage_shrubs
-#    - switch.holiday_payton_garland_switch
-    - switch.holiday_master_garland_switch
+    - switch.holiday_payton_garland_switch
     - switch.holiday_wreath_switch
-    - switch.holiday_tree_and_garland_switch   
+    - switch.holiday_christmas_tree
 
 holiday_other:
  # view: yes
@@ -80,7 +78,7 @@ holiday_lighting_family_room:
  # view: yes
   name: Tree / Garland
   entities:
-    - switch.holiday_tree_and_garland_switch
+    - switch.holiday_christmas_tree
     
 landscape_lights:
   # view: yes
