@@ -284,7 +284,7 @@
   action:
   - data: {}
     service: script.jamie_bedtime_music
-- id: quad_2_guest_roon_previous_track
+- id: 'quad_2_guest_roon_previous_track'
   alias: Guest Quad B2 - Roon Previous Track
   trigger:
   - event_data:
@@ -302,47 +302,47 @@
   alias: Holiday - Turn On Holiday Lights around sunset
   trigger:
     platform: time
-    at: '16:00:00'
+    at: "16:00:00"
   action:
-  - service: homeassistant.turn_on
-    entity_id: group.holiday_lights
+    - service: homeassistant.turn_on
+      entity_id: group.holiday_lights
 - id: holiday_lights_off
   alias: Holiday - Turn Off Holiday Lights
   trigger:
     platform: time
-    at: '22:14:00'
+    at: "22:14:00"
   action:
-  - service: homeassistant.turn_off
-    entity_id: group.holiday_lights
+    - service: homeassistant.turn_off
+      entity_id: group.holiday_lights
 - id: holiday_candles_on
   alias: Holiday - Turn On Holiday Candles around sunset
   trigger:
     platform: time
-    at: '16:00:30'
+    at: "16:00:30"
   action:
-  - service: homeassistant.turn_on
-    entity_id: group.holiday_candles
+    - service: homeassistant.turn_on
+      entity_id: group.holiday_candles
 - id: holiday_candles_off
   alias: Holiday - Holiday - Turn Off Holiday Candles
   trigger:
     platform: time
-    at: '22:10:00'
+    at: "22:10:00"
   action:
-  - service: homeassistant.turn_off
-    entity_id: group.holiday_candles
+    - service: homeassistant.turn_off
+      entity_id: group.holiday_candles
 - id: holiday_other_on
   alias: Holiday - Turn On Holiday Other around sunset
   trigger:
     platform: time
-    at: '16:01:00'
+    at: "16:01:00"
   action:
-  - service: homeassistant.turn_on
-    entity_id: group.holiday_other
+    - service: homeassistant.turn_on
+      entity_id: group.holiday_other
 - id: holiday_other_off
   alias: Holiday - Turn Off Holiday other
   trigger:
     platform: time
-    at: '22:11:00'
+    at: "22:11:00"
   action:
-  - service: homeassistant.turn_off
-    entity_id: group.holiday_other
+    - service: homeassistant.turn_off
+      entity_id: group.holiday_other
