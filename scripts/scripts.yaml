@@ -5,6 +5,13 @@ patio_turn_off:
       entity_id:
         - media_player.patio
 
+move_turn_off:
+  alias: 'Turn off Sonos Move'
+  sequence:
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.move
+
 turn_off_office:
   alias: 'Turn off Office'
   sequence:
