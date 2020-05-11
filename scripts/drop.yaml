@@ -5,6 +5,13 @@ drop_patio:
       entity_id:
         - media_player.patio
 
+drop_move:
+  alias: 'Drop Move from group'
+  sequence:
+    - service: sonos.unjoin
+      entity_id:
+        - media_player.move
+
 drop_family_room:
   alias: 'Drop Family Room from group'
   sequence:

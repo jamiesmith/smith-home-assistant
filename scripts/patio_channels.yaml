@@ -67,8 +67,17 @@ patio_volume_down:
 patio_add_family_room:
   alias: 'Add Family Room to the Patio'
   sequence:
-    - service: media_player.sonos_join
+    - service: sonos.join
       data:
         master: media_player.patio
       entity_id:
         - media_player.family_room
+
+patio_add_move:
+  alias: 'Add Move to the Patio'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.patio
+      entity_id:
+        - media_player.move
