@@ -29,8 +29,9 @@ recorder:
   
 logger:
   default: info
-  # JRS-TMP logs:
-  # JRS-TMP   homeassistant.components.sonos: debug
+  logs:
+    homeassistant.components.sonos: debug
+    pysonos.discovery: debug
   # JRS-TMP   homeassistant.core: debug
     
 
@@ -58,9 +59,10 @@ discovery:
   ignore:
     - yamaha
     - harmony
+    - plex_mediaserver
     # JRS-TMP - roku
-    # JRS-TMP - samsungtv
     # JRS-TMP - apple_tv
+    # JRS-TMP - samsungtv
     
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -123,9 +125,7 @@ remote:
     # host: 192.168.1.98
 
 media_player:
-# JRS-TMP   - platform: sonos
-
-# roon:
+  - platform: sonos
 
 # Yamaha
   - platform: yamaha
