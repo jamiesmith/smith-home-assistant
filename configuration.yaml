@@ -31,6 +31,7 @@ logger:
   default: info
   logs:
     homeassistant.components.sonos: debug
+    homeassistant.components.nest: debug
     pysonos.discovery: debug
   # JRS-TMP   homeassistant.core: debug
     

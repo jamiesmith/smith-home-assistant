@@ -115,6 +115,7 @@ media_players:
   view: yes
   name: Media Players
   entities:
+    - media_player.move
     - media_player.patio
     - media_player.garage
     - media_player.family_room
