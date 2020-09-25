@@ -57,21 +57,3 @@ family_room_receiver_input_sonos:
       data:
         entity_id: media_player.yamaha_receiver_family_room
         source: AUDIO3
-
-family_room_add_patio:
-  alias: 'Add Patio to the Family Room'
-  sequence:
-    - service: sonos.join
-      data:
-        master: media_player.family_room
-      entity_id:
-        - media_player.patio
-
-family_room_add_garage:
-  alias: 'Add Garage to the Family Room'
-  sequence:
-    - service: sonos.join
-      data:
-        master: media_player.family_room
-      entity_id:
-        - media_player.garage

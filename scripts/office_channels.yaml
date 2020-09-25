@@ -63,12 +63,3 @@ office_volume_down:
     - service: media_player.volume_down
       entity_id:
         - media_player.office_sonos
-
-office_add_family_room:
-  alias: 'Add Family Room to the Office'
-  sequence:
-    - service: sonos.join
-      data:
-        master: media_player.office_sonos
-      entity_id:
-        - media_player.family_room

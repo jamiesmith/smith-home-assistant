@@ -1,0 +1,220 @@
+drop_family_room:
+  alias: 'Drop family_room  from group'
+  sequence:
+    - service: sonos.unjoin
+      entity_id:
+        - media_player.family_room
+
+family_room_add_garage:
+  alias: 'Add garage to family_room'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.family_room
+      entity_id:
+        - media_player.garage
+
+family_room_add_move:
+  alias: 'Add move to family_room'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.family_room
+      entity_id:
+        - media_player.move
+
+family_room_add_office:
+  alias: 'Add office to family_room'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.family_room
+      entity_id:
+        - media_player.office
+
+family_room_add_patio:
+  alias: 'Add patio to family_room'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.family_room
+      entity_id:
+        - media_player.patio
+
+
+drop_garage:
+  alias: 'Drop garage  from group'
+  sequence:
+    - service: sonos.unjoin
+      entity_id:
+        - media_player.garage
+
+garage_add_family_room:
+  alias: 'Add family_room to garage'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.garage
+      entity_id:
+        - media_player.family_room
+
+garage_add_move:
+  alias: 'Add move to garage'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.garage
+      entity_id:
+        - media_player.move
+
+garage_add_office:
+  alias: 'Add office to garage'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.garage
+      entity_id:
+        - media_player.office
+
+garage_add_patio:
+  alias: 'Add patio to garage'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.garage
+      entity_id:
+        - media_player.patio
+
+
+drop_move:
+  alias: 'Drop move  from group'
+  sequence:
+    - service: sonos.unjoin
+      entity_id:
+        - media_player.move
+
+move_add_family_room:
+  alias: 'Add family_room to move'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.move
+      entity_id:
+        - media_player.family_room
+
+move_add_garage:
+  alias: 'Add garage to move'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.move
+      entity_id:
+        - media_player.garage
+
+move_add_office:
+  alias: 'Add office to move'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.move
+      entity_id:
+        - media_player.office
+
+move_add_patio:
+  alias: 'Add patio to move'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.move
+      entity_id:
+        - media_player.patio
+
+
+drop_office:
+  alias: 'Drop office  from group'
+  sequence:
+    - service: sonos.unjoin
+      entity_id:
+        - media_player.office
+
+office_add_family_room:
+  alias: 'Add family_room to office'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.office
+      entity_id:
+        - media_player.family_room
+
+office_add_garage:
+  alias: 'Add garage to office'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.office
+      entity_id:
+        - media_player.garage
+
+office_add_move:
+  alias: 'Add move to office'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.office
+      entity_id:
+        - media_player.move
+
+office_add_patio:
+  alias: 'Add patio to office'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.office
+      entity_id:
+        - media_player.patio
+
+
+drop_patio:
+  alias: 'Drop patio  from group'
+  sequence:
+    - service: sonos.unjoin
+      entity_id:
+        - media_player.patio
+
+patio_add_family_room:
+  alias: 'Add family_room to patio'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.patio
+      entity_id:
+        - media_player.family_room
+
+patio_add_garage:
+  alias: 'Add garage to patio'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.patio
+      entity_id:
+        - media_player.garage
+
+patio_add_move:
+  alias: 'Add move to patio'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.patio
+      entity_id:
+        - media_player.move
+
+patio_add_office:
+  alias: 'Add office to patio'
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.patio
+      entity_id:
+        - media_player.office
+
+

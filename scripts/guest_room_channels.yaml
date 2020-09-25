@@ -64,11 +64,3 @@ guest_room_volume_down:
       entity_id:
         - media_player.guest_room
 
-guest_room_add_family_room:
-  alias: 'Add Family Room to the Guest_Room'
-  sequence:
-    - service: sonos.join
-      data:
-        master: media_player.guest_room
-      entity_id:
-        - media_player.family_room
