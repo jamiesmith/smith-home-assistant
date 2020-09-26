@@ -18,8 +18,6 @@ kitchen:
  # view: yes
   name: Kitchen
   entities:
-    - switch.cabinet_lights_switch
-    - switch.cabinet_lights_small_switch
     - group.cabinet_lighting
     - light.kitchen_light_level
 
@@ -105,11 +103,24 @@ accent_lighting:
     - switch.dining_room_lamp_switch_3
     - group.cabinet_lighting
 
+cabinet_lighting_lower:
+  name: Cabinet Lighting lower
+  entities:
+    - switch.long_cabinets_lower_switch
+    - switch.short_cabinets_lower_switch
+
+cabinet_lighting_upper:
+  name: Cabinet Lighting Upper
+  entities:
+    - switch.long_cabinets_upper_switch
+    - switch.short_cabinets_upper_switch
+    - switch.amy_upper_cabinet_switch
+
 cabinet_lighting:
   name: Cabinet Lighting
   entities:
-    - switch.cabinet_lights_switch
-    - switch.cabinet_lights_small_switch
+    - group.cabinet_lighting_upper
+    - group.cabinet_lighting_lower
     
 media_players:
   view: yes
