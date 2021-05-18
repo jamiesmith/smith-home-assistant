@@ -50,8 +50,8 @@ office_input_sonos:
         entity_id: media_player.yamaha_receiver_office
         source: AUDIO1
 
-office_input_krypter:
-  alias: 'Office Input Krypter'
+office_input_mac:
+  alias: 'Office Input Mac'
   sequence:
     - service: script.office_turn_on
     - service: media_player.select_source

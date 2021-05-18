@@ -40,12 +40,17 @@
       entity_id: media_player.yamaha_receiver_family_room
       source: AUDIO3
     service: media_player.select_source
+  - service: media_player.volume_set
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+    data:
+      volume_level: 0.8
+  mode: single
 - id: accent_lighting_on_sunset
-  alias: Turn On Accent Lighting around sunset
+  alias: Turn On Accent Lighting at 4pm
   trigger:
-  - event: sunset
-    offset: -00:30:00
-    platform: sun
+  - at: '16:00:00'
+    platform: time
   - event_data:
       entity_id: zwave.kitchen_light
       scene_data: 4
@@ -56,6 +61,7 @@
   - data:
       entity_id: group.accent_lighting
     service: homeassistant.turn_on
+  mode: single
 - id: jamie_bedtime_music
   alias: Start Jamies Bedtime Music
   trigger:
@@ -67,7 +73,7 @@
     platform: event
   - at: '22:00:00'
     platform: time
-  - at: 01:05:00
+  - at: 01:01:00
     platform: time
   condition: []
   action:

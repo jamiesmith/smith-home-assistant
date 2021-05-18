@@ -29,10 +29,10 @@ recorder:
   
 logger:
   default: info
-  logs:
-    homeassistant.components.sonos: debug
-    homeassistant.components.nest: debug
-    pysonos.discovery: debug
+#  logs:
+    # homeassistant.components.sonos: debug
+    # homeassistant.components.nest: debug
+    # pysonos.discovery: debug
   # JRS-TMP   homeassistant.core: debug
     
 
@@ -60,10 +60,7 @@ discovery:
   ignore:
     - yamaha
     - harmony
-    - plex_mediaserver
-    # JRS-TMP - roku
-    # JRS-TMP - apple_tv
-    # JRS-TMP - samsungtv
+    - apple_tv
     
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -108,27 +105,28 @@ nest:
 zwave:
   usb_path: /dev/ttyACM0
 
-cover:
-  - platform: myq
-    username: !secret myq_user
-    password: !secret myq_password
-    type: chamberlain
+# JRS-TMP cover:
+# JRS-TMP   - platform: myq
+# JRS-TMP     username: !secret myq_user
+# JRS-TMP     password: !secret myq_password
+# JRS-TMP     type: chamberlain
 
 remote:
-  - platform: harmony
-    name: Office
-    # let it discover the matching name
-    # host: 192.168.1.99
+  
+# JRS-TMP   - platform: harmony
+# JRS-TMP     name: Office
+# JRS-TMP     # let it discover the matching name
+# JRS-TMP     # host: 192.168.1.99
 
-  - platform: harmony
-    name: Family Room
-    # let it discover the matching name
-    # host: 192.168.1.98
-
-media_player:
-  - platform: sonos
+# JRS-TMP   - platform: harmony
+# JRS-TMP     name: Family Room
+# JRS-TMP     # let it discover the matching name
+# JRS-TMP     # host: 192.168.1.98
 
 # Yamaha
+
+media_player:
+
   - platform: yamaha
     host: 192.168.1.31
     # name: 'Family Room Receiver'

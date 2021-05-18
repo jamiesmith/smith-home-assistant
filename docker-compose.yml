@@ -1,15 +1,12 @@
 version: '2.1'
 services:
   homeassistant:
-    image: homeassistant/home-assistant:0.95.4
+    image: homeassistant/home-assistant:2021.5.4
     container_name: home-assistant
     restart: always
     network_mode: 'host'
-    ports:
-      - '8123:8123'
-      - '8943:8943'
     volumes:
-      - '/home/jamie/smith-home-assistant:/config'
+      - '/home/jamie/test-ha-upgrade/smith-home-assistant:/config'
     devices:
       - '/dev/ttyACM0'
     environment:

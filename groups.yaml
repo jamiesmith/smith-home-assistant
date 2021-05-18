@@ -1,5 +1,5 @@
 default_view:
-  view: yes
+  # view: yes
   icon: mdi:home
   entities:
     - group.kitchen
@@ -18,6 +18,8 @@ kitchen:
  # view: yes
   name: Kitchen
   entities:
+    - group.cabinet_lighting_lower
+    - group.cabinet_lighting_upper
     - group.cabinet_lighting
     - light.kitchen_light_level
 
@@ -40,7 +42,7 @@ holiday_candles:
     - switch.holiday_living_room_candles_switch
 
 party_lights:
-  view: yes
+# JRS-TMP view: yes
   name: Party Lights
   entities:
     - switch.palm_tree_switch
@@ -98,8 +100,10 @@ foyer_lighting:
 accent_lighting:
   name: Accent Lighting
   entities:
+    - switch.palm_tree_switch
     - switch.morning_room_lamp_switch
     - switch.living_room_outlet_switch_2
+    - switch.living_room_outlet_switch
     - switch.dining_room_lamp_switch_3
     - group.cabinet_lighting
 
@@ -115,6 +119,7 @@ cabinet_lighting_upper:
     - switch.long_cabinets_upper_switch
     - switch.short_cabinets_upper_switch
     - switch.amy_upper_cabinet_switch
+    - switch.cabinet_lights_medicine_cabinet_switch
 
 cabinet_lighting:
   name: Cabinet Lighting
@@ -123,7 +128,7 @@ cabinet_lighting:
     - group.cabinet_lighting_lower
     
 media_players:
-  view: yes
+# JRS-TMP view: yes
   name: Media Players
   entities:
     - media_player.move
@@ -138,14 +143,14 @@ media_players:
     - switch.family_room_apple_tv_switch
 
 media_players_roon:
-  view: yes
+# JRS-TMP view: yes
   name: Roon Players
   entities:
     - media_player.roon_family_room_sonos
     - media_player.guest_schiit
 
 comfort:
-  view: yes
+# JRS-TMP view: yes
   name: Comfort & Climate
   entities:
     - binary_sensor.downstairs_thermostat_fan
@@ -173,7 +178,7 @@ comfort:
     - sensor.upstairs_thermostat_temperature
 
 dark_sky:
-  view: yes
+# JRS-TMP view: yes
   name: Dark Sky Sensors
   entities:
     - sensor.dark_sky_apparent_temperature
@@ -203,8 +208,7 @@ dark_sky:
     
 state_tests:
   name: State Tests
-  view: yes
-  control: hidden
+# JRS-TMP view: yes
   entities:
     - sensor.dark_outside
     - sensor.time_of_day
@@ -213,7 +217,7 @@ state_tests:
     - sensor.calendar
                                           
 holiday:
-  view: yes
+# JRS-TMP view: yes
   entities:
     - group.holiday_lights
     - group.holiday_candles
