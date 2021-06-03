@@ -26,7 +26,11 @@ homeassistant:
 frontend:
 
 recorder:
-  
+
+default_config:
+
+system_health:  
+
 logger:
   default: info
 #  logs:

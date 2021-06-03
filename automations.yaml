@@ -249,6 +249,10 @@
   - data:
       entity_id: group.accent_lighting
     service: homeassistant.turn_off
+  - service: fan.turn_off
+    target:
+      entity_id: fan.patio_ceiling_fan
+  mode: single
 - id: quad_1_guest_schiit_play_pause
   alias: Guest Quad A - Roon Play/Pause
   trigger:

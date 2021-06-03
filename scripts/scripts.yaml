@@ -37,7 +37,8 @@ jamie_bedtime_music:
       entity_id:
         - media_player.guest_room
       data:
-        source: '23 - Grateful Dead'
+        # source: '23 - Grateful Dead'
+        source: '20 - E Street Radio'
 
 family_room_sonos_volume_up:
   alias: Family Room Volume Up
