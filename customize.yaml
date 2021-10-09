@@ -18,8 +18,6 @@ switch.extra_outlet_switch_3:
   friendly_name: Extra Other
 switch.front_landscape_lights_switch:
   hidden: true
-switch.rear_landscape_lights_switch:
-  friendly_name: Rear Landscape Lights
 switch.front_landscape_lights_switch_2:
   friendly_name: Front Landscape Lights
 switch.front_landscape_lights_switch_3:

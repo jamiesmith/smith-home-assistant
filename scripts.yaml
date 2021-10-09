@@ -1,0 +1,14 @@
+dust_collector_on:
+  alias: Dust Collector On
+  sequence:
+  - service: fan.turn_on
+    target:
+      entity_id: fan.dc
+  mode: single
+dust_collector_off:
+  alias: Dust Collector Off
+  sequence:
+  - service: fan.turn_off
+    target:
+      entity_id: fan.dc
+  mode: single

@@ -4,6 +4,15 @@ patio_turn_off:
     - service: media_player.media_stop
       entity_id:
         - media_player.patio
+    - service: fan.turn_off
+      entity_id:
+        - fan.patio_ceiling_fan
+    - service: switch.turn_off
+      entity_id:
+        - switch.patio_party_lights_switch
+    - service: switch.turn_off
+      entity_id:
+        - switch.patio_temp_fan_switch
 
 guest_room_turn_off:
   alias: 'Turn off Guest Room'
@@ -38,7 +47,7 @@ jamie_bedtime_music:
         - media_player.guest_room
       data:
         # source: '23 - Grateful Dead'
-        source: '20 - E Street Radio'
+        source: '30 - Dave Matthews Band Radio'
 
 family_room_sonos_volume_up:
   alias: Family Room Volume Up
@@ -54,3 +63,51 @@ family_room_sonos_volume_down:
       entity_id:
         - media_player.family_room
 
+patio_fan_speed_off:
+  alias: Patio fan (off)
+  sequence:
+    - service: fan.set_percentage
+      entity_id:
+        - fan.patio_ceiling_fan
+      data:
+        percentage: 0
+
+patio_fan_speed_low:
+  alias: Patio fan (low)
+  sequence:
+    - service: fan.set_percentage
+      entity_id:
+        - fan.patio_ceiling_fan
+      data:
+        percentage: 33
+
+patio_fan_speed_medium:
+  alias: Patio fan (medium)
+  sequence:
+    - service: fan.set_percentage
+      entity_id:
+        - fan.patio_ceiling_fan
+      data:
+        percentage: 66
+
+patio_fan_speed_high:
+  alias: Patio fan (high)
+  sequence:
+    - service: fan.set_percentage
+      entity_id:
+        - fan.patio_ceiling_fan
+      data:
+        percentage: 100
+
+dust_collector_on:
+  alias: Turn on the dust collector
+  sequence:
+    - service: fan.turn_on
+      entity_id: fan.dc
+
+dust_collector_off:
+  alias: Turn on the dust collector
+  sequence:
+    - service: fan.turn_off
+      entity_id: fan.dc
+    

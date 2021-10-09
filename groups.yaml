@@ -46,6 +46,7 @@ party_lights:
   name: Party Lights
   entities:
     - switch.palm_tree_switch
+    - switch.other_palm_tree_switch
     - switch.patio_party_lights_switch
 
 holiday_lights:
@@ -53,6 +54,7 @@ holiday_lights:
   name: Holiday Lights
   entities:
     - switch.palm_tree_switch
+    - switch.other_palm_tree_switch
     - switch.holiday_dining_room_tree_switch
     - switch.holiday_tree_and_garland
     - switch.holiday_front_shrubs_switch
@@ -86,7 +88,7 @@ landscape_lights:
   # view: yes
   name: Landscape Lights
   entities:
-    - switch.rear_landscape_lights_switch
+    - switch.backyard_landscape_lights_switch
     - switch.front_landscape_lights_switch_2
     - switch.front_landscape_lights_switch_3 # This one is pending
     
@@ -101,6 +103,7 @@ accent_lighting:
   name: Accent Lighting
   entities:
     - switch.palm_tree_switch
+    - switch.other_palm_tree_switch
     - switch.morning_room_lamp_switch
     - switch.living_room_outlet_switch_2
     - switch.living_room_outlet_switch

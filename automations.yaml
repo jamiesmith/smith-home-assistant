@@ -351,11 +351,12 @@
 - id: holiday_other_off
   alias: Holiday - Turn Off Holiday other
   trigger:
-    platform: time
+  - platform: time
     at: '22:11:00'
   action:
   - service: homeassistant.turn_off
     entity_id: group.holiday_other
+  mode: single
 - id: '1595531464851'
   alias: Liquor Cabinet On
   trigger:
@@ -384,3 +385,35 @@
   - data:
       entity_id: switch.dining_room_lamp_switch_3
     service: switch.turn_off
+- id: '1624044552076'
+  alias: Garage Quad A - Dust Collector Off
+  description: Turn off the 3hp Laguna DC
+  trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_data: 0
+      scene_id: 1
+  condition: []
+  action:
+  - service: fan.turn_off
+    target:
+      entity_id: fan.dc
+  mode: single
+- id: '1624044997299'
+  alias: Garage Quad B - Dust Collector On
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_data: 0
+      scene_id: 2
+  condition: []
+  action:
+  - service: fan.turn_on
+    target:
+      entity_id: fan.dc
+  mode: single
