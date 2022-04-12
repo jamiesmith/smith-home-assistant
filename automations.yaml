@@ -57,6 +57,8 @@
       scene_id: 1
     event_type: zwave.scene_activated
     platform: event
+  - platform: time
+    at: '16:05:00'
   action:
   - data:
       entity_id: group.accent_lighting
@@ -87,16 +89,20 @@
   - data:
       entity_id: group.landscape_lights
     service: homeassistant.turn_on
+  mode: single
 - id: landscape_lighting_off
   alias: Turn Off Landscape Lighting at midnight
   trigger:
   - at: '23:59:59'
     platform: time
+  - platform: time
+    at: '23:55:00'
   condition: []
   action:
   - data:
       entity_id: group.landscape_lights
     service: homeassistant.turn_off
+  mode: single
 - id: patioquad_scene_1_play_classic_rewind
   alias: patio QuadMote play_classic_rewind
   trigger:
@@ -244,6 +250,8 @@
       scene_id: 2
     event_type: zwave.scene_activated
     platform: event
+  - platform: time
+    at: '22:20:00'
   condition: []
   action:
   - data:
@@ -368,9 +376,11 @@
     platform: event
   condition: []
   action:
-  - data:
-      entity_id: switch.dining_room_lamp_switch_3
+  - data: {}
     service: switch.turn_on
+    target:
+      entity_id: switch.liquor_cabinet_switch
+  mode: single
 - id: '1595531951642'
   alias: Liquor Cabinet Off
   trigger:
@@ -382,13 +392,21 @@
     platform: event
   condition: []
   action:
-  - data:
-      entity_id: switch.dining_room_lamp_switch_3
+  - data: {}
     service: switch.turn_off
+    target:
+      entity_id: switch.liquor_cabinet_switch
+  mode: single
 - id: '1624044552076'
   alias: Garage Quad A - Dust Collector Off
   description: Turn off the 3hp Laguna DC
   trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.garagequad
+      scene_data: 0
+      scene_id: 1
   - platform: event
     event_type: zwave.scene_activated
     event_data:
@@ -416,4 +434,90 @@
   - service: fan.turn_on
     target:
       entity_id: fan.dc
+  mode: single
+- id: '1637446244454'
+  alias: Turn on Espresso Machine in the morning
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:00:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: cb3681f41d15a9b766d7d961e2c559f7
+    entity_id: switch.espresso_machine_switch
+    domain: switch
+  mode: single
+- id: '1637446290014'
+  alias: Turn off Espresso Machine in the evening
+  description: ''
+  trigger:
+  - platform: time
+    at: '17:00:00'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: cb3681f41d15a9b766d7d961e2c559f7
+    entity_id: switch.espresso_machine_switch
+    domain: switch
+  mode: single
+- id: '1642711242692'
+  alias: 'SAY: Can I get you something'
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.kitchenquad4
+      scene_data: 0
+      scene_id: 3
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: say/amy
+      payload: Can I get you something?
+  mode: single
+- id: '1642711362497'
+  alias: 'SAY: What can I get you?'
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.kitchenquad4
+      scene_data: 0
+      scene_id: 4
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: say/amy
+      payload: What can I get you?
+  mode: single
+- id: '1647974538516'
+  alias: Coffee Maker Light on in the morning
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00:00
+  - platform: time
+    at: 06:55:00
+  condition: []
+  action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.short_cabinets_lower_switch
+  mode: single
+- id: '1647974582590'
+  alias: Coffee Maker Light off in the morning
+  description: ''
+  trigger:
+  - platform: time
+    at: '10:00:00'
+  condition: []
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.short_cabinets_lower_switch
   mode: single
