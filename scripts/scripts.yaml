@@ -1,6 +1,9 @@
 patio_turn_off:
   alias: 'Turn off Patio'
   sequence:
+    - service: sonos.unjoin
+      entity_id:
+        - media_player.patio
     - service: media_player.media_stop
       entity_id:
         - media_player.patio
