@@ -18,13 +18,11 @@
     to: playing
   condition: []
   action:
-  - data:
+  - service: yamaha.select_scene
+    data:
       entity_id: media_player.yamaha_receiver_office
-    service: media_player.turn_on
-  - data:
-      entity_id: media_player.yamaha_receiver_office
-      source: AUDIO1
-    service: media_player.select_source
+      scene: SONOS
+  mode: single
 - id: turn_on_family_room_receiver_for_sonos
   alias: Turn on Family_Room Receiver for Sonos
   trigger:
@@ -33,18 +31,20 @@
     to: playing
   condition: []
   action:
-  - data:
+  - service: yamaha.select_scene
+    data:
       entity_id: media_player.yamaha_receiver_family_room
-    service: media_player.turn_on
-  - data:
+      scene: Sonos
+  - service: yamaha.enable_output
+    data:
       entity_id: media_player.yamaha_receiver_family_room
-      source: AUDIO3
-    service: media_player.select_source
+      port: hdmi2
+      enabled: false
   - service: media_player.volume_set
     target:
       entity_id: media_player.yamaha_receiver_family_room
     data:
-      volume_level: 0.8
+      volume_level: 0.85
   mode: single
 - id: accent_lighting_on_sunset
   alias: Turn On Accent Lighting at 4pm
@@ -67,12 +67,6 @@
 - id: jamie_bedtime_music
   alias: Start Jamies Bedtime Music
   trigger:
-  - event_data:
-      entity_id: zwave.kitchen_light
-      scene_data: 4
-      scene_id: 2
-    event_type: zwave.scene_activated
-    platform: event
   - at: '22:00:00'
     platform: time
   - at: 01:01:00
@@ -80,6 +74,7 @@
   condition: []
   action:
   - service: script.jamie_bedtime_music
+  mode: single
 - id: landscape_lighting_on
   alias: Turn On Landscape Lighting at sunset
   trigger:
@@ -103,29 +98,6 @@
       entity_id: group.landscape_lights
     service: homeassistant.turn_off
   mode: single
-- id: patioquad_scene_1_play_classic_rewind
-  alias: patio QuadMote play_classic_rewind
-  trigger:
-  - event_data:
-      entity_id: zwave.patioquad
-      scene_data: 0
-      scene_id: 1
-    event_type: zwave.scene_activated
-    platform: event
-  condition: []
-  action:
-  - service: script.patio_play_classic_rewind
-- id: patioquad_scene_1_play_tom_petty
-  alias: patio QuadMote play_tom_petty
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.patioquad
-      scene_id: 1
-      scene_data: 1
-  action:
-  - service: script.patio_play_tom_petty
 - id: patioquad_scene_2_add_patio
   alias: family_room QuadMote add_patio
   trigger:
@@ -137,61 +109,6 @@
       scene_data: 0
   action:
   - service: script.family_room_add_patio
-- id: patioquad_scene_2_drop_patio
-  alias: patio QuadMote drop_patio
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.patioquad
-      scene_id: 2
-      scene_data: 1
-  action:
-  - service: script.patio_drop_patio
-- id: patioquad_scene_3_volume_down
-  alias: patio QuadMote volume_down
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.patioquad
-      scene_id: 3
-      scene_data: 0
-  action:
-  - service: script.patio_volume_down
-- id: patioquad_scene_3_play_80s
-  alias: patio QuadMote play_80s
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.patioquad
-      scene_id: 3
-      scene_data: 1
-  action:
-  - service: script.patio_play_80s
-- id: patioquad_scene_4_volume_up
-  alias: patio QuadMote volume_up
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.patioquad
-      scene_id: 4
-      scene_data: 0
-  action:
-  - service: script.patio_volume_up
-- id: patioquad_scene_4_media_stop
-  alias: patio QuadMote media_stop
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.patioquad
-      scene_id: 4
-      scene_data: 1
-  action:
-  - service: script.patio_media_stop
 - id: cabinet_lighting_on_switch
   alias: Turn On Cabinet Lighting
   trigger:
@@ -471,6 +388,12 @@
       entity_id: zwave.kitchenquad4
       scene_data: 0
       scene_id: 3
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.coffeequad
+      scene_data: 0
+      scene_id: 3
   condition: []
   action:
   - service: mqtt.publish
@@ -488,6 +411,12 @@
       entity_id: zwave.kitchenquad4
       scene_data: 0
       scene_id: 4
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.coffeequad
+      scene_data: 0
+      scene_id: 4
   condition: []
   action:
   - service: mqtt.publish
@@ -500,7 +429,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 07:00:00
+    at: 06:30:00
   - platform: time
     at: 06:55:00
   condition: []
@@ -520,4 +449,51 @@
   - service: switch.turn_off
     target:
       entity_id: switch.short_cabinets_lower_switch
+  mode: single
+- id: '1655477751246'
+  alias: Coffee Maker Light Toggle
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.coffeequad
+      scene_data: 0
+      scene_id: 1
+  condition: []
+  action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.short_cabinets_lower_switch
+  mode: single
+- id: '1655585778504'
+  alias: 'SAY: Holy Fishpaste'
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.coffeequad
+      scene_data: 0
+      scene_id: 2
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: say/amy
+      payload: Holy fishpaste, thats a guy
+  mode: single
+- id: '1658435235779'
+  alias: Turn on Office Receiver for Office Roon
+  description: ''
+  trigger:
+  - entity_id: media_player.office_roon
+    platform: state
+    to: playing
+  condition: []
+  action:
+  - service: yamaha.select_scene
+    data:
+      entity_id: media_player.yamaha_receiver_office
+      scene: Roon
   mode: single

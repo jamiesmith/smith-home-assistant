@@ -7,6 +7,7 @@ services:
     network_mode: 'host'
     volumes:
       - '/home/jamie/Projects/GitRepo/smith-home-assistant:/config'
+      - '/home/jamie/Projects/GitRepo/smith-home-assistant/broadlink:/usr/local/lib/python3.8/site-packages/broadlink'
     devices:
       - '/dev/ttyACM0'
     environment:
