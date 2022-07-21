@@ -29,3 +29,4 @@ nest.conf
 ipchange.yaml
 HAL
 custom_components
+.dccache
