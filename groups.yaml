@@ -213,14 +213,6 @@ dark_sky:
     - sensor.dark_sky_visibility
     - sensor.dark_sky_wind_bearing
     - sensor.dark_sky_wind_speed
-    - sensor.forecast_0
-    - sensor.forecast_1
-    - sensor.forecast_2
-    - sensor.forecast_3
-    - sensor.forecast_4
-    - sensor.forecast_5
-    - sensor.forecast_6
-
     
 state_tests:
   name: State Tests

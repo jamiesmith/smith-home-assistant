@@ -1,11 +1,16 @@
 - name: Evening
   entities:
-    group.accent_lighting: on
-    group.landscape_lights: on
-    group.foyer_lighting: on
-
+    group.accent_lighting: true
+    group.landscape_lights: true
+    group.foyer_lighting: true
+  id: 9db2a6ac6bc143d8a0460dfb8114c842
 - name: Bedtime
   entities:
-    group.accent_lighting: off
-    group.foyer_lighting: off
-
+    group.accent_lighting: false
+    group.foyer_lighting: false
+  id: 4f6aabbc79b346be949ce2b6c08cfe28
+- id: '1658441223339'
+  name: Big-screen movie mode
+  entities:
+    light.morning_room_sconce:
+      state: 'off'

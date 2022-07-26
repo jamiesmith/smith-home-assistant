@@ -193,180 +193,179 @@ watch_apple_tv_big_screen:
       entity_id: remote.family_room_broadlink_remote
   - service: script.big_screen_movie_time
   mode: single
-
 office_turn_on:
-  alias: 'Turn on Office'
+  alias: Turn on Office
   sequence:
-    - service: media_player.turn_on
-      entity_id: media_player.yamaha_receiver_office
-    # JRS-TMP - service: media_player.volume_set
-    # JRS-TMP   data:
-    # JRS-TMP     entity_id: media_player.yamaha_receiver_office
-    # JRS-TMP     volume_level: 0.6
-
+  - service: media_player.turn_on
+    entity_id: media_player.yamaha_receiver_office
 office_turn_off:
-  alias: 'Turn off Office'
+  alias: Turn off Office
   sequence:
-    - service: media_player.turn_off
-      entity_id: media_player.yamaha_receiver_office
-    - service: media_player.media_stop
-      entity_id: media_player.office_sonos
-
+  - service: media_player.turn_off
+    entity_id: media_player.yamaha_receiver_office
+  - service: media_player.media_stop
+    entity_id: media_player.office_sonos
 office_receiver_toggle_mute:
   alias: Office Receiver Toggle Mute
   sequence:
-    - service: media_player.volume_mute
-      data:
-        entity_id: media_player.yamaha_receiver_office
-      data_template:
-        is_volume_muted: '{{ not states.media_player.yamaha_receiver_office.attributes.is_volume_muted }}'
-                                      
+  - service: media_player.volume_mute
+    data:
+      entity_id: media_player.yamaha_receiver_office
+    data_template:
+      is_volume_muted: '{{ not states.media_player.yamaha_receiver_office.attributes.is_volume_muted
+        }}'
 office_receiver_volume_up:
   sequence:
     service: media_player.volume_set
     entity_id: media_player.yamaha_receiver_office
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_office.attributes.volume_level | float + 0.02 }}'
-
+      volume_level: '{{ states.media_player.yamaha_receiver_office.attributes.volume_level
+        | float + 0.02 }}'
 office_receiver_volume_down:
   sequence:
     service: media_player.volume_set
     entity_id: media_player.yamaha_receiver_office
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_office.attributes.volume_level | float - 0.02 }}'
-
-######
-
+      volume_level: '{{ states.media_player.yamaha_receiver_office.attributes.volume_level
+        | float - 0.02 }}'
 office_input_sonos:
-  alias: 'Turn On Office Sonos'
+  alias: Turn On Office Sonos
   sequence:
-    - service: script.office_turn_on
-    - service: yamaha.select_scene
-      data:
-        entity_id: media_player.yamaha_receiver_office
-        scene: SONOS
-
+  - service: script.office_turn_on
+  - service: yamaha.select_scene
+    data:
+      entity_id: media_player.yamaha_receiver_office
+      scene: SONOS
 office_input_mac:
-  alias: 'Office Input Mac'
+  alias: Office Input Mac
   sequence:
-    - service: script.office_turn_on
-    - service: yamaha.select_scene
-      data:
-        entity_id: media_player.yamaha_receiver_office
-        scene: Crowley
-
+  - service: script.office_turn_on
+  - service: yamaha.select_scene
+    data:
+      entity_id: media_player.yamaha_receiver_office
+      scene: Crowley
 office_input_orion:
-  alias: 'Office Input Orion'
+  alias: Office Input Orion
   sequence:
-    - service: script.office_turn_on
-    - service: yamaha.select_scene
-      data:
-        entity_id: media_player.yamaha_receiver_office
-        scene: Work Computer
-
+  - service: script.office_turn_on
+  - service: yamaha.select_scene
+    data:
+      entity_id: media_player.yamaha_receiver_office
+      scene: Work Computer
 office_input_roon:
-  alias: 'Office Input Roon'
+  alias: Office Input Roon
   sequence:
-    - service: script.office_turn_on
-    - service: yamaha.select_scene
-      data:
-        entity_id: media_player.yamaha_receiver_office
-        scene: Roon
-
+  - service: script.office_turn_on
+  - service: yamaha.select_scene
+    data:
+      entity_id: media_player.yamaha_receiver_office
+      scene: Roon
 office_input_sacd:
-  alias: 'Office Input SACD'
+  alias: Office Input SACD
   sequence:
-    - service: script.office_turn_on
-    - service: yamaha.select_scene
-      data:
-        entity_id: media_player.yamaha_receiver_office
-        scene: SACD
-
+  - service: script.office_turn_on
+  - service: yamaha.select_scene
+    data:
+      entity_id: media_player.yamaha_receiver_office
+      scene: SACD
 office_input_phono:
-  alias: 'Office Input Phono'
+  alias: Office Input Phono
   sequence:
-    - service: script.office_turn_on
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.yamaha_receiver_office
-        source: PHONO
-     
+  - service: script.office_turn_on
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.yamaha_receiver_office
+      source: PHONO
 lightstrip_on_the_air:
   sequence:
-    - service: hue.hue_activate_scene
-      data:
-        group_name: "Office"
-        scene_name: "On Air"
-
-
-        
+  - service: hue.hue_activate_scene
+    data:
+      group_name: Office
+      scene_name: On Air
 turn_on_accent_lighting:
   sequence:
-    - service: homeassistant.turn_on
-      entity_id: group.accent_lighting
-
+  - service: homeassistant.turn_on
+    entity_id: group.accent_lighting
 turn_off_accent_lighting:
   sequence:
-    - service: homeassistant.turn_off
-      entity_id: group.accent_lighting
-
-      
+  - service: homeassistant.turn_off
+    entity_id: group.accent_lighting
 family_room_sonos_next_track:
-  alias: 'Family Room Next Track'
+  alias: Family Room Next Track
   sequence:
-    - service: media_player.media_next_track
-      entity_id: media_player.family_room
-
+  - service: media_player.media_next_track
+    entity_id: media_player.family_room
 family_room_sonos_previous_track:
-  alias: 'Family Room Previous Track'
+  alias: Family Room Previous Track
   sequence:
-    - service: media_player.media_previous_track
-      entity_id: media_player.family_room
-
+  - service: media_player.media_previous_track
+    entity_id: media_player.family_room
 family_room_turn_on:
-  alias: 'Turn on Family Room'
+  alias: Turn on Family Room
   sequence:
-    - service: media_player.turn_on
-      entity_id: media_player.yamaha_receiver_family_room
-
+  - service: media_player.turn_on
+    entity_id: media_player.yamaha_receiver_family_room
 family_room_turn_off:
-  alias: 'Turn off Family Room'
+  alias: Turn off Family Room
   sequence:
-    - service: media_player.turn_off
-      entity_id: media_player.yamaha_receiver_family_room
-    - service: media_player.media_stop
-      entity_id: media_player.family_room
-
+  - service: media_player.turn_off
+    entity_id: media_player.yamaha_receiver_family_room
+  - service: media_player.media_stop
+    entity_id: media_player.family_room
 family_room_receiver_toggle_mute:
   alias: Family Room Receiver Toggle Mute
   sequence:
-    - service: media_player.volume_mute
-      data:
-        entity_id: media_player.yamaha_receiver_family_room
-      data_template:
-        is_volume_muted: '{{ not states.media_player.yamaha_receiver_family_room.attributes.is_volume_muted }}'
-                                      
+  - service: media_player.volume_mute
+    data:
+      entity_id: media_player.yamaha_receiver_family_room
+    data_template:
+      is_volume_muted: '{{ not states.media_player.yamaha_receiver_family_room.attributes.is_volume_muted
+        }}'
 family_room_receiver_volume_up:
   sequence:
     service: media_player.volume_set
     entity_id: media_player.yamaha_receiver_family_room
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level | float + 0.02 }}'
-
+      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
+        | float + 0.02 }}'
 family_room_receiver_volume_down:
   sequence:
     service: media_player.volume_set
     entity_id: media_player.yamaha_receiver_family_room
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level | float - 0.02 }}'
-      
-######
-
+      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
+        | float - 0.02 }}'
 family_room_receiver_input_sonos:
-  alias: 'Turn On Family Room Sonos'
+  alias: Turn On Family Room Sonos
   sequence:
-    - service: script.family_room_turn_on
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.yamaha_receiver_family_room
-        source: AUDIO3
+  - service: script.family_room_turn_on
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.yamaha_receiver_family_room
+      source: AUDIO3
+theater_sonos_scene:
+  alias: Theater Scene - Sonos
+  sequence:
+  - service: yamaha.select_scene
+    data:
+      entity_id: media_player.yamaha_receiver_family_room
+      scene: Sonos
+  mode: single
+theater_roon_scene:
+  alias: Theater Scene - Roon
+  sequence:
+  - service: yamaha.select_scene
+    data:
+      entity_id: media_player.yamaha_receiver_family_room
+      scene: Roon
+  mode: single
+compare_track_back:
+  alias: Compare - track back
+  sequence:
+  - service: media_player.media_previous_track
+    target:
+      entity_id: media_player.family_room_schiit
+  - service: media_player.media_previous_track
+    target:
+      entity_id: media_player.family_room
+  mode: single
