@@ -1,6 +1,0 @@
-- platform: icloud
-  username: !secret icloud_jamie_username
-  password: !secret icloud_jamie_password
-  track_new_devices: yes
-  interval_seconds: 60
-  consider_home: 100

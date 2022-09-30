@@ -18,10 +18,6 @@ homeassistant:
   auth_providers:
     - type: homeassistant
       
-# JRS-TMP weather:
-# JRS-TMP   - platform: darksky
-# JRS-TMP     api_key: !secret darksky_key
-  
 # Enables the frontend
 frontend:
 
@@ -38,11 +34,9 @@ logger:
     # homeassistant.components.nest: debug
     # pysonos.discovery: debug
   # JRS-TMP   homeassistant.core: debug
-    
 
 # Enables configuration UI
 config:
-
 
 http:
   # Secrets are defined in the file secrets.yaml
@@ -160,8 +154,4 @@ script: !include_dir_merge_named scripts
 sensor: !include sensor.yaml
 scene: !include scenes.yaml
 shell_command: !include_dir_merge_named shell_commands
-
-# device_tracker: !include device_tracker.yaml
-
-
 

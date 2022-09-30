@@ -22,9 +22,14 @@
     data:
       entity_id: media_player.yamaha_receiver_office
       scene: SONOS
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.85
+    target:
+      entity_id: media_player.yamaha_receiver_office
   mode: single
 - id: turn_on_family_room_receiver_for_sonos
-  alias: Turn on Family_Room Receiver for Sonos
+  alias: Turn on Family Room Receiver for Sonos
   trigger:
   - entity_id: media_player.family_room
     platform: state
@@ -35,16 +40,11 @@
     data:
       entity_id: media_player.yamaha_receiver_family_room
       scene: Sonos
-  - service: yamaha.enable_output
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
-      port: hdmi2
-      enabled: false
   - service: media_player.volume_set
     target:
       entity_id: media_player.yamaha_receiver_family_room
     data:
-      volume_level: 0.85
+      volume_level: 0.9
   mode: single
 - id: accent_lighting_on_sunset
   alias: Turn On Accent Lighting at 4pm
@@ -207,7 +207,7 @@
       entity_id: media_player.guest_schiit
     service: media_player.media_next_track
 - id: quad_1_guest_schiit_bedtime
-  alias: Guest Quad C - Bedtime Music
+  alias: Guest Quad C - Bedtime Music Blues
   trigger:
   - event_data:
       entity_id: zwave.guestquad
@@ -217,8 +217,12 @@
     platform: event
   condition: []
   action:
-  - data: {}
-    service: script.jamie_bedtime_music
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.guest_room
+    data:
+      source: 74 - B.B. King's Bluesville
+  mode: single
 - id: quad_2_guest_roon_previous_track
   alias: Guest Quad B2 - Roon Previous Track
   trigger:
@@ -496,4 +500,46 @@
     data:
       entity_id: media_player.yamaha_receiver_office
       scene: Roon
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.85
+    target:
+      entity_id: media_player.yamaha_receiver_office
+  mode: single
+- id: '1659105207295'
+  alias: Turn on Family Room Receiver for Theater Roon
+  description: ''
+  trigger:
+  - entity_id: media_player.theater_roon
+    platform: state
+    to: playing
+  condition: []
+  action:
+  - service: yamaha.select_scene
+    data:
+      entity_id: media_player.yamaha_receiver_family_room
+      scene: Roon
+  - service: media_player.volume_set
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+    data:
+      volume_level: 0.85
+  mode: single
+- id: '1659919315095'
+  alias: Guest Quad D - Bedtime Music DMB
+  description: ''
+  trigger:
+  - event_data:
+      entity_id: zwave.guestquad
+      scene_data: 0
+      scene_id: 4
+    event_type: zwave.scene_activated
+    platform: event
+  condition: []
+  action:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.guest_room
+    data:
+      source: 30 - Dave Matthews Band Radio
   mode: single
