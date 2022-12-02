@@ -57,7 +57,8 @@ holiday_lights:
     - switch.other_palm_tree_switch
     - switch.holiday_dining_room_tree_switch
     - switch.holiday_tree_and_garland
-    - switch.holiday_front_shrubs_switch
+    # these are the shrubs on the front
+    - switch.front_landscape_lights_switch_3
     - switch.holiday_christmas_tree
     - switch.holiday_garage_shrubs
 #    - switch.holiday_payton_garland_switch
