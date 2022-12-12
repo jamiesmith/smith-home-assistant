@@ -366,3 +366,11 @@ compare_track_back:
     target:
       entity_id: media_player.family_room
   mode: single
+turn_on_all_holiday_lights:
+  alias: Turn on all holiday lights
+  sequence:
+  - service: homeassistant.turn_on
+    data: {}
+    target:
+      entity_id: group.holiday_all
+  mode: single
