@@ -75,7 +75,15 @@ map:
 # Track the sun
 sun:
 
-  
+weather:
+  - platform: pirateweather
+    api_key: !secret pirate_weather_api_key
+    # Additional optional values:
+    latitude: !secret latitude
+    longitude: !secret longitude
+    mode: hourly
+    name: Pirate Weather Matthews
+    
 # Weather prediction
 
 # Text to speech

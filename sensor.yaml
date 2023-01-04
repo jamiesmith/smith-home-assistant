@@ -9,37 +9,6 @@
       - 'time_utc'
       - 'beat'
 
-  - platform: darksky
-    api_key: !secret darksky_key
-    units: auto
-    scan_interval:
-      minutes: 5
-    monitored_conditions:
-      - apparent_temperature
-      - apparent_temperature_max
-      - apparent_temperature_min
-      - cloud_cover
-      - daily_summary
-      - dew_point
-      - hourly_summary
-      - humidity
-      - icon
-      - minutely_summary
-      - ozone
-      - precip_intensity
-      - precip_intensity_max
-      - precip_probability
-      - precip_type
-      - pressure
-      - summary
-      - temperature
-      - temperature_max
-      - temperature_min
-      - visibility
-      - wind_bearing
-      - wind_speed
-      
-    
   - platform: time_date
     display_options:
       - 'time'
@@ -49,3 +18,42 @@
       - 'time_utc'
       - 'beat'
     
+  - platform: pirateweather
+    api_key: !secret pirate_weather_api_key
+    scan_interval: '00:30:00'
+    monitored_conditions:
+      - apparent_temperature
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - apparent_temperature_max
+      - apparent_temperature_min
+      - cloud_cover
+      - daily_summary
+      - dew_point
+      - hourly_summary
+      - humidity
+      - icon
+      - minutely_summary
+      - moon_phase
+      - nearest_storm_bearing
+      - nearest_storm_distance
+      - ozone
+      - precip_accumulation
+      - precip_intensity
+      - precip_intensity_max
+      - precip_probability
+      - precip_type
+      - pressure
+      - summary
+      - sunrise_time
+      - sunset_time
+      - temperature
+      - temperature_high
+      - temperature_low
+      - temperature_max
+      - temperature_min
+      - uv_index
+      - visibility
+      - wind_bearing
+      - wind_gust
+      - wind_speed
