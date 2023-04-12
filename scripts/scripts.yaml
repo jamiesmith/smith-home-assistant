@@ -374,3 +374,30 @@ turn_on_all_holiday_lights:
     target:
       entity_id: group.holiday_all
   mode: single
+shut_down_office:
+  alias: Shut Down Office
+  sequence:
+  - service: light.turn_off
+    target:
+      entity_id: light.hue_lightstrip_plus_1
+  - service: light.turn_off
+    target:
+      entity_id: light.hue_color_lamp_1
+  - service: switch.turn_off
+    target:
+      entity_id: switch.front_webcam
+  - service: media_player.turn_off
+    target:
+      entity_id: media_player.yamaha_receiver_office
+  - type: turn_off
+    device_id: 558bf20c8cb19b9bd51413af95dad13e
+    entity_id: light.elgato_key_light_air
+    domain: light
+  mode: single
+patio_next_track:
+  alias: Patio Next Track
+  sequence:
+  - service: media_player.media_next_track
+    target:
+      entity_id: media_player.patio
+  mode: single

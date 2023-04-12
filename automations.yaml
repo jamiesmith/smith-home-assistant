@@ -4,12 +4,8 @@
   - at: '20:00:00'
     platform: time
   action:
-  - data:
-      entity_id: media_player.yamaha_receiver_office
-    service: media_player.turn_off
-  - data:
-      entity_id: light.hue_lightstrip_plus_1
-    service: light.turn_off
+  - service: script.shut_down_office
+  mode: single
 - id: turn_on_office_receiver_for_sonos
   alias: Turn on Office Receiver for Sonos
   trigger:
@@ -68,8 +64,6 @@
   alias: Start Jamies Bedtime Music
   trigger:
   - at: '22:00:00'
-    platform: time
-  - at: 01:01:00
     platform: time
   condition: []
   action:
@@ -443,11 +437,11 @@
       entity_id: switch.short_cabinets_lower_switch
   mode: single
 - id: '1647974582590'
-  alias: Coffee Maker Light off in the morning
+  alias: Coffee Maker Light off in the afternoon
   description: ''
   trigger:
   - platform: time
-    at: '12:00:00'
+    at: '14:00:00'
   condition: []
   action:
   - service: switch.turn_off
