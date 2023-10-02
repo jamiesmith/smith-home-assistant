@@ -2,20 +2,24 @@ patio_turn_off:
   alias: Turn off Patio
   sequence:
   - service: sonos.unjoin
-    entity_id:
-    - media_player.patio
+    target:
+      entity_id: media_player.patio
   - service: media_player.media_stop
-    entity_id:
-    - media_player.patio
+    target:
+      entity_id: media_player.patio
   - service: fan.turn_off
-    entity_id:
-    - fan.patio_ceiling_fan
+    target:
+      entity_id: fan.patio_ceiling_fan
   - service: switch.turn_off
-    entity_id:
-    - switch.patio_party_lights_switch
+    target:
+      entity_id: switch.patio_party_lights_switch
   - service: switch.turn_off
-    entity_id:
-    - switch.patio_temp_fan_switch
+    target:
+      entity_id: switch.patio_temp_fan_switch
+  - service: switch.turn_off
+    target:
+      entity_id: switch.patio_temp_fan_switch
+  mode: single
 guest_room_turn_off:
   alias: Turn off Guest Room
   sequence:
@@ -400,4 +404,42 @@ patio_next_track:
   - service: media_player.media_next_track
     target:
       entity_id: media_player.patio
+  mode: single
+garage_off:
+  alias: Garage Turn Off
+  sequence:
+  - service: fan.turn_off
+    target:
+      entity_id: fan.dc
+  - service: media_player.media_stop
+    target:
+      entity_id: media_player.garage
+  - service: switch.turn_off
+    target:
+      entity_id:
+      - switch.garage_wall_fan_switch
+      - switch.garage_portable_fan_switch
+  mode: single
+jamie_patio_mode:
+  alias: Jamie Patio Mode
+  sequence:
+  - service: script.patio_fan_speed_high
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.patio
+    data:
+      source: 25 - Classic Rewind
+  - service: switch.turn_on
+    target:
+      entity_id: switch.patio_party_lights_switch
+  - service: switch.turn_on
+    target:
+      entity_id: switch.patio_temp_fan_switch
+  mode: single
+bambu_x1c_one_on:
+  alias: Bambu X1C - One - On
+  sequence:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.bambu_x1c_1_switch
   mode: single
