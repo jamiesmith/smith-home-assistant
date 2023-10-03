@@ -115,7 +115,10 @@ accent_lighting:
     - switch.palm_tree_switch
     - switch.other_palm_tree_switch
     - switch.morning_room_lamp_switch
+    # I think maybe the plugs got switched for this one
+    #
     - switch.living_room_table_lamp_switch
+    - switch.living_room_outlet_switch
     - switch.liquor_cabinet_switch
     - switch.bar_table_switch
     - light.hue_bar_table_strip

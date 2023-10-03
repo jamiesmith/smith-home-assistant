@@ -107,30 +107,12 @@ cloud:
 nest:
   client_id: !secret nest_product_id
   client_secret: !secret nest_client_Secret
-    
+
 zwave:
   usb_path: /dev/ttyACM0
 
-# JRS-TMP cover:
-# JRS-TMP   - platform: myq
-# JRS-TMP     username: !secret myq_user
-# JRS-TMP     password: !secret myq_password
-# JRS-TMP     type: chamberlain
-
-remote:
-  
-# JRS-TMP   - platform: harmony
-# JRS-TMP     name: Office
-# JRS-TMP     # let it discover the matching name
-# JRS-TMP     # host: 192.168.1.99
-
-# JRS-TMP   - platform: harmony
-# JRS-TMP     name: Family Room
-# JRS-TMP     # let it discover the matching name
-# JRS-TMP     # host: 192.168.1.98
-
 # Yamaha
-
+#
 media_player:
 
   - platform: yamaha
