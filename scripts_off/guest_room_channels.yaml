@@ -1,0 +1,73 @@
+#####
+# guest_room_channels.yaml
+#####
+guest_room_play_grateful_dead:
+  alias: 'Play Greatful Dead in the Guest_Room'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.guest_room
+      data:
+        source: "23 - Grateful Dead"
+
+guest_room_play_classic_rewind:
+  alias: 'Play Classic Rewind in the Guest_Room'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.guest_room
+      data:
+        source: "25 - Classic Rewind"
+
+guest_room_play_classic_vinyl:
+  alias: 'Play Classic Vinyl in the Guest_Room'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.guest_room
+      data:
+        source: "26 - Classic Vinyl"
+        
+guest_room_play_80s:
+  alias: 'Play 80s on Eight in the Guest_Room'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.guest_room
+      data:
+        source: "8 - 80s on 8"
+        
+guest_room_play_tom_petty:
+  alias: 'Play Tom Petty Radio in the Guest_Room'
+  sequence:
+    - service: media_player.select_source
+      entity_id:
+        - media_player.guest_room
+      data:
+        source: "31 - Tom Petty Radio"
+        
+guest_room_media_stop:
+  alias: 'Stop Guest_Room'
+  sequence:
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.guest_room
+
+guest_room_volume_up:
+  alias: 'Guest_Room Volume Up'
+  sequence:
+    - service: media_player.volume_up
+      entity_id:
+        - media_player.guest_room
+        
+guest_room_volume_down:
+  alias: 'Guest_Room Volume Down'
+  sequence:
+    - service: media_player.volume_down
+      entity_id:
+        - media_player.guest_room
+
+
+#####
+# guest_room_channels.yaml
+#####

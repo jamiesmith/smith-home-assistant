@@ -1,0 +1,30 @@
+#####
+# mqtt-publish.yaml
+#####
+mqtt_publish_bartender:
+  alias: 'MQTT Publish Bartender'
+  sequence:
+    service: mqtt.publish
+    data:
+        topic: say/amy
+        payload: bartender
+
+mqtt_publish_lies:
+  alias: 'MQTT Publish Lies'
+  sequence:
+    service: mqtt.publish
+    data:
+        topic: say/amy
+        payload: lies
+
+mqtt_publish_walking:
+  alias: 'MQTT Publish walking'
+  sequence:
+    service: mqtt.publish
+    data:
+        topic: say/amy
+        payload: walking
+
+#####
+# mqtt-publish.yaml
+#####

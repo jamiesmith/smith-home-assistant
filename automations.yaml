@@ -92,17 +92,6 @@
       entity_id: group.landscape_lights
     service: homeassistant.turn_off
   mode: single
-- id: patioquad_scene_2_add_patio
-  alias: family_room QuadMote add_patio
-  trigger:
-    platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.patioquad
-      scene_id: 2
-      scene_data: 0
-  action:
-  - service: script.family_room_add_patio
 - id: cabinet_lighting_on_switch
   alias: Turn On Cabinet Lighting
   trigger:
@@ -138,7 +127,7 @@
   condition: []
   action:
   - data:
-      entity_id: switch.foyer_outlet_switch_2
+      entity_id: switch.foyer_outlet_js_switch_2
     service: switch.turn_on
 - id: foyer_light_off
   alias: Foyer Light Off
@@ -148,7 +137,7 @@
   condition: []
   action:
   - data:
-      entity_id: switch.foyer_outlet_switch_2
+      entity_id: switch.foyer_outlet_js_switch_2
     service: switch.turn_off
 - id: turn_off_accent_lights_at_bedtime
   alias: Turn off accent lighting at bedtime
@@ -172,65 +161,6 @@
     target:
       entity_id: fan.patio_ceiling_fan
   mode: single
-- id: quad_1_guest_schiit_play_pause
-  alias: Guest Quad A - Roon Play/Pause
-  trigger:
-  - event_data:
-      entity_id: zwave.guestquad
-      scene_data: 0
-      scene_id: 1
-    event_type: zwave.scene_activated
-    platform: event
-  condition: []
-  action:
-  - data:
-      entity_id: media_player.guest_schiit
-    service: media_player.media_play_pause
-- id: quad_1_guest_schiit_next_track
-  alias: Guest Quad B - Roon Next Track
-  trigger:
-  - event_data:
-      entity_id: zwave.guestquad
-      scene_data: 0
-      scene_id: 2
-    event_type: zwave.scene_activated
-    platform: event
-  condition: []
-  action:
-  - data:
-      entity_id: media_player.guest_schiit
-    service: media_player.media_next_track
-- id: quad_1_guest_schiit_bedtime
-  alias: Guest Quad C - Bedtime Music Blues
-  trigger:
-  - event_data:
-      entity_id: zwave.guestquad
-      scene_data: 0
-      scene_id: 3
-    event_type: zwave.scene_activated
-    platform: event
-  condition: []
-  action:
-  - service: media_player.select_source
-    target:
-      entity_id: media_player.guest_room
-    data:
-      source: 74 - B.B. King's Bluesville
-  mode: single
-- id: quad_2_guest_roon_previous_track
-  alias: Guest Quad B2 - Roon Previous Track
-  trigger:
-  - event_data:
-      entity_id: zwave.guestquad
-      scene_data: 1
-      scene_id: 2
-    event_type: ''
-    platform: event
-  condition: []
-  action:
-  - data:
-      entity_id: media_player.guest_schiit
-    service: media_player.media_previous_track
 - id: holiday_lights_on
   alias: Holiday - Turn On Holiday Lights around sunset
   trigger:
@@ -280,76 +210,6 @@
   - service: homeassistant.turn_off
     entity_id: group.holiday_other
   mode: single
-- id: '1595531464851'
-  alias: Liquor Cabinet On
-  trigger:
-  - event_data:
-      entity_id: zwave.kitchenquad4
-      scene_data: 0
-      scene_id: 1
-    event_type: zwave.scene_activated
-    platform: event
-  condition: []
-  action:
-  - data: {}
-    service: switch.turn_on
-    target:
-      entity_id: switch.liquor_cabinet_switch
-  mode: single
-- id: '1595531951642'
-  alias: Liquor Cabinet Off
-  trigger:
-  - event_data:
-      entity_id: zwave.kitchenquad4
-      scene_data: 0
-      scene_id: 2
-    event_type: zwave.scene_activated
-    platform: event
-  condition: []
-  action:
-  - data: {}
-    service: switch.turn_off
-    target:
-      entity_id: switch.liquor_cabinet_switch
-  mode: single
-- id: '1624044552076'
-  alias: Garage Quad A - Dust Collector Off
-  description: Turn off the 3hp Laguna DC
-  trigger:
-  - platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.garagequad
-      scene_data: 0
-      scene_id: 1
-  - platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.garagequad
-      scene_data: 0
-      scene_id: 1
-  condition: []
-  action:
-  - service: fan.turn_off
-    target:
-      entity_id: fan.dc
-  mode: single
-- id: '1624044997299'
-  alias: Garage Quad B - Dust Collector On
-  description: ''
-  trigger:
-  - platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.garagequad
-      scene_data: 0
-      scene_id: 2
-  condition: []
-  action:
-  - service: fan.turn_on
-    target:
-      entity_id: fan.dc
-  mode: single
 - id: '1637446244454'
   alias: Turn on Espresso Machine in the morning
   description: ''
@@ -360,7 +220,7 @@
   action:
   - type: turn_on
     device_id: cb3681f41d15a9b766d7d961e2c559f7
-    entity_id: switch.espresso_machine_switch
+    entity_id: switch.espresso_machine_js_switch
     domain: switch
   mode: single
 - id: '1637446290014'
@@ -373,7 +233,7 @@
   action:
   - type: turn_off
     device_id: cb3681f41d15a9b766d7d961e2c559f7
-    entity_id: switch.espresso_machine_switch
+    entity_id: switch.espresso_machine_js_switch
     domain: switch
   mode: single
 - id: '1642711242692'
@@ -434,7 +294,7 @@
   action:
   - service: switch.turn_on
     target:
-      entity_id: switch.short_cabinets_lower_switch
+      entity_id: switch.short_cabinets_lower_js_switch
   mode: single
 - id: '1655477751246'
   alias: Coffee Maker Light Toggle
@@ -450,7 +310,7 @@
   action:
   - service: switch.toggle
     target:
-      entity_id: switch.short_cabinets_lower_switch
+      entity_id: switch.short_cabinets_lower_js_switch
   mode: single
 - id: '1655585778504'
   alias: 'SAY: Holy Fishpaste'
@@ -502,21 +362,30 @@
     data:
       volume_level: 0.85
   mode: single
-- id: '1659919315095'
-  alias: Guest Quad D - Bedtime Music DMB
-  description: ''
-  trigger:
-  - event_data:
-      entity_id: zwave.guestquad
-      scene_data: 0
-      scene_id: 4
-    event_type: zwave.scene_activated
-    platform: event
-  condition: []
-  action:
-  - service: media_player.select_source
-    target:
-      entity_id: media_player.guest_room
-    data:
-      source: 30 - Dave Matthews Band Radio
-  mode: single
+- id: '1696550493840'
+  alias: Liquor Cabinet Quad Blueprints
+  description: Actions for liquor cabinet quadmote
+  use_blueprint:
+    path: homeassistant/aeonquad.yaml
+    input:
+      wallmote_quad_device: 7e8265b52de7657966751961f7cd1bf9
+      button_1_pressed:
+      - data: {}
+        service: switch.turn_on
+        target:
+          entity_id: switch.liquor_cabinet_js_switch
+      button_2_pressed:
+      - data: {}
+        service: switch.turn_off
+        target:
+          entity_id: switch.liquor_cabinet_js_switch
+      button_3_pressed:
+      - service: mqtt.publish
+        data:
+          topic: say/amy
+          payload: Can I get you something?
+      button_4_pressed:
+      - service: mqtt.publish
+        data:
+          topic: say/amy
+          payload: What can I get you?

@@ -4,11 +4,11 @@ switch.living_room_outlet_switch_2:
   friendly_name: Living Room Lamp
 switch.living_room_outlet_switch_3:
   friendly_name: Living Room Garland
-switch.foyer_outlet_switch:
+switch.foyer_outlet_js_switch:
   hidden: true
-switch.foyer_outlet_switch_2:
+switch.foyer_outlet_js_switch_2:
   friendly_name: Foyer Lamp
-switch.foyer_outlet_switch_3:
+switch.foyer_outlet_js_switch_3:
   friendly_name: Foyer Other
 switch.extra_outlet_switch:
   hidden: true
@@ -18,7 +18,7 @@ switch.extra_outlet_switch_3:
   friendly_name: Extra Other
 switch.front_landscape_lights_switch:
   hidden: true
-switch.front_landscape_lights_switch_2:
+switch.front_landscape_lights_js_switch:
   friendly_name: Front Landscape Lights
 switch.front_landscape_lights_switch_3:
   friendly_name: Front Extra Outlet
@@ -30,27 +30,27 @@ sensor.dark_outside:
   icon: mdi:theme-light-dark
 switch.holiday_dining_room_tree_switch:
   friendly_name: Dining Room Tree
-switch.holiday_office_candles_switch:
+switch.holiday_office_candles_js_switch:
   friendly_name: Office Candles
-switch.holiday_living_room_candles_switch:
+switch.holiday_living_room_candles_js_switch:
   friendly_name: Living Room Candles
-switch.holiday_master_candles_switch:
+switch.holiday_master_candles_js_switch:
   friendly_name: Master Candles Switch
-switch.holiday_payton_candles_switch:
+switch.holiday_payton_candles_js_switch:
   friendly_name: Payton Candles
-switch.holiday_garage_candles_switch:
+switch.holiday_garage_candles_js_switch:
   friendly_name: Garage Candles
-switch.holiday_front_shrubs_switch:
+switch.holiday_garage_shrubs_js_switch_js_switch:
   friendly_name: Front Shrubs
 switch.holiday_master_garland_switch:
   friendly_name: Master Garland
-switch.holiday_wreath_switch:
+switch.holiday_wreath_js_switch:
   friendly_name: Wreath
-switch.palm_tree_switch:
+switch.palm_tree_js_switch:
   friendly_name: Palm Tree
 light.hue_lightstrip_plus_1:
   friendly_name: Office Lightstrip
-switch.family_room_apple_tv_switch:
+switch.family_room_apple_tv_js_switch:
   friendly_name: Family Room AppleTV
 switch.temp_office_node_switch:
   friendly_name: Holiday Garage Shrubs

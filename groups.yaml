@@ -21,7 +21,7 @@ kitchen:
     - group.cabinet_lighting_lower
     - group.cabinet_lighting_upper
     - group.cabinet_lighting
-    - light.kitchen_light_level
+    - light.kitchen_light_level_js
 
 holiday_all:
  # view: yes
@@ -35,111 +35,105 @@ holiday_candles:
  # view: yes
   name: Holiday Candles
   entities:
-    - switch.holiday_master_candles_switch
-    - switch.holiday_garage_candles_switch
-    - switch.holiday_office_candles_switch
-    - switch.holiday_payton_candles_switch
-    - switch.holiday_living_room_candles_switch
+    - switch.holiday_master_candles_js_switch
+    - switch.holiday_garage_candles_js_switch
+    - switch.holiday_office_candles_js_switch
+    - switch.holiday_payton_candles_js_switch
+    - switch.holiday_living_room_candles_js_switch
 
 party_lights:
 # JRS-TMP view: yes
   name: Party Lights
   entities:
-    - switch.palm_tree_switch
-    - switch.other_palm_tree_switch
-    - switch.patio_party_lights_switch
+    - switch.palm_tree_js_switch
+    - switch.other_palm_tree_js_switch
+    - switch.patio_party_lights_js_switch
 
 holiday_lights:
  # view: yes
   name: Holiday Lights
   entities:
-    - switch.palm_tree_switch
-    - switch.other_palm_tree_switch
+    - switch.palm_tree_js_switch
+    - switch.other_palm_tree_js_switch
     - switch.holiday_dining_room_tree_switch
     # these are the shrubs on the front
     - switch.front_landscape_lights_switch_3
-    - switch.holiday_christmas_tree
-    - switch.holiday_garage_shrubs
-    - switch.holiday_wreath_switch
-    - switch.holiday_christmas_tree
+    - switch.holiday_christmas_tree_js_switch
+    - switch.holiday_garage_shrubs_js_switch
+    - switch.holiday_wreath_js_switch
+    - switch.holiday_christmas_tree_js_switch
 #   some of these are defunct, not sure if it is temporary.    
 #    - switch.holiday_tree_and_garland
-#    - switch.holiday_payton_garland_switch
+#    - switch.holiday_payton_garland_js_switch
 #    - switch.holiday_master_garland_switch
 
 holiday_other:
  # view: yes
   name: Holiday Other
   entities:
-    - switch.palm_tree_switch
-    - switch.foyer_outlet_switch_2
-    - switch.foyer_outlet_switch_3
-    - switch.living_room_garland_switch
-    - switch.liquor_cabinet_switch
-    - switch.morning_room_lamp_switch
+    - switch.palm_tree_js_switch
+    - switch.foyer_outlet_js_switch_2
+    - switch.foyer_outlet_js_switch_3
+    - switch.living_room_garland_js_switch
+    - switch.liquor_cabinet_js_switch
     - switch.front_landscape_lights_switch_3
-# Cannot find these
-#   - switch.living_room_outlet_switch_2
 
 holiday_lighting_family_room:
  # view: yes
   name: Tree / Garland
   entities:
-    - switch.holiday_christmas_tree
+    - switch.holiday_christmas_tree_js_switch
     
 landscape_lights:
   # view: yes
   name: Landscape Lights
   entities:
-    - switch.backyard_landscape_lights_switch
-    - switch.front_landscape_lights_switch_2
+    - switch.backyard_landscape_lights_js_switch
+    - switch.front_landscape_lights_js_switch
     - switch.front_landscape_lights_switch_3 # This one is pending
     
 foyer_lighting:
 #  view: yes
   name: Foyer Lights
   entities:
-    - switch.foyer_outlet_switch_2
-    - switch.foyer_outlet_switch_3
+    - switch.foyer_outlet_js_switch_2
+    - switch.foyer_outlet_js_switch_3
 
 bar_table:
   name: Bar Table Lights
   entities:
-    - switch.bar_table_switch
+    - switch.bar_table_js_switch
     - light.hue_bar_table_strip
 
 
 accent_lighting:
   name: Accent Lighting
   entities:
-    - switch.palm_tree_switch
-    - switch.other_palm_tree_switch
-    - switch.morning_room_lamp_switch
+    - switch.palm_tree_js_switch
+    - switch.other_palm_tree_js_switch
     # I think maybe the plugs got switched for this one
     #
-    - switch.living_room_table_lamp_switch
-    - switch.living_room_outlet_switch
-    - switch.liquor_cabinet_switch
-    - switch.bar_table_switch
+    - switch.living_room_table_lamp_js_switch
+    - switch.liquor_cabinet_js_switch
+    - switch.bar_table_js_switch
     - light.hue_bar_table_strip
     - group.cabinet_lighting
-    - light.morning_room_sconce
-    - light.living_room_cabinets_dimmer_level
-    - light.morning_room_sconce
+    - light.morning_room_js_sconce
+    - light.living_room_cabinets_dimmer_js_level
     
 cabinet_lighting_lower:
   name: Cabinet Lighting lower
   entities:
-    - switch.long_cabinets_lower_switch
-    - switch.short_cabinets_lower_switch
+    - switch.long_cabinets_lower_js_switch
+    - switch.short_cabinets_lower_js_switch
 
 cabinet_lighting_upper:
   name: Cabinet Lighting Upper
   entities:
-    - switch.long_cabinets_upper_switch
-    - switch.short_cabinets_upper_switch
-    - switch.amy_upper_cabinet_switch
-    - switch.cabinet_lights_medicine_cabinet_switch
+    - switch.long_cabinets_upper_js_switch
+    - switch.short_cabinets_upper_js_switch
+    - switch.amy_upper_cabinet_js_switch
+    - switch.cabinet_lights_medicine_cabinet_js_switch
 
 cabinet_lighting:
   name: Cabinet Lighting
@@ -160,7 +154,7 @@ media_players:
     - media_player.family_room_receiver
     - media_player.office_sonos
     - media_player.office_receiver
-    - switch.family_room_apple_tv_switch
+    - switch.family_room_apple_tv_js_switch
 
 media_players_roon:
 # JRS-TMP view: yes
@@ -197,45 +191,45 @@ comfort:
     - sensor.upstairs_thermostat_target
     - sensor.upstairs_thermostat_temperature
 
-pirateweather:
-# view: yes
-  name: Pirate Weather Sensors
-  entities:
-    - sensor.pirateweather_apparent_temperature
-    - sensor.pirateweather_apparent_temperature_high
-    - sensor.pirateweather_apparent_temperature_low
-    - sensor.pirateweather_apparent_temperature_max
-    - sensor.pirateweather_apparent_temperature_min
-    - sensor.pirateweather_cloud_cover
-    - sensor.pirateweather_daily_summary
-    - sensor.pirateweather_dew_point
-    - sensor.pirateweather_hourly_summary
-    - sensor.pirateweather_humidity
-    - sensor.pirateweather_icon
-    - sensor.pirateweather_minutely_summary
-    - sensor.pirateweather_moon_phase
-    - sensor.pirateweather_nearest_storm_bearing
-    - sensor.pirateweather_nearest_storm_distance
-    - sensor.pirateweather_ozone
-    - sensor.pirateweather_precip_accumulation
-    - sensor.pirateweather_precip_intensity
-    - sensor.pirateweather_precip_intensity_max
-    - sensor.pirateweather_precip_probability
-    - sensor.pirateweather_precip_type
-    - sensor.pirateweather_pressure
-    - sensor.pirateweather_summary
-    - sensor.pirateweather_sunrise_time
-    - sensor.pirateweather_sunset_time
-    - sensor.pirateweather_temperature
-    - sensor.pirateweather_temperature_high
-    - sensor.pirateweather_temperature_low
-    - sensor.pirateweather_temperature_max
-    - sensor.pirateweather_temperature_min
-    - sensor.pirateweather_uv_index
-    - sensor.pirateweather_visibility
-    - sensor.pirateweather_wind_bearing
-    - sensor.pirateweather_wind_gust
-    - sensor.pirateweather_wind_speed
+# JRS-TMP pirateweather:
+# JRS-TMP # view: yes
+# JRS-TMP   name: Pirate Weather Sensors
+# JRS-TMP   entities:
+# JRS-TMP     - sensor.pirateweather_apparent_temperature
+# JRS-TMP     - sensor.pirateweather_apparent_temperature_high
+# JRS-TMP     - sensor.pirateweather_apparent_temperature_low
+# JRS-TMP     - sensor.pirateweather_apparent_temperature_max
+# JRS-TMP     - sensor.pirateweather_apparent_temperature_min
+# JRS-TMP     - sensor.pirateweather_cloud_cover
+# JRS-TMP     - sensor.pirateweather_daily_summary
+# JRS-TMP     - sensor.pirateweather_dew_point
+# JRS-TMP     - sensor.pirateweather_hourly_summary
+# JRS-TMP     - sensor.pirateweather_humidity
+# JRS-TMP     - sensor.pirateweather_icon
+# JRS-TMP     - sensor.pirateweather_minutely_summary
+# JRS-TMP     - sensor.pirateweather_moon_phase
+# JRS-TMP     - sensor.pirateweather_nearest_storm_bearing
+# JRS-TMP     - sensor.pirateweather_nearest_storm_distance
+# JRS-TMP     - sensor.pirateweather_ozone
+# JRS-TMP     - sensor.pirateweather_precip_accumulation
+# JRS-TMP     - sensor.pirateweather_precip_intensity
+# JRS-TMP     - sensor.pirateweather_precip_intensity_max
+# JRS-TMP     - sensor.pirateweather_precip_probability
+# JRS-TMP     - sensor.pirateweather_precip_type
+# JRS-TMP     - sensor.pirateweather_pressure
+# JRS-TMP     - sensor.pirateweather_summary
+# JRS-TMP     - sensor.pirateweather_sunrise_time
+# JRS-TMP     - sensor.pirateweather_sunset_time
+# JRS-TMP     - sensor.pirateweather_temperature
+# JRS-TMP     - sensor.pirateweather_temperature_high
+# JRS-TMP     - sensor.pirateweather_temperature_low
+# JRS-TMP     - sensor.pirateweather_temperature_max
+# JRS-TMP     - sensor.pirateweather_temperature_min
+# JRS-TMP     - sensor.pirateweather_uv_index
+# JRS-TMP     - sensor.pirateweather_visibility
+# JRS-TMP     - sensor.pirateweather_wind_bearing
+# JRS-TMP     - sensor.pirateweather_wind_gust
+# JRS-TMP     - sensor.pirateweather_wind_speed
     
 state_tests:
   name: State Tests

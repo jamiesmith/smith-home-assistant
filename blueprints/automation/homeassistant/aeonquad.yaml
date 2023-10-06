@@ -1,0 +1,102 @@
+blueprint:
+  name: Aeon Labs WallMote Quad
+  description: Create automations for the Aeon Labs WallMote Quad
+  domain: automation
+
+  input:
+    wallmote_quad_device:
+      name: WallMote Device Quad
+      description: A WallMote Quad device.
+      selector:
+        device:
+          integration: zwave_js
+          manufacturer: AEON Labs
+          model: ZW130
+
+    button_1_pressed:
+      name: Button 1 Pressed
+      description: Actions to run when button 1 is pressed.
+      default: []
+      selector:
+        action:
+
+    button_1_held:
+      name: Button 1 Held Down
+      description: Actions to run when button 1 is held down.
+      default: []
+      selector:
+        action:
+
+    button_2_pressed:
+      name: Button 2 Pressed
+      description: Actions to run when button 2 is pressed.
+      default: []
+      selector:
+        action:
+
+    button_2_held:
+      name: Button 2 Held Down
+      description: Actions to run when button 2 is held down.
+      default: []
+      selector:
+        action:
+
+    button_3_pressed:
+      name: Button 3 Pressed
+      description: Actions to run when button 3 is pressed.
+      default: []
+      selector:
+        action:
+
+    button_3_held:
+      name: Button 3 Held Down
+      description: Actions to run when button 3 is held down.
+      default: []
+      selector:
+        action:
+
+    button_4_pressed:
+      name: Button 4 Pressed
+      description: Actions to run when button 4 is pressed.
+      default: []
+      selector:
+        action:
+
+    button_4_held:
+      name: Button 4 Held Down
+      description: Actions to run when button 4 is held down.
+      default: []
+      selector:
+        action:
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  platform: event
+  event_type: zwave_js_value_notification
+  event_data:
+    device_id: !input wallmote_quad_device
+    command_class_name: "Central Scene"
+
+action:
+  - variables:
+      action_name: "{{ trigger.event.data.value }}"
+      property_key: "{{ trigger.event.data.property_key }}"
+  - choose:
+      - conditions: "{{ action_name == 'KeyPressed' and property_key == '001'}}"
+        sequence: !input button_1_pressed
+      - conditions: "{{ action_name == 'KeyHeldDown' and property_key == '001' }}"
+        sequence: !input button_1_held
+      - conditions: "{{ action_name == 'KeyPressed' and property_key == '002' }}"
+        sequence: !input button_2_pressed
+      - conditions: "{{ action_name == 'KeyHeldDown' and property_key == '002' }}"
+        sequence: !input button_2_held
+      - conditions: "{{ action_name == 'KeyPressed' and property_key == '003' }}"
+        sequence: !input button_3_pressed
+      - conditions: "{{ action_name == 'KeyHeldDown' and property_key == '003' }}"
+        sequence: !input button_3_held
+      - conditions: "{{ action_name == 'KeyPressed' and property_key == '004' }}"
+        sequence: !input button_4_pressed
+      - conditions: "{{ action_name == 'KeyHeldDown' and property_key == '004' }}"
+        sequence: !input button_4_held

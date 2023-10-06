@@ -12,5 +12,5 @@
 - id: '1658441223339'
   name: Big-screen movie mode
   entities:
-    light.morning_room_sconce:
+    light.morning_room_js_sconce:
       state: 'off'

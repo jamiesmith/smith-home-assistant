@@ -1,19 +1,16 @@
 homeassistant:
-  # Name of the location where Home Assistant is running
-  name: Home
-  # Location required to calculate the time the sun rises and sets
-  latitude: !secret latitude
-  longitude: !secret longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 207
-  # metric for Metric, imperial for Imperial
-  unit_system: imperial
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: America/New_York
+  # JRS-TMP name: Home
+  # JRS-TMP latitude: !secret latitude
+  # JRS-TMP longitude: !secret longitude
+  # JRS-TMP currency: USD
+  # JRS-TMP country: US
+  # JRS-TMP elevation: 207
+  # JRS-TMP unit_system: imperial
+  # JRS-TMP time_zone: America/New_York
+
   # Customization file
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
-  packages: !include_dir_named packages/
 
   auth_providers:
     - type: homeassistant
@@ -53,13 +50,6 @@ http:
   # Optional, allows Home Assistant developers to focus on popular components.
   # include_used_components: true
 
-# Discover some devices automatically
-discovery:
-  ignore:
-    - yamaha
-    - harmony
-    - apple_tv
-    
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
@@ -75,14 +65,14 @@ map:
 # Track the sun
 sun:
 
-weather:
-  - platform: pirateweather
-    api_key: !secret pirate_weather_api_key
-    # Additional optional values:
-    latitude: !secret latitude
-    longitude: !secret longitude
-    mode: hourly
-    name: Pirate Weather Matthews
+# JRS-TMP weather:
+# JRS-TMP   - platform: pirateweather
+# JRS-TMP     api_key: !secret pirate_weather_api_key
+# JRS-TMP     # Additional optional values:
+# JRS-TMP     latitude: !secret latitude
+# JRS-TMP     longitude: !secret longitude
+# JRS-TMP     mode: hourly
+# JRS-TMP     name: Pirate Weather Matthews
     
 # Weather prediction
 
@@ -104,12 +94,9 @@ cloud:
         - script
         - scene
     
-nest:
-  client_id: !secret nest_product_id
-  client_secret: !secret nest_client_Secret
-
-zwave:
-  usb_path: /dev/ttyACM0
+# JRS-TMP nest:
+# JRS-TMP   client_id: !secret nest_product_id
+# JRS-TMP   client_secret: !secret nest_client_Secret
 
 # Yamaha
 #
@@ -140,7 +127,8 @@ media_player:
 group: !include groups.yaml
 automation: !include automations.yaml
 # automation: !include_dir_merge_list automations
-script: !include_dir_merge_named scripts
+# JRS-TMP script: !include_dir_merge_named scripts
+script: !include scripts.yaml
 sensor: !include sensor.yaml
 scene: !include scenes.yaml
 shell_command: !include_dir_merge_named shell_commands
