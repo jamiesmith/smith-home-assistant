@@ -1,511 +1,414 @@
-#####
-# garage_channels.yaml
-#####
 garage_play_grateful_dead:
-  alias: 'Play Greatful Dead in the Garage'
+  alias: Play Greatful Dead in the Garage
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.garage
-      data:
-        source: "23 - Grateful Dead"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.garage
+    data:
+      source: 23 - Grateful Dead
 garage_play_classic_rewind:
-  alias: 'Play Classic Rewind in the Garage'
+  alias: Play Classic Rewind in the Garage
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.garage
-      data:
-        source: "25 - Classic Rewind"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.garage
+    data:
+      source: 25 - Classic Rewind
 garage_play_classic_vinyl:
-  alias: 'Play Classic Vinyl in the Garage'
+  alias: Play Classic Vinyl in the Garage
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.garage
-      data:
-        source: "26 - Classic Vinyl"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.garage
+    data:
+      source: 26 - Classic Vinyl
 garage_play_80s:
-  alias: 'Play 80s on Eight in the Garage'
+  alias: Play 80s on Eight in the Garage
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.garage
-      data:
-        source: "8 - 80s on 8"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.garage
+    data:
+      source: 8 - 80s on 8
 garage_play_tom_petty:
-  alias: 'Play Tom Petty Radio in the Garage'
+  alias: Play Tom Petty Radio in the Garage
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.garage
-      data:
-        source: "31 - Tom Petty Radio"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.garage
+    data:
+      source: 31 - Tom Petty Radio
 garage_media_stop:
-  alias: 'Pause Garage'
+  alias: Pause Garage
   sequence:
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.garage
-
+  - service: media_player.media_stop
+    entity_id:
+    - media_player.garage
 garage_media_play_pause:
-  alias: 'Garage Play/Pause'
+  alias: Garage Play/Pause
   sequence:
-    - service: media_player.media_play_pause
-      entity_id:
-        - media_player.garage
-
+  - service: media_player.media_play_pause
+    entity_id:
+    - media_player.garage
 garage_volume_down_5:
-  alias: 'Garage Volume Down 5'
+  alias: Garage Volume Down 5
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.garage
-      data_template:
-        volume_level: '{{ states.media_player.garage.attributes.volume_level - 0.05}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.garage
+    data_template:
+      volume_level: '{{ states.media_player.garage.attributes.volume_level - 0.05}}'
 garage_volume_up_10:
-  alias: 'Garage Volume Up 10'
+  alias: Garage Volume Up 10
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.garage
-      data_template:
-        volume_level: '{{ states.media_player.garage.attributes.volume_level + 0.10}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.garage
+    data_template:
+      volume_level: '{{ states.media_player.garage.attributes.volume_level + 0.10}}'
 garage_volume_up_5:
-  alias: 'Garage Volume Up 5'
+  alias: Garage Volume Up 5
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.garage
-      data_template:
-        volume_level: '{{ states.media_player.garage.attributes.volume_level + 0.05}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.garage
+    data_template:
+      volume_level: '{{ states.media_player.garage.attributes.volume_level + 0.05}}'
 garage_volume_up:
-  alias: 'Garage Volume Up'
+  alias: Garage Volume Up
   sequence:
-    - service: media_player.volume_up
-      entity_id:
-        - media_player.garage
-        
+  - service: media_player.volume_up
+    entity_id:
+    - media_player.garage
 garage_volume_down:
-  alias: 'Garage Volume Down'
+  alias: Garage Volume Down
   sequence:
-    - service: media_player.volume_down
-      entity_id:
-        - media_player.garage
-        
+  - service: media_player.volume_down
+    entity_id:
+    - media_player.garage
 garage_stop:
-  alias: 'Garage Stop'
+  alias: Garage Stop
   sequence:
-    - service: media_player.stop
-      entity_id:
-        - media_player.garage
-
-#####
-# garage_channels.yaml
-#####
-#####
-# guest_room_channels.yaml
-#####
+  - service: media_player.stop
+    entity_id:
+    - media_player.garage
 guest_room_play_grateful_dead:
-  alias: 'Play Greatful Dead in the Guest_Room'
+  alias: Play Greatful Dead in the Guest_Room
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.guest_room
-      data:
-        source: "23 - Grateful Dead"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.guest_room
+    data:
+      source: 23 - Grateful Dead
 guest_room_play_classic_rewind:
-  alias: 'Play Classic Rewind in the Guest_Room'
+  alias: Play Classic Rewind in the Guest_Room
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.guest_room
-      data:
-        source: "25 - Classic Rewind"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.guest_room
+    data:
+      source: 25 - Classic Rewind
 guest_room_play_classic_vinyl:
-  alias: 'Play Classic Vinyl in the Guest_Room'
+  alias: Play Classic Vinyl in the Guest_Room
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.guest_room
-      data:
-        source: "26 - Classic Vinyl"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.guest_room
+    data:
+      source: 26 - Classic Vinyl
 guest_room_play_80s:
-  alias: 'Play 80s on Eight in the Guest_Room'
+  alias: Play 80s on Eight in the Guest_Room
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.guest_room
-      data:
-        source: "8 - 80s on 8"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.guest_room
+    data:
+      source: 8 - 80s on 8
 guest_room_play_tom_petty:
-  alias: 'Play Tom Petty Radio in the Guest_Room'
+  alias: Play Tom Petty Radio in the Guest_Room
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.guest_room
-      data:
-        source: "31 - Tom Petty Radio"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.guest_room
+    data:
+      source: 31 - Tom Petty Radio
 guest_room_media_stop:
-  alias: 'Stop Guest_Room'
+  alias: Stop Guest_Room
   sequence:
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.guest_room
-
+  - service: media_player.media_stop
+    entity_id:
+    - media_player.guest_room
 guest_room_volume_up:
-  alias: 'Guest_Room Volume Up'
+  alias: Guest_Room Volume Up
   sequence:
-    - service: media_player.volume_up
-      entity_id:
-        - media_player.guest_room
-        
+  - service: media_player.volume_up
+    entity_id:
+    - media_player.guest_room
 guest_room_volume_down:
-  alias: 'Guest_Room Volume Down'
+  alias: Guest_Room Volume Down
   sequence:
-    - service: media_player.volume_down
-      entity_id:
-        - media_player.guest_room
-
-
-#####
-# guest_room_channels.yaml
-#####
-#####
-# move_channels.yaml
-#####
+  - service: media_player.volume_down
+    entity_id:
+    - media_player.guest_room
 move_play_grateful_dead:
-  alias: 'Play Greatful Dead in the Move'
+  alias: Play Greatful Dead in the Move
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.move
-      data:
-        source: "23 - Grateful Dead"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.move
+    data:
+      source: 23 - Grateful Dead
 move_play_classic_rewind:
-  alias: 'Play Classic Rewind in the Move'
+  alias: Play Classic Rewind in the Move
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.move
-      data:
-        source: "25 - Classic Rewind"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.move
+    data:
+      source: 25 - Classic Rewind
 move_play_classic_vinyl:
-  alias: 'Play Classic Vinyl in the Move'
+  alias: Play Classic Vinyl in the Move
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.move
-      data:
-        source: "26 - Classic Vinyl"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.move
+    data:
+      source: 26 - Classic Vinyl
 move_play_80s:
-  alias: 'Play 80s on Eight in the Move'
+  alias: Play 80s on Eight in the Move
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.move
-      data:
-        source: "8 - 80s on 8"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.move
+    data:
+      source: 8 - 80s on 8
 move_play_tom_petty:
-  alias: 'Play Tom Petty Radio in the Move'
+  alias: Play Tom Petty Radio in the Move
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.move
-      data:
-        source: "31 - Tom Petty Radio"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.move
+    data:
+      source: 31 - Tom Petty Radio
 move_media_stop:
-  alias: 'Stop Move'
+  alias: Stop Move
   sequence:
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.move
-
+  - service: media_player.media_stop
+    entity_id:
+    - media_player.move
 move_volume_up:
-  alias: 'Move Volume Up'
+  alias: Move Volume Up
   sequence:
-    - service: media_player.volume_up
-      entity_id:
-        - media_player.move
-        
+  - service: media_player.volume_up
+    entity_id:
+    - media_player.move
 move_volume_down:
-  alias: 'Move Volume Down'
+  alias: Move Volume Down
   sequence:
-    - service: media_player.volume_down
-      entity_id:
-        - media_player.move
-
-
-#####
-# move_channels.yaml
-#####
-#####
-# mqtt-publish.yaml
-#####
+  - service: media_player.volume_down
+    entity_id:
+    - media_player.move
 mqtt_publish_bartender:
-  alias: 'MQTT Publish Bartender'
+  alias: MQTT Publish Bartender
   sequence:
     service: mqtt.publish
     data:
-        topic: say/amy
-        payload: bartender
-
+      topic: say/amy
+      payload: bartender
 mqtt_publish_lies:
-  alias: 'MQTT Publish Lies'
+  alias: MQTT Publish Lies
   sequence:
     service: mqtt.publish
     data:
-        topic: say/amy
-        payload: lies
-
+      topic: say/amy
+      payload: lies
 mqtt_publish_walking:
-  alias: 'MQTT Publish walking'
+  alias: MQTT Publish walking
   sequence:
     service: mqtt.publish
     data:
-        topic: say/amy
-        payload: walking
-
-#####
-# mqtt-publish.yaml
-#####
-#####
-# office_channels.yaml
-#####
+      topic: say/amy
+      payload: walking
 office_play_grateful_dead:
-  alias: 'Play Greatful Dead in the Office'
+  alias: Play Greatful Dead in the Office
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.office_sonos
-      data:
-        source: "23 - Grateful Dead"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.office_sonos
+    data:
+      source: 23 - Grateful Dead
 office_play_classic_rewind:
-  alias: 'Play Classic Rewind in the Office'
+  alias: Play Classic Rewind in the Office
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.office_sonos
-      data:
-        source: "25 - Classic Rewind"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.office_sonos
+    data:
+      source: 25 - Classic Rewind
 office_play_classic_vinyl:
-  alias: 'Play Classic Vinyl in the Office'
+  alias: Play Classic Vinyl in the Office
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.office_sonos
-      data:
-        source: "26 - Classic Vinyl"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.office_sonos
+    data:
+      source: 26 - Classic Vinyl
 office_play_80s:
-  alias: 'Play 80s on Eight in the Office'
+  alias: Play 80s on Eight in the Office
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.office_sonos
-      data:
-        source: "8 - 80s on 8"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.office_sonos
+    data:
+      source: 8 - 80s on 8
 office_play_tom_petty:
-  alias: 'Play Tom Petty Radio in the Office'
+  alias: Play Tom Petty Radio in the Office
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.office_sonos
-      data:
-        source: "31 - Tom Petty Radio"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.office_sonos
+    data:
+      source: 31 - Tom Petty Radio
 office_media_stop:
-  alias: 'Stop Office'
+  alias: Stop Office
   sequence:
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.office_sonos
-
+  - service: media_player.media_stop
+    entity_id:
+    - media_player.office_sonos
 office_volume_up:
-  alias: 'Office Volume Up'
+  alias: Office Volume Up
   sequence:
-    - service: media_player.volume_up
-      entity_id:
-        - media_player.office_sonos
-        
+  - service: media_player.volume_up
+    entity_id:
+    - media_player.office_sonos
 office_volume_down:
-  alias: 'Office Volume Down'
+  alias: Office Volume Down
   sequence:
-    - service: media_player.volume_down
-      entity_id:
-        - media_player.office_sonos
-
-#####
-# office_channels.yaml
-#####
-#####
-# patio_channels.yaml
-#####
+  - service: media_player.volume_down
+    entity_id:
+    - media_player.office_sonos
 patio_play_grateful_dead:
-  alias: 'Play Greatful Dead in the Patio'
+  alias: Play Greatful Dead in the Patio
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.patio
-      data:
-        source: "23 - Grateful Dead"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.patio
+    data:
+      source: 23 - Grateful Dead
 patio_play_classic_rewind:
-  alias: 'Play Classic Rewind in the Patio'
+  alias: Play Classic Rewind in the Patio
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.patio
-      data:
-        source: "25 - Classic Rewind"
-
+  - service: media_player.select_source
+    entity_id:
+    - media_player.patio
+    data:
+      source: 25 - Classic Rewind
 patio_play_classic_vinyl:
-  alias: 'Play Classic Vinyl in the Patio'
+  alias: Play Classic Vinyl in the Patio
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.patio
-      data:
-        source: "26 - Classic Vinyl"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.patio
+    data:
+      source: 26 - Classic Vinyl
 patio_play_80s:
-  alias: 'Play 80s on Eight in the Patio'
+  alias: Play 80s on Eight in the Patio
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.patio
-      data:
-        source: "8 - 80s on 8"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.patio
+    data:
+      source: 8 - 80s on 8
 patio_play_tom_petty:
-  alias: 'Play Tom Petty Radio in the Patio'
+  alias: Play Tom Petty Radio in the Patio
   sequence:
-    - service: media_player.select_source
-      entity_id:
-        - media_player.patio
-      data:
-        source: "31 - Tom Petty Radio"
-        
+  - service: media_player.select_source
+    entity_id:
+    - media_player.patio
+    data:
+      source: 31 - Tom Petty Radio
 patio_media_stop:
-  alias: 'Stop Patio'
+  alias: Stop Patio
   sequence:
-    - service: media_player.media_stop
-      entity_id:
-        - media_player.patio
-
+  - service: media_player.media_stop
+    entity_id:
+    - media_player.patio
 patio_volume_up:
-  alias: 'Patio Volume Up'
+  alias: Patio Volume Up
   sequence:
-    - service: media_player.volume_up
-      entity_id:
-        - media_player.patio
-        
+  - service: media_player.volume_up
+    entity_id:
+    - media_player.patio
 patio_volume_down:
-  alias: 'Patio Volume Down'
+  alias: Patio Volume Down
   sequence:
-    - service: media_player.volume_down
-      entity_id:
-        - media_player.patio
-
+  - service: media_player.volume_down
+    entity_id:
+    - media_player.patio
 patio_volume_down_10:
-  alias: 'Patio Volume Down 10'
+  alias: Patio Volume Down 10
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.patio
-      data_template:
-        volume_level: '{{ states.media_player.patio.attributes.volume_level - 0.10}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.patio
+    data_template:
+      volume_level: '{{ states.media_player.patio.attributes.volume_level - 0.10}}'
 patio_volume_down_5:
-  alias: 'Patio Volume Down 5'
+  alias: Patio Volume Down 5
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.patio
-      data_template:
-        volume_level: '{{ states.media_player.patio.attributes.volume_level - 0.05}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.patio
+    data_template:
+      volume_level: '{{ states.media_player.patio.attributes.volume_level - 0.05}}'
 patio_volume_up_10:
-  alias: 'Patio Volume Up 10'
+  alias: Patio Volume Up 10
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.patio
-      data_template:
-        volume_level: '{{ states.media_player.patio.attributes.volume_level + 0.10}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.patio
+    data_template:
+      volume_level: '{{ states.media_player.patio.attributes.volume_level + 0.10}}'
 patio_volume_up_5:
-  alias: 'Patio Volume Up 5'
+  alias: Patio Volume Up 5
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.patio
-      data_template:
-        volume_level: '{{ states.media_player.patio.attributes.volume_level + 0.05}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.patio
+    data_template:
+      volume_level: '{{ states.media_player.patio.attributes.volume_level + 0.05}}'
 move_volume_down_10:
-  alias: 'Move Volume Down 10'
+  alias: Move Volume Down 10
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.move
-      data_template:
-        volume_level: '{{ states.media_player.move.attributes.volume_level - 0.10}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.move
+    data_template:
+      volume_level: '{{ states.media_player.move.attributes.volume_level - 0.10}}'
 move_volume_down_5:
-  alias: 'Move Volume Down 5'
+  alias: Move Volume Down 5
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.move
-      data_template:
-        volume_level: '{{ states.media_player.move.attributes.volume_level - 0.05}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.move
+    data_template:
+      volume_level: '{{ states.media_player.move.attributes.volume_level - 0.05}}'
 move_volume_up_10:
-  alias: 'Move Volume Up 10'
+  alias: Move Volume Up 10
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.move
-      data_template:
-        volume_level: '{{ states.media_player.move.attributes.volume_level + 0.10}}'
-
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.move
+    data_template:
+      volume_level: '{{ states.media_player.move.attributes.volume_level + 0.10}}'
 move_volume_up_5:
-  alias: 'Move Volume Up 5'
+  alias: Move Volume Up 5
   sequence:
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.move
-      data_template:
-        volume_level: '{{ states.media_player.move.attributes.volume_level + 0.05}}'
-
-#####
-# patio_channels.yaml
-#####
-#####
-# scripts.yaml
-#####
+  - service: media_player.volume_set
+    entity_id:
+    - media_player.move
+    data_template:
+      volume_level: '{{ states.media_player.move.attributes.volume_level + 0.05}}'
 patio_turn_off:
   alias: Turn off Patio
   sequence:
@@ -951,232 +854,236 @@ bambu_x1c_one_on:
     target:
       entity_id: switch.bambu_x1c_1_js_switch
   mode: single
-
-#####
-# scripts.yaml
-#####
-#####
-# sonos-joins.yaml
-#####
 drop_family_room:
-  alias: 'Drop family_room  from group'
+  alias: Drop family_room from group
   sequence:
-    - service: media_player.unjoin
-      entity_id:
-        - media_player.family_room
-
+  - service: media_player.unjoin
+    data: {}
+    target:
+      entity_id: media_player.family_room
 family_room_add_garage:
-  alias: 'Add garage to family_room'
+  alias: Add garage to family_room
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.family_room
-      entity_id:
-        - media_player.garage
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.garage
+    target:
+      entity_id: media_player.family_room
 family_room_add_move:
-  alias: 'Add move to family_room'
+  alias: Add move to family_room
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.family_room
-      entity_id:
-        - media_player.move
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.move
+    target:
+      entity_id: media_player.family_room
 family_room_add_office:
-  alias: 'Add office to family_room'
+  alias: Add office to family_room
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.family_room
-      entity_id:
-        - media_player.office
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.office
+    target:
+      entity_id: media_player.family_room
 family_room_add_patio:
-  alias: 'Add patio to family_room'
+  alias: Add patio to family_room
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.family_room
-      entity_id:
-        - media_player.patio
-
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.patio
+    target:
+      entity_id: media_player.family_room
 drop_garage:
-  alias: 'Drop garage  from group'
+  alias: Drop garage from group
   sequence:
-    - service: media_player.unjoin
-      entity_id:
-        - media_player.garage
-
+  - service: media_player.unjoin
+    data: {}
+    target:
+      entity_id: media_player.garage
 garage_add_family_room:
-  alias: 'Add family_room to garage'
+  alias: Add family_room to garage
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.garage
-      entity_id:
-        - media_player.family_room
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.family_room
+    target:
+      entity_id: media_player.garage
 garage_add_move:
-  alias: 'Add move to garage'
+  alias: Add move to garage
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.garage
-      entity_id:
-        - media_player.move
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.move
+    target:
+      entity_id: media_player.garage
 garage_add_office:
-  alias: 'Add office to garage'
+  alias: Add office to garage
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.garage
-      entity_id:
-        - media_player.office
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.office
+    target:
+      entity_id: media_player.garage
 garage_add_patio:
-  alias: 'Add patio to garage'
+  alias: Add patio to garage
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.garage
-      entity_id:
-        - media_player.patio
-
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.patio
+    target:
+      entity_id: media_player.garage
 drop_move:
-  alias: 'Drop move  from group'
+  alias: Drop move from group
   sequence:
-    - service: media_player.unjoin
-      entity_id:
-        - media_player.move
-
+  - service: media_player.unjoin
+    data: {}
+    target:
+      entity_id: media_player.move
 move_add_family_room:
-  alias: 'Add family_room to move'
+  alias: Add family_room to move
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.move
-      entity_id:
-        - media_player.family_room
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.family_room
+    target:
+      entity_id: media_player.move
 move_add_garage:
-  alias: 'Add garage to move'
+  alias: Add garage to move
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.move
-      entity_id:
-        - media_player.garage
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.garage
+    target:
+      entity_id: media_player.move
 move_add_office:
-  alias: 'Add office to move'
+  alias: Add office to move
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.move
-      entity_id:
-        - media_player.office
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.office
+    target:
+      entity_id: media_player.move
 move_add_patio:
-  alias: 'Add patio to move'
+  alias: Add patio to move
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.move
-      entity_id:
-        - media_player.patio
-
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.patio
+    target:
+      entity_id: media_player.move
 drop_office:
-  alias: 'Drop office  from group'
+  alias: Drop office from group
   sequence:
-    - service: media_player.unjoin
-      entity_id:
-        - media_player.office
-
+  - service: media_player.unjoin
+    data: {}
+    target:
+      entity_id: media_player.office
 office_add_family_room:
-  alias: 'Add family_room to office'
+  alias: Add family_room to office
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.office
-      entity_id:
-        - media_player.family_room
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.family_room
+    target:
+      entity_id: media_player.office
 office_add_garage:
-  alias: 'Add garage to office'
+  alias: Add garage to office
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.office
-      entity_id:
-        - media_player.garage
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.garage
+    target:
+      entity_id: media_player.office
 office_add_move:
-  alias: 'Add move to office'
+  alias: Add move to office
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.office
-      entity_id:
-        - media_player.move
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.move
+    target:
+      entity_id: media_player.office
 office_add_patio:
-  alias: 'Add patio to office'
+  alias: Add patio to office
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.office
-      entity_id:
-        - media_player.patio
-
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.patio
+    target:
+      entity_id: media_player.office
 drop_patio:
-  alias: 'Drop patio  from group'
+  alias: Drop patio from group
   sequence:
-    - service: media_player.unjoin
-      entity_id:
-        - media_player.patio
-
+  - service: media_player.unjoin
+    data: {}
+    target:
+      entity_id: media_player.patio
 patio_add_family_room:
-  alias: 'Add family_room to patio'
+  alias: Add family_room to patio
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.patio
-      entity_id:
-        - media_player.family_room
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.family_room
+    target:
+      entity_id: media_player.patio
 patio_add_garage:
-  alias: 'Add garage to patio'
+  alias: Add garage to patio
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.patio
-      entity_id:
-        - media_player.garage
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.garage
+    target:
+      entity_id: media_player.patio
 patio_add_move:
-  alias: 'Add move to patio'
+  alias: Add move to patio
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.patio
-      entity_id:
-        - media_player.move
-
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.move
+    target:
+      entity_id: media_player.patio
 patio_add_office:
-  alias: 'Add office to patio'
+  alias: Add office to patio
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.patio
-      entity_id:
-        - media_player.office
-
-#####
-# sonos-joins.yaml
-#####
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.office
+    target:
+      entity_id: media_player.patio
+family_room_volume_down_5:
+  alias: Family Room Receiver Volume Down 5
+  sequence:
+  - service: media_player.volume_set
+    entity_id: media_player.yamaha_receiver_family_room
+    data_template:
+      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
+        | float - 0.05 }}'
+  mode: single
+family_room_volume_up_5:
+  alias: Family Room Receiver Volume Up 5
+  sequence:
+  - service: media_player.volume_set
+    entity_id: media_player.yamaha_receiver_family_room
+    data_template:
+      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
+        | float + 0.05 }}'
+  mode: single

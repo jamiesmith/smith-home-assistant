@@ -124,21 +124,29 @@
   - event: sunset
     offset: -00:30:00
     platform: sun
+  - platform: time
+    at: '17:00:00'
+  - platform: time
+    at: 06:00:00
   condition: []
   action:
   - data:
-      entity_id: switch.foyer_outlet_js_switch_2
+      entity_id: switch.foyer_outlet_js_switch
     service: switch.turn_on
 - id: foyer_light_off
   alias: Foyer Light Off
   trigger:
   - at: '23:00:00'
     platform: time
+  - platform: sun
+    event: sunrise
+    offset: 00:30:00
   condition: []
   action:
-  - data:
-      entity_id: switch.foyer_outlet_js_switch_2
+  - data: {}
     service: switch.turn_off
+    target:
+      entity_id: switch.foyer_outlet_js_switch
 - id: turn_off_accent_lights_at_bedtime
   alias: Turn off accent lighting at bedtime
   trigger:
@@ -287,7 +295,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 06:30:00
+    at: 06:01:00
   - platform: time
     at: 06:55:00
   condition: []
@@ -295,6 +303,7 @@
   - service: switch.turn_on
     target:
       entity_id: switch.short_cabinets_lower_js_switch
+    data: {}
   mode: single
 - id: '1655477751246'
   alias: Coffee Maker Light Toggle
@@ -389,3 +398,58 @@
         data:
           topic: say/amy
           payload: What can I get you?
+- id: '1696553978548'
+  alias: Garage Quad Blueprints
+  description: ''
+  use_blueprint:
+    path: homeassistant/aeonquad.yaml
+    input:
+      wallmote_quad_device: 0a5f428d6a8750682e0a17e64b36b0a8
+      button_1_pressed:
+      - service: fan.turn_off
+        target:
+          entity_id: fan.dc
+        data: {}
+      button_2_pressed:
+      - service: fan.turn_on
+        target:
+          entity_id: fan.dc
+        data: {}
+      button_3_pressed:
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.garage_wall_fan_js_switch
+      button_4_pressed:
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.garage_portable_fan_js_switch
+- id: '1696618784950'
+  alias: Quad - Guest room
+  description: ''
+  use_blueprint:
+    path: homeassistant/aeonquad.yaml
+    input:
+      wallmote_quad_device: 91fed6b62a47687466d900539d6f3e80
+      button_1_pressed:
+      - service: media_player.media_play_pause
+        data: {}
+        target:
+          device_id: c435be0a63b95310c3a8fd4f1d65e43d
+      button_2_pressed:
+      - service: media_player.select_source
+        data:
+          source: 30 - Dave Matthews Band Radio
+        target:
+          device_id: 914aa14cc2c641d5a4e0e8716cba319f
+      button_3_pressed:
+      - service: media_player.select_source
+        data:
+          source: 74 - B.B. King's Bluesville
+        target:
+          device_id: 914aa14cc2c641d5a4e0e8716cba319f
+      button_4_pressed:
+      - service: media_player.select_source
+        data:
+          source: 23 - Grateful Dead
