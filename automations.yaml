@@ -30,7 +30,18 @@
   - entity_id: media_player.family_room
     platform: state
     to: playing
-  condition: []
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: media_player.yamaha_receiver_family_room
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.yamaha_receiver_family_room
+        attribute: source
+        state: AUDIO3
   action:
   - service: yamaha.select_scene
     data:
@@ -57,7 +68,7 @@
     at: '16:05:00'
   action:
   - data:
-      entity_id: group.accent_lighting
+      entity_id: light.accent_lighting
     service: homeassistant.turn_on
   mode: single
 - id: jamie_bedtime_music
@@ -76,7 +87,7 @@
     platform: sun
   action:
   - data:
-      entity_id: group.landscape_lights
+      entity_id: switch.landscape_lights
     service: homeassistant.turn_on
   mode: single
 - id: landscape_lighting_off
@@ -89,7 +100,7 @@
   condition: []
   action:
   - data:
-      entity_id: group.landscape_lights
+      entity_id: switch.landscape_lights
     service: homeassistant.turn_off
   mode: single
 - id: cabinet_lighting_on_switch
@@ -103,7 +114,7 @@
     platform: event
   action:
   - data:
-      entity_id: group.cabinet_lighting
+      entity_id: switch.cabinet_lighting
     service: homeassistant.turn_on
 - id: cabinet_lighting_off_switch
   alias: Turn Off Cabinet Lighting
@@ -116,7 +127,7 @@
       scene_data: 2
   action:
   - data:
-      entity_id: group.cabinet_lighting
+      entity_id: switch.cabinet_lighting
     service: homeassistant.turn_off
 - id: foyer_light_on
   alias: Foyer Light On
@@ -127,7 +138,7 @@
   - platform: time
     at: '17:00:00'
   - platform: time
-    at: 06:00:00
+    at: 05:45:00
   condition: []
   action:
   - data:
@@ -140,7 +151,6 @@
     platform: time
   - platform: sun
     event: sunrise
-    offset: 00:30:00
   condition: []
   action:
   - data: {}
@@ -163,7 +173,7 @@
   condition: []
   action:
   - data:
-      entity_id: group.accent_lighting
+      entity_id: light.accent_lighting
     service: homeassistant.turn_off
   - service: fan.turn_off
     target:
@@ -172,11 +182,11 @@
 - id: holiday_lights_on
   alias: Holiday - Turn On Holiday Lights around sunset
   trigger:
-    platform: time
+  - platform: time
     at: '16:00:00'
   action:
   - service: homeassistant.turn_on
-    entity_id: group.holiday_lights
+    entity_id: switch.holiday_lights
 - id: holiday_lights_off
   alias: Holiday - Turn Off Holiday Lights
   trigger:
@@ -184,7 +194,7 @@
     at: '22:14:00'
   action:
   - service: homeassistant.turn_off
-    entity_id: group.holiday_lights
+    entity_id: switch.holiday_lights
 - id: holiday_candles_on
   alias: Holiday - Turn On Holiday Candles around sunset
   trigger:
@@ -192,15 +202,16 @@
     at: '16:00:30'
   action:
   - service: homeassistant.turn_on
-    entity_id: group.holiday_candles
+    entity_id: switch.holiday_candles
 - id: holiday_candles_off
-  alias: Holiday - Holiday - Turn Off Holiday Candles
+  alias: ' Holiday - Turn Off Holiday Candles'
+  description: ''
   trigger:
-    platform: time
+  - platform: time
     at: '22:10:00'
   action:
   - service: homeassistant.turn_off
-    entity_id: group.holiday_candles
+    entity_id: switch.holiday_candles
 - id: holiday_other_on
   alias: Holiday - Turn On Holiday Other around sunset
   trigger:
@@ -208,7 +219,7 @@
     at: '16:01:00'
   action:
   - service: homeassistant.turn_on
-    entity_id: group.holiday_other
+    entity_id: switch.holiday_other
 - id: holiday_other_off
   alias: Holiday - Turn Off Holiday other
   trigger:
@@ -216,7 +227,7 @@
     at: '22:11:00'
   action:
   - service: homeassistant.turn_off
-    entity_id: group.holiday_other
+    entity_id: switch.holiday_other
   mode: single
 - id: '1637446244454'
   alias: Turn on Espresso Machine in the morning
@@ -453,3 +464,25 @@
       - service: media_player.select_source
         data:
           source: 23 - Grateful Dead
+- id: '1700784168766'
+  alias: 'Holiday: Turn on holiday shrubs at 4pm'
+  description: ''
+  trigger:
+  - platform: time
+    at: '16:00:00'
+  condition: []
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.holiday_lights_shrubs
+  mode: single
+- id: '1700784322150'
+  alias: Holiday - Turn off shrubs
+  description: ''
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  condition: []
+  action:
+  - service: homeassistant.turn_off
+    entity_id: switch.holiday_lights_shrubs
+  mode: single

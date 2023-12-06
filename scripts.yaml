@@ -697,7 +697,7 @@ lightstrip_on_the_air:
 turn_on_accent_lighting:
   sequence:
   - service: homeassistant.turn_on
-    entity_id: group.accent_lighting
+    entity_id: light.accent_lighting
 turn_off_accent_lighting:
   sequence:
   - service: homeassistant.turn_off
@@ -787,7 +787,8 @@ turn_on_all_holiday_lights:
   - service: homeassistant.turn_on
     data: {}
     target:
-      entity_id: group.holiday_all
+      entity_id:
+      - switch.holiday_all
   mode: single
 shut_down_office:
   alias: Shut Down Office

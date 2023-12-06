@@ -14,7 +14,13 @@ homeassistant:
 
   auth_providers:
     - type: homeassistant
-      
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.1.5
+      trusted_users:
+        192.168.1.5: !secret crowley_user
+                
+
 # Enables the frontend
 frontend:
 

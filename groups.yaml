@@ -2,250 +2,158 @@ default_view:
   # view: yes
   icon: mdi:home
   entities:
-    - group.kitchen
-    - group.office
-    - group.landscape_lights
-    - group.accent_lighting
-    - group.foyer_lighting
+    - switch.kitchen
+    - switch.office
+    - switch.landscape_lights
+    - switch.accent_lighting
+    - switch.foyer_lighting
 
-office:
- # view: yes
-  name: Office
-  entities:
-    - light.hue_lightstrip_plus_1
-
-kitchen:
- # view: yes
-  name: Kitchen
-  entities:
-    - group.cabinet_lighting_lower
-    - group.cabinet_lighting_upper
-    - group.cabinet_lighting
-    - light.kitchen_light_level_js
-
-holiday_all:
- # view: yes
-  name: Holiday All
-  entities:
-    - group.holiday_lights
-    - group.holiday_candles
-    - group.holiday_other
-
-holiday_candles:
- # view: yes
-  name: Holiday Candles
-  entities:
-    - switch.holiday_master_candles_js_switch
-    - switch.holiday_garage_candles_js_switch
-    - switch.holiday_office_candles_js_switch
-    - switch.holiday_payton_candles_js_switch
-    - switch.holiday_living_room_candles_js_switch
-
-party_lights:
-# JRS-TMP view: yes
-  name: Party Lights
-  entities:
-    - switch.palm_tree_js_switch
-    - switch.other_palm_tree_js_switch
-    - switch.patio_party_lights_js_switch
-
-holiday_lights:
- # view: yes
-  name: Holiday Lights
-  entities:
-    - switch.palm_tree_js_switch
-    - switch.other_palm_tree_js_switch
-    - switch.holiday_dining_room_tree_switch
-    # these are the shrubs on the front
-    - switch.front_landscape_lights_switch_3
-    - switch.holiday_christmas_tree_js_switch
-    - switch.holiday_garage_shrubs_js_switch
-    - switch.holiday_wreath_js_switch
-    - switch.holiday_christmas_tree_js_switch
-#   some of these are defunct, not sure if it is temporary.    
-#    - switch.holiday_tree_and_garland
-#    - switch.holiday_payton_garland_js_switch
-#    - switch.holiday_master_garland_switch
-
-holiday_other:
- # view: yes
-  name: Holiday Other
-  entities:
-    - switch.palm_tree_js_switch
-    - switch.foyer_outlet_js_switch_2
-    - switch.foyer_outlet_js_switch_3
-    - switch.living_room_garland_js_switch
-    - switch.liquor_cabinet_js_switch
-    - switch.front_landscape_lights_switch_3
-
-holiday_lighting_family_room:
- # view: yes
-  name: Tree / Garland
-  entities:
-    - switch.holiday_christmas_tree_js_switch
-    
-landscape_lights:
-  # view: yes
-  name: Landscape Lights
-  entities:
-    - switch.backyard_landscape_lights_js_switch
-    - switch.front_landscape_lights_js_switch
-    - switch.front_landscape_lights_switch_3 # This one is pending
-    
-foyer_lighting:
-#  view: yes
-  name: Foyer Lights
-  entities:
-    - switch.foyer_outlet_js_switch_2
-    - switch.foyer_outlet_js_switch_3
-
-bar_table:
-  name: Bar Table Lights
-  entities:
-    - switch.bar_table_js_switch
-    - light.hue_bar_table_strip
-
-
-accent_lighting:
-  name: Accent Lighting
-  entities:
-    - switch.palm_tree_js_switch
-    - switch.other_palm_tree_js_switch
-    # I think maybe the plugs got switched for this one
-    #
-    - switch.living_room_table_lamp_js_switch
-    - switch.liquor_cabinet_js_switch
-    - switch.bar_table_js_switch
-    - light.hue_bar_table_strip
-    - group.cabinet_lighting
-    - light.morning_room_js_sconce
-    - light.living_room_cabinets_dimmer_js_level
-    
-cabinet_lighting_lower:
-  name: Cabinet Lighting lower
-  entities:
-    - switch.long_cabinets_lower_js_switch
-    - switch.short_cabinets_lower_js_switch
-
-cabinet_lighting_upper:
-  name: Cabinet Lighting Upper
-  entities:
-    - switch.long_cabinets_upper_js_switch
-    - switch.short_cabinets_upper_js_switch
-    - switch.amy_upper_cabinet_js_switch
-    - switch.cabinet_lights_medicine_cabinet_js_switch
-
-cabinet_lighting:
-  name: Cabinet Lighting
-  entities:
-    - group.cabinet_lighting_upper
-    - group.cabinet_lighting_lower
-    
-media_players:
-# JRS-TMP view: yes
-  name: Media Players
-  entities:
-    - media_player.move
-    - media_player.patio
-#    - media_player.garage
-    - media_player.family_room
-    - media_player.guest_room
-    - media_player.payton
-    - media_player.family_room_receiver
-    - media_player.office_sonos
-    - media_player.office_receiver
-    - switch.family_room_apple_tv_js_switch
-
-media_players_roon:
-# JRS-TMP view: yes
-  name: Roon Players
-  entities:
-    - media_player.roon_family_room_sonos
-    - media_player.guest_schiit
-
-comfort:
-# JRS-TMP view: yes
-  name: Comfort & Climate
-  entities:
-    - binary_sensor.downstairs_thermostat_fan
-    - binary_sensor.downstairs_thermostat_has_leaf
-    - binary_sensor.downstairs_thermostat_is_locked
-    - binary_sensor.downstairs_thermostat_is_using_emergency_heat
-    - binary_sensor.downstairs_thermostat_online
-    - binary_sensor.upstairs_thermostat_fan
-    - binary_sensor.upstairs_thermostat_has_leaf
-    - binary_sensor.upstairs_thermostat_is_locked
-    - binary_sensor.upstairs_thermostat_is_using_emergency_heat
-    - binary_sensor.upstairs_thermostat_online
-    - climate.downstairs
-    - climate.upstairs
-    
-    - sqensor.downstairs_thermostat_humidity
-    - sensor.downstairs_thermostat_hvac_state
-    - sensor.downstairs_thermostat_operation_mode
-    - sensor.downstairs_thermostat_target
-    
-    - sensor.upstairs_thermostat_humidity
-    - sensor.upstairs_thermostat_hvac_state
-    - sensor.upstairs_thermostat_operation_mode
-    - sensor.upstairs_thermostat_target
-    - sensor.upstairs_thermostat_temperature
-
-# JRS-TMP pirateweather:
-# JRS-TMP # view: yes
-# JRS-TMP   name: Pirate Weather Sensors
+# JRS-TMP office:
+# JRS-TMP  # view: yes
+# JRS-TMP   name: Office
 # JRS-TMP   entities:
-# JRS-TMP     - sensor.pirateweather_apparent_temperature
-# JRS-TMP     - sensor.pirateweather_apparent_temperature_high
-# JRS-TMP     - sensor.pirateweather_apparent_temperature_low
-# JRS-TMP     - sensor.pirateweather_apparent_temperature_max
-# JRS-TMP     - sensor.pirateweather_apparent_temperature_min
-# JRS-TMP     - sensor.pirateweather_cloud_cover
-# JRS-TMP     - sensor.pirateweather_daily_summary
-# JRS-TMP     - sensor.pirateweather_dew_point
-# JRS-TMP     - sensor.pirateweather_hourly_summary
-# JRS-TMP     - sensor.pirateweather_humidity
-# JRS-TMP     - sensor.pirateweather_icon
-# JRS-TMP     - sensor.pirateweather_minutely_summary
-# JRS-TMP     - sensor.pirateweather_moon_phase
-# JRS-TMP     - sensor.pirateweather_nearest_storm_bearing
-# JRS-TMP     - sensor.pirateweather_nearest_storm_distance
-# JRS-TMP     - sensor.pirateweather_ozone
-# JRS-TMP     - sensor.pirateweather_precip_accumulation
-# JRS-TMP     - sensor.pirateweather_precip_intensity
-# JRS-TMP     - sensor.pirateweather_precip_intensity_max
-# JRS-TMP     - sensor.pirateweather_precip_probability
-# JRS-TMP     - sensor.pirateweather_precip_type
-# JRS-TMP     - sensor.pirateweather_pressure
-# JRS-TMP     - sensor.pirateweather_summary
-# JRS-TMP     - sensor.pirateweather_sunrise_time
-# JRS-TMP     - sensor.pirateweather_sunset_time
-# JRS-TMP     - sensor.pirateweather_temperature
-# JRS-TMP     - sensor.pirateweather_temperature_high
-# JRS-TMP     - sensor.pirateweather_temperature_low
-# JRS-TMP     - sensor.pirateweather_temperature_max
-# JRS-TMP     - sensor.pirateweather_temperature_min
-# JRS-TMP     - sensor.pirateweather_uv_index
-# JRS-TMP     - sensor.pirateweather_visibility
-# JRS-TMP     - sensor.pirateweather_wind_bearing
-# JRS-TMP     - sensor.pirateweather_wind_gust
-# JRS-TMP     - sensor.pirateweather_wind_speed
+# JRS-TMP     - light.hue_lightstrip_plus_1
+
+# JRS-TMP kitchen:
+# JRS-TMP  # view: yes
+# JRS-TMP   name: Kitchen
+# JRS-TMP   entities:
+# JRS-TMP     - switch.cabinet_lighting_lower
+# JRS-TMP     - switch.cabinet_lighting_upper
+# JRS-TMP     - switch.cabinet_lighting
+# JRS-TMP     - light.kitchen_light_level_js
+
+# JRS-TMP holiday_all:
+# JRS-TMP  # view: yes
+# JRS-TMP   name: Holiday All
+# JRS-TMP   entities:
+# JRS-TMP     - switch.holiday_lights
+# JRS-TMP     - switch.holiday_candles
+# JRS-TMP     - switch.holiday_other
+# JRS-TMP     - switch.holiday_lights_shrubs
+
+# JRS-TMP holiday_candles:
+# JRS-TMP  # view: yes
+# JRS-TMP   name: Holiday Candles
+# JRS-TMP   entities:
+# JRS-TMP     - switch.holiday_master_candles_js_switch
+# JRS-TMP     - switch.holiday_garage_candles_js_switch
+# JRS-TMP     - switch.holiday_office_candles_js_switch
+# JRS-TMP     - switch.holiday_payton_candles_js_switch
+# JRS-TMP     - switch.holiday_living_room_candles_js_switch
+
+# JRS-TMP holiday_lights_shrubs:
+# JRS-TMP  # view: yes
+# JRS-TMP   name: Holiday Shrubs
+# JRS-TMP   entities:
+# JRS-TMP     - switch.front_landscape_lights_js_switch_alt
+# JRS-TMP     - switch.holiday_garage_shrubs_js_switch
+
+
+# JRS-TMP holiday_other:
+# JRS-TMP  # view: yes
+# JRS-TMP   name: Holiday Other
+# JRS-TMP   entities:
+# JRS-TMP     - switch.palm_tree_js_switch
+# JRS-TMP     - switch.foyer_outlet_js_switch_2
+# JRS-TMP     - switch.foyer_outlet_js_switch_3
+# JRS-TMP     - switch.living_room_garland_js_switch
+# JRS-TMP     - switch.liquor_cabinet_js_switch
+
+# JRS-TMP holiday_lighting_family_room:
+# JRS-TMP  # view: yes
+# JRS-TMP   name: Tree / Garland
+# JRS-TMP   entities:
+# JRS-TMP     - switch.holiday_christmas_tree_js_switch
     
-state_tests:
-  name: State Tests
-# JRS-TMP view: yes
-  entities:
-    - sensor.dark_outside
-    - sensor.time_of_day
-    - sensor.time
-    - sensor.date
-    - sensor.calendar
+# JRS-TMP landscape_lights:
+# JRS-TMP   # view: yes
+# JRS-TMP   name: Landscape Lights
+# JRS-TMP   entities:
+# JRS-TMP     - switch.backyard_landscape_lights_js_switch
+# JRS-TMP     - switch.front_landscape_lights_js_switch
+    
+# JRS-TMP foyer_lighting:
+# JRS-TMP #  view: yes
+# JRS-TMP   name: Foyer Lights
+# JRS-TMP   entities:
+# JRS-TMP     - switch.foyer_outlet_js_switch_2
+# JRS-TMP     - switch.foyer_outlet_js_switch_3
+
+# JRS-TMP bar_table:
+# JRS-TMP   name: Bar Table Lights
+# JRS-TMP   entities:
+# JRS-TMP     - switch.bar_table_js_switch
+# JRS-TMP     - light.hue_bar_table_strip
+
+
+# JRS-TMP accent_lighting:
+# JRS-TMP   name: Accent Lighting
+# JRS-TMP   entities:
+# JRS-TMP     - light.hue_bar_table_strip
+# JRS-TMP     - light.living_room_cabinets_dimmer_js_level
+# JRS-TMP     - light.morning_room_js_sconce
+# JRS-TMP     - switch.bar_table_js_switch
+# JRS-TMP     - switch.cabinet_lighting
+# JRS-TMP     - switch.liquor_cabinet_js_switch
+# JRS-TMP     - switch.living_room_table_lamp_js_switch
+# JRS-TMP     - switch.other_palm_tree_js_switch
+# JRS-TMP     - switch.palm_tree_js_switch
+    
+# JRS-TMP cabinet_lighting_lower:
+# JRS-TMP   name: Cabinet Lighting lower
+# JRS-TMP   entities:
+# JRS-TMP     - switch.long_cabinets_lower_js_switch
+# JRS-TMP     - switch.short_cabinets_lower_js_switch
+
+# JRS-TMP cabinet_lighting_upper:
+# JRS-TMP   name: Cabinet Lighting Upper
+# JRS-TMP   entities:
+# JRS-TMP     - switch.long_cabinets_upper_js_switch
+# JRS-TMP     - switch.short_cabinets_upper_js_switch
+# JRS-TMP     - switch.amy_upper_cabinet_js_switch
+# JRS-TMP     - switch.cabinet_lights_medicine_cabinet_js_switch
+
+# JRS-TMP cabinet_lighting:
+# JRS-TMP   name: Cabinet Lighting
+# JRS-TMP   entities:
+# JRS-TMP     - group.cabinet_lighting_upper
+# JRS-TMP     - group.cabinet_lighting_lower
+    
+# JRS-TMP media_players:
+# JRS-TMP # JRS-TMP view: yes
+# JRS-TMP   name: Media Players
+# JRS-TMP   entities:
+# JRS-TMP     - media_player.move
+# JRS-TMP     - media_player.patio
+# JRS-TMP #    - media_player.garage
+# JRS-TMP     - media_player.family_room
+# JRS-TMP     - media_player.guest_room
+# JRS-TMP     - media_player.payton
+# JRS-TMP     - media_player.family_room_receiver
+# JRS-TMP     - media_player.office_sonos
+# JRS-TMP     - media_player.office_receiver
+# JRS-TMP     - switch.family_room_apple_tv_js_switch
+
+# JRS-TMP media_players_roon:
+# JRS-TMP # JRS-TMP view: yes
+# JRS-TMP   name: Roon Players
+# JRS-TMP   entities:
+# JRS-TMP     - media_player.roon_family_room_sonos
+# JRS-TMP     - media_player.guest_schiit
+
+# JRS-TMP state_tests:
+# JRS-TMP   name: State Tests
+# JRS-TMP # JRS-TMP view: yes
+# JRS-TMP   entities:
+# JRS-TMP     - sensor.time
+# JRS-TMP     - sensor.date
                                           
-holiday:
-# JRS-TMP view: yes
-  entities:
-    - group.holiday_lights
-    - group.holiday_candles
-    - group.holiday_other
-    - group.holiday_lighting_family_room
+# JRS-TMP holiday:
+# JRS-TMP # JRS-TMP view: yes
+# JRS-TMP   entities:
+# JRS-TMP     - swtich.holiday_lights
+# JRS-TMP     - switch.holiday_candles
+# JRS-TMP     - switch.holiday_other
+# JRS-TMP     - switch.holiday_lighting_family_room
     
