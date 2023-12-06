@@ -1,16 +1,12 @@
 version: '2.1'
 services:
   homeassistant:
-#    image: homeassistant/home-assistant:2021.5.4
-    image: homeassistant/home-assistant:2023.10
+    image: homeassistant/home-assistant:2023.12
     container_name: home-assistant
     restart: always
     network_mode: 'host'
     volumes:
       - '/home/jamie/Projects/GitRepo/smith-home-assistant:/config'
-#      - '/home/jamie/Projects/GitRepo/smith-home-assistant/broadlink:/usr/local/lib/python3.8/site-packages/broadlink'
-#    devices:
-#      - '/dev/ttyACM0'
     environment:
       - 'TZ=America/New_York'
     logging:
