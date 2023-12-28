@@ -511,14 +511,17 @@ big_screen_movie_time:
   alias: Big-screen movie time
   sequence:
   - service: homeassistant.turn_off
+    data: {}
     target:
-      entity_id: group.cabinet_lighting
+      entity_id: switch.cabinet_lighting
   - service: homeassistant.turn_off
     target:
       entity_id: light.morning_room_js_sconce
+    data: {}
   - service: homeassistant.turn_off
     target:
       entity_id: light.kitchen_light_level_js
+    data: {}
   mode: single
 theater_tv_power_on:
   alias: Family room TV power on
