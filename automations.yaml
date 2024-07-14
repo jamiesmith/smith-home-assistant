@@ -47,11 +47,6 @@
     data:
       entity_id: media_player.yamaha_receiver_family_room
       scene: Sonos
-  - service: media_player.volume_set
-    target:
-      entity_id: media_player.yamaha_receiver_family_room
-    data:
-      volume_level: 0.9
   mode: single
 - id: accent_lighting_on_sunset
   alias: Turn On Accent Lighting at 4pm
@@ -137,8 +132,6 @@
     platform: sun
   - platform: time
     at: '17:00:00'
-  - platform: time
-    at: 05:45:00
   condition: []
   action:
   - data:
@@ -235,6 +228,8 @@
   trigger:
   - platform: time
     at: 06:00:00
+  - platform: time
+    at: 06:01:00
   condition: []
   action:
   - type: turn_on
@@ -306,7 +301,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 06:01:00
+    at: 06:20:00
   - platform: time
     at: 06:55:00
   condition: []
@@ -485,4 +480,32 @@
   action:
   - service: homeassistant.turn_off
     entity_id: switch.holiday_lights_shrubs
+  mode: single
+- id: '1705927769322'
+  alias: Turn off the patio Fan/Heater at night
+  description: Just in case
+  trigger:
+  - platform: time
+    at: '20:00:00'
+  condition: []
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.patio_temp_fan_js_switch
+    data: {}
+  mode: single
+- id: '1720634728792'
+  alias: Turn on Family Room TV with WoL
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 63243550b4f6a061c4ab1b9f888c6574
+    domain: webostv
+    type: webostv.turn_on
+  condition: []
+  action:
+  - service: wake_on_lan.send_magic_packet
+    data:
+      broadcast_port: 9
+      mac: 58:FD:B1:55:49:A8
   mode: single

@@ -453,7 +453,7 @@ jamie_bedtime_music:
   sequence:
   - service: media_player.select_source
     data:
-      source: 30 - Dave Matthews Band Radio
+      source: 20 - E Street Radio
     target:
       entity_id: media_player.guest_room
   mode: single
@@ -839,17 +839,20 @@ jamie_patio_mode:
   alias: Jamie Patio Mode
   sequence:
   - service: script.patio_fan_speed_high
+    data: {}
   - service: media_player.select_source
     target:
       entity_id: media_player.patio
     data:
-      source: 25 - Classic Rewind
+      source: Rockwall
   - service: switch.turn_on
     target:
       entity_id: switch.patio_party_lights_js_switch
+    data: {}
   - service: switch.turn_on
     target:
       entity_id: switch.patio_temp_fan_js_switch
+    data: {}
   mode: single
 bambu_x1c_one_on:
   alias: Bambu X1C - One - On
@@ -1091,3 +1094,73 @@ family_room_volume_up_5:
       volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
         | float + 0.05 }}'
   mode: single
+garage_next_track:
+  alias: Garage Next Track
+  sequence:
+  - service: media_player.media_next_track
+    target:
+      entity_id: media_player.garage
+    data: {}
+  mode: single
+theater_watch_apple_tv:
+  alias: Theater - Watch Apple TV
+  sequence:
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.lg_webos_smart_tv
+    data: {}
+  - service: yamaha.select_scene
+    data:
+      scene: AppleTV
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+  mode: single
+  icon: mdi:apple
+theater_shut_down:
+  alias: Theater - Shut Down
+  sequence:
+  - service: yamaha.select_scene
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+    data:
+      scene: AppleTV
+  - service: media_player.turn_off
+    target:
+      entity_id:
+      - media_player.lg_webos_smart_tv
+      - media_player.yamaha_receiver_family_room
+    data: {}
+  - service: media_player.turn_off
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+    data: {}
+  mode: single
+  icon: mdi:power-plug-off
+theater_play_ps5:
+  alias: Theater - Play PS5
+  sequence:
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.lg_webos_smart_tv
+    data: {}
+  - service: yamaha.select_scene
+    data:
+      scene: PS5
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+  mode: single
+  icon: mdi:sony-playstation
+theater_play_xbox:
+  alias: Theater - Play XBOX
+  sequence:
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.lg_webos_smart_tv
+    data: {}
+  - service: yamaha.select_scene
+    data:
+      scene: XBOX
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+  mode: single
+  icon: mdi:microsoft-xbox
