@@ -453,7 +453,7 @@ jamie_bedtime_music:
   sequence:
   - service: media_player.select_source
     data:
-      source: 20 - E Street Radio
+      source: 30 - Dave Matthews Band Radio
     target:
       entity_id: media_player.guest_room
   mode: single
@@ -466,7 +466,9 @@ family_room_sonos_volume_down:
   alias: Family Room Volume Down
   sequence:
   - service: media_player.volume_down
-    entity_id: media_player.family_room
+    data: {}
+    target:
+      entity_id: media_player.family_room
 patio_fan_speed_off:
   alias: Patio fan (off)
   sequence:
@@ -799,19 +801,38 @@ shut_down_office:
   - service: light.turn_off
     target:
       entity_id: light.hue_lightstrip_plus_1
+    data: {}
   - service: light.turn_off
     target:
       entity_id: light.hue_color_lamp_1
+    data: {}
   - service: switch.turn_off
     target:
       entity_id: switch.front_webcam_js_switch
+    data: {}
   - service: media_player.turn_off
     target:
       entity_id: media_player.yamaha_receiver_office
+    data: {}
   - type: turn_off
     device_id: 558bf20c8cb19b9bd51413af95dad13e
     entity_id: light.elgato_key_light_air
     domain: light
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id: 1fde1a448c9379091c3b0a5f8fdbfaae
+  - service: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: office_fan
+      command: fan_off
+    target:
+      entity_id: remote.office_hub_pro
   mode: single
 patio_next_track:
   alias: Patio Next Track
@@ -853,6 +874,7 @@ jamie_patio_mode:
     target:
       entity_id: switch.patio_temp_fan_js_switch
     data: {}
+    enabled: false
   mode: single
 bambu_x1c_one_on:
   alias: Bambu X1C - One - On
@@ -1128,11 +1150,19 @@ theater_shut_down:
     target:
       entity_id:
       - media_player.lg_webos_smart_tv
-      - media_player.yamaha_receiver_family_room
     data: {}
   - service: media_player.turn_off
     target:
       entity_id: media_player.yamaha_receiver_family_room
+    data: {}
+  - service: script.theater_projector_power_off
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: script.theater_projector_power_off
     data: {}
   mode: single
   icon: mdi:power-plug-off
@@ -1164,3 +1194,188 @@ theater_play_xbox:
       entity_id: media_player.yamaha_receiver_family_room
   mode: single
   icon: mdi:microsoft-xbox
+bar_table_toggle_strip:
+  alias: Bar Table - Toggle Strip
+  sequence:
+  - service: light.toggle
+    target:
+      device_id: 8ddc6a2340466ffff05b57e62c7692a0
+    data: {}
+  description: ''
+family_room_receiver_volume_up_2:
+  alias: Family Room Receiver Volume Up
+  sequence:
+  - service: media_player.volume_set
+    entity_id: media_player.yamaha_receiver_family_room
+    data_template:
+      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
+        | float + 0.005 }}'
+  description: ''
+family_room_receiver_volume_down_2:
+  alias: Family Room Receiver Volume Down
+  sequence:
+  - service: media_player.volume_set
+    entity_id: media_player.yamaha_receiver_family_room
+    data_template:
+      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
+        | float - 0.005 }}'
+  description: ''
+raise_downstairs_target_a_c_temp:
+  alias: Thermostat - Downstairs - Raise Target A/C Temp
+  sequence:
+  - service: climate.set_temperature
+    entity_id: climate.downstairs
+    data_template:
+      target_temp_high: '{{ states.climate.downstairs.attributes.target_temp_high
+        | float + 1.0 }}'
+      target_temp_low: '{{ states.climate.downstairs.attributes.target_temp_low }}'
+  description: ''
+thermostat_downstairs_lower_target_a_c_temp:
+  alias: Thermostat - Downstairs - Lower Target A/C Temp
+  sequence:
+  - service: climate.set_temperature
+    entity_id: climate.downstairs
+    data_template:
+      target_temp_high: '{{ states.climate.downstairs.attributes.target_temp_high
+        | float - 1.0 }}'
+      target_temp_low: '{{ states.climate.downstairs.attributes.target_temp_low }}'
+  description: ''
+thermostat_downstairs_raise_target_heat_temp:
+  alias: Thermostat - Downstairs - Raise Target Heat Temp
+  sequence:
+  - service: climate.set_temperature
+    entity_id: climate.downstairs
+    data_template:
+      target_temp_high: '{{ states.climate.downstairs.attributes.target_temp_high
+        }}'
+      target_temp_low: '{{ states.climate.downstairs.attributes.target_temp_low |
+        float + 1.0}}'
+  description: ''
+thermostat_downstairs_lower_target_heat_temp:
+  alias: Thermostat - Downstairs - Lower Target Heat Temp
+  sequence:
+  - service: climate.set_temperature
+    entity_id: climate.downstairs
+    data_template:
+      target_temp_high: '{{ states.climate.downstairs.attributes.target_temp_high
+        }}'
+      target_temp_low: '{{ states.climate.downstairs.attributes.target_temp_low |
+        float - 1.0}}'
+  description: ''
+theater_play_classic_rewind:
+  alias: Theater - Play Classic Rewind
+  sequence:
+  - service: media_player.select_source
+    metadata: {}
+    data:
+      source: 25 - Classic Rewind
+    target:
+      entity_id: media_player.family_room
+  description: ''
+theater_play_rockwell:
+  alias: Theater - Play Rockwell
+  sequence:
+  - service: media_player.select_source
+    metadata: {}
+    data:
+      source: Rockwall
+    target:
+      entity_id: media_player.family_room
+  description: ''
+theater_play_bluray:
+  alias: Theater - Play BluRay
+  sequence:
+  - service: remote.send_command
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: family_room_television
+      command: power_on
+    target:
+      device_id: 470172182f10a455c534dd62fd96bfd1
+  - service: yamaha.select_scene
+    data:
+      scene: BluRay
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+  mode: single
+  icon: mdi:disc-player
+  description: ''
+theater_tv_turn_on:
+  alias: Theater - TV - Turn On
+  sequence:
+  - service: media_player.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id: 63243550b4f6a061c4ab1b9f888c6574
+  description: ''
+theater_tv_turn_off:
+  alias: Theater - TV - Turn Off
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 470172182f10a455c534dd62fd96bfd1
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: family_room_television
+      command: power_off
+  description: ''
+theater_watch_apple_tv_big_screen:
+  alias: Theater - Watch Apple TV (Big Screen)
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 470172182f10a455c534dd62fd96bfd1
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: family_room_projector
+      command: power_on
+  - service: yamaha.select_scene
+    data:
+      scene: AppleTV (Big Screen)
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+  mode: single
+  icon: mdi:apple
+  description: ''
+theater_play_bluray_big_screen:
+  alias: Theater - Play BluRay (Big Screen)
+  sequence:
+  - service: remote.send_command
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: family_room_projector
+      command: power_on
+    target:
+      device_id: 470172182f10a455c534dd62fd96bfd1
+  - service: yamaha.select_scene
+    data:
+      scene: BluRay (Big Screen)
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+  mode: single
+  icon: mdi:disc-player
+  description: ''
+theater_play_switch:
+  alias: Theater - Play Switch
+  sequence:
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.lg_webos_smart_tv
+    data: {}
+  - service: yamaha.select_scene
+    data:
+      scene: Switch
+    target:
+      entity_id: media_player.yamaha_receiver_family_room
+  mode: single
+  icon: mdi:nintendo-switch
+  description: ''

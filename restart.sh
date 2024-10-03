@@ -11,9 +11,9 @@ cd /home/jamie/Projects/GitRepo/smith-home-assistant
 if [ $(docker-compose ps homeassistant | grep -c Up) -gt 0 ]
 then
     logit "Up!"
-    docker-compose restart
+    docker compose restart
 else
     logit "Down"
-    docker-compose up -d
+    docker compose up -d
 fi
 

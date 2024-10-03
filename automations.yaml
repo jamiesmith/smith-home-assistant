@@ -509,3 +509,87 @@
       broadcast_port: 9
       mac: 58:FD:B1:55:49:A8
   mode: single
+- id: '1727985302857'
+  alias: Office S2 Remote
+  description: ''
+  use_blueprint:
+    path: homeassistant/minoston_s2.yaml
+    input:
+      minoston_s2_device: 905bb3588c56246f48dc43704667edd8
+      button_1_pressed:
+      - service: remote.send_command
+        metadata: {}
+        data:
+          num_repeats: 1
+          delay_secs: 0.4
+          hold_secs: 0
+          device: office_fan
+          command: fan_light_toggle
+        target:
+          entity_id: remote.office_hub_pro
+      button_2_pressed:
+      - service: remote.send_command
+        metadata: {}
+        data:
+          num_repeats: 1
+          delay_secs: 0.4
+          hold_secs: 0
+          device: office_fan
+          command: fan_light_toggle
+        target:
+          device_id: 4928730243bc7b4ff9dc433e68348526
+      button_3_pressed:
+      - service: remote.send_command
+        metadata: {}
+        data:
+          num_repeats: 1
+          delay_secs: 0.4
+          hold_secs: 0
+          device: office_fan
+          command: fan_off
+        target:
+          entity_id: remote.office_hub_pro
+      button_4_pressed:
+      - service: remote.send_command
+        metadata: {}
+        data:
+          num_repeats: 1
+          delay_secs: 0.4
+          hold_secs: 0
+          device: office_fan
+          command: fan_speed_3
+        target:
+          device_id: 4928730243bc7b4ff9dc433e68348526
+      button_4_pressed_2x:
+      - service: remote.send_command
+        metadata: {}
+        data:
+          num_repeats: 1
+          delay_secs: 0.4
+          hold_secs: 0
+          device: office_fan
+          command: fan_speed_5
+        target:
+          device_id: 4928730243bc7b4ff9dc433e68348526
+      button_4_pressed_3x:
+      - service: remote.send_command
+        metadata: {}
+        data:
+          num_repeats: 1
+          delay_secs: 0.4
+          hold_secs: 0
+          device: office_fan
+          command: fan_breeze_mode
+        target:
+          device_id: 4928730243bc7b4ff9dc433e68348526
+      button_3_pressed_2x:
+      - service: remote.send_command
+        metadata: {}
+        data:
+          num_repeats: 1
+          delay_secs: 0.4
+          hold_secs: 0
+          device: office_fan
+          command: fan_speed_1
+        target:
+          entity_id: remote.office_hub_pro
