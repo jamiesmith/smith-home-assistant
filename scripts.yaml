@@ -823,16 +823,10 @@ shut_down_office:
     data: {}
     target:
       device_id: 1fde1a448c9379091c3b0a5f8fdbfaae
-  - service: remote.send_command
-    metadata: {}
-    data:
-      num_repeats: 1
-      delay_secs: 0.4
-      hold_secs: 0
-      device: office_fan
-      command: fan_off
+  - service: switch.turn_off
     target:
-      entity_id: remote.office_hub_pro
+      entity_id: switch.office_ceiling_fan_light
+    data: {}
   mode: single
 patio_next_track:
   alias: Patio Next Track
@@ -1379,3 +1373,60 @@ theater_play_switch:
   mode: single
   icon: mdi:nintendo-switch
   description: ''
+toggle_office_fan_light:
+  alias: Toggle Office Fan Light
+  sequence:
+  - service: remote.send_command
+    metadata: {}
+    data:
+      device: office_fan
+      command: fan_light_toggle
+    target:
+      entity_id: remote.office_hub_pro
+  description: ''
+  icon: mdi:ceiling-fan-light
+turn_on_office_fan_light:
+  alias: Turn On Office Fan Light
+  sequence:
+  - if:
+    - condition: state
+      entity_id: input_boolean.office_fan_light
+      state: 'off'
+    then:
+    - service: script.toggle_office_fan_light
+      metadata: {}
+      data: {}
+    - service: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.office_fan_light
+    - service: system_log.write
+      data:
+        level: warning
+        message: Executed Turn On Office Fan Light
+  description: ''
+  icon: mdi:ceiling-fan-light
+turn_off_office_fan_light:
+  alias: Turn Off Office Fan Light
+  sequence:
+  - if:
+    - condition: state
+      entity_id: input_boolean.office_fan_light
+      state: 'on'
+    then:
+    - service: script.toggle_office_fan_light
+      metadata: {}
+      data: {}
+    - service: input_boolean.turn_off
+      target:
+        entity_id:
+        - input_boolean.office_fan_light
+      data: {}
+    - service: system_log.write
+      metadata: {}
+      data:
+        level: warning
+        message: Executed Turn Off Office Fan Light
+  description: ''
+  icon: mdi:ceiling-fan-light

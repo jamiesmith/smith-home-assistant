@@ -7,16 +7,16 @@
       - 'date_time'
       - 'time_date'
       - 'time_utc'
-      - 'beat'
+#      - 'beat'
 
-  - platform: time_date
-    display_options:
-      - 'time'
-      - 'date'
-      - 'date_time'
-      - 'time_date'
-      - 'time_utc'
-      - 'beat'
+  # JRS-TMP - platform: time_date
+  # JRS-TMP   display_options:
+  # JRS-TMP     - 'time'
+  # JRS-TMP     - 'date'
+  # JRS-TMP     - 'date_time'
+  # JRS-TMP     - 'time_date'
+  # JRS-TMP     - 'time_utc'
+  # JRS-TMP     - 'beat'
     
   - platform: pirateweather
     api_key: !secret pirate_weather_api_key

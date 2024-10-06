@@ -132,6 +132,8 @@
     platform: sun
   - platform: time
     at: '17:00:00'
+  - platform: time
+    at: 06:15:00
   condition: []
   action:
   - data:
@@ -517,27 +519,15 @@
     input:
       minoston_s2_device: 905bb3588c56246f48dc43704667edd8
       button_1_pressed:
-      - service: remote.send_command
-        metadata: {}
-        data:
-          num_repeats: 1
-          delay_secs: 0.4
-          hold_secs: 0
-          device: office_fan
-          command: fan_light_toggle
+      - service: switch.turn_on
         target:
-          entity_id: remote.office_hub_pro
+          entity_id: switch.office_ceiling_fan_light
+        data: {}
       button_2_pressed:
-      - service: remote.send_command
-        metadata: {}
-        data:
-          num_repeats: 1
-          delay_secs: 0.4
-          hold_secs: 0
-          device: office_fan
-          command: fan_light_toggle
+      - service: switch.turn_off
         target:
-          device_id: 4928730243bc7b4ff9dc433e68348526
+          entity_id: switch.office_ceiling_fan_light
+        data: {}
       button_3_pressed:
       - service: remote.send_command
         metadata: {}
@@ -583,13 +573,17 @@
         target:
           device_id: 4928730243bc7b4ff9dc433e68348526
       button_3_pressed_2x:
-      - service: remote.send_command
+      - service: script.shut_down_office
         metadata: {}
-        data:
-          num_repeats: 1
-          delay_secs: 0.4
-          hold_secs: 0
-          device: office_fan
-          command: fan_speed_1
+        data: {}
+      button_3_pressed_3x: []
+      button_1_pressed_2x:
+      - service: switch.turn_on
+        metadata: {}
+        data: {}
         target:
-          entity_id: remote.office_hub_pro
+          device_id: 1fde1a448c9379091c3b0a5f8fdbfaae
+      button_2_pressed_2x:
+      - service: script.shut_down_office
+        metadata: {}
+        data: {}
