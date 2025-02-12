@@ -1,15 +1,16 @@
 # https://hub.docker.com/r/homeassistant/home-assistant
-version: '2.1'
+# version: '2.1'
 services:
   homeassistant:
-    image: homeassistant/home-assistant:2024.7
+    image: homeassistant/home-assistant:2025.1.4
     container_name: home-assistant
     restart: always
     network_mode: 'host'
     volumes:
-      - '/home/jamie/Projects/GitRepo/smith-home-assistant:/config'
+      - '/home/anvil/Projects/GitRepo/smith-home-assistant:/config'
     environment:
       - 'TZ=America/New_York'
     logging:
       options:
         max-size: 25m
+

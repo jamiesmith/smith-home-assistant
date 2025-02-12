@@ -6,7 +6,7 @@ function logit
     echo "$(date '+%Y-%m-%d %H:%M:%S') $*" >> /tmp/ha-restart-history.log
 }
 
-cd /home/jamie/Projects/GitRepo/smith-home-assistant
+cd /home/${USER}/Projects/GitRepo/smith-home-assistant
 
 if [ $(docker-compose ps homeassistant | grep -c Up) -gt 0 ]
 then

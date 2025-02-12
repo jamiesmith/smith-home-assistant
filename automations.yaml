@@ -477,7 +477,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '21:00:00'
+    at: '22:30:00'
   condition: []
   action:
   - service: homeassistant.turn_off
@@ -587,3 +587,93 @@
       - service: script.shut_down_office
         metadata: {}
         data: {}
+- id: '1731246564466'
+  alias: Turn on patio lights with fan or heater
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.patio_temp_fan_js_switch
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.patio_party_lights_js_switch
+  mode: single
+- id: '1734365167239'
+  alias: Turn on porch lights with music
+  description: ''
+  trigger:
+  - entity_id:
+    - media_player.patio
+    platform: state
+    to: playing
+  condition: []
+  action:
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.patio_party_lights_js_switch
+  mode: single
+- id: '1738339957486'
+  alias: Jamie's Bed TV Position
+  description: ''
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  condition: []
+  action:
+  - service: number.set_value
+    metadata: {}
+    data:
+      value: '42'
+    target:
+      entity_id: number.jamies_bed_head_position
+  mode: single
+- id: '1738535171777'
+  alias: Guest Room S2
+  description: ''
+  use_blueprint:
+    path: homeassistant/zooz_s2.yaml
+    input:
+      minoston_s2_device: 65308885ff3854d359f04759e4cd5311
+      button_1_pressed:
+      - service: number.set_value
+        metadata: {}
+        data:
+          value: '42'
+        target:
+          entity_id: number.jamies_bed_head_position
+      button_1_pressed_2x:
+      - service: number.set_value
+        metadata: {}
+        data:
+          value: '16'
+        target:
+          entity_id: number.jamies_bed_head_position
+      button_2_pressed:
+      - service: number.set_value
+        metadata: {}
+        data:
+          value: '0'
+        target:
+          entity_id: number.jamies_bed_head_position
+      button_3_pressed:
+      - service: media_player.select_source
+        metadata: {}
+        data:
+          source: 30 - Dave Matthews Band Radio
+        target:
+          entity_id: media_player.guest_room
+      button_4_pressed:
+      - service: media_player.select_source
+        metadata: {}
+        data:
+          source: 23 - Grateful Dead
+        target:
+          entity_id: media_player.guest_room

@@ -451,11 +451,11 @@ turn_off_office:
 jamie_bedtime_music:
   alias: Turn on Jamies bedtime music
   sequence:
-  - service: media_player.select_source
-    data:
-      source: 30 - Dave Matthews Band Radio
+  - data:
+      source: CH 78 - Symphony Hall
     target:
       entity_id: media_player.guest_room
+    action: media_player.select_source
   mode: single
 family_room_sonos_volume_up:
   alias: Family Room Volume Up
@@ -702,7 +702,11 @@ lightstrip_on_the_air:
 turn_on_accent_lighting:
   sequence:
   - service: homeassistant.turn_on
-    entity_id: light.accent_lighting
+    data: {}
+    target:
+      entity_id:
+      - light.accent_lighting
+      - switch.holiday_all
 turn_off_accent_lighting:
   sequence:
   - service: homeassistant.turn_off
@@ -827,6 +831,16 @@ shut_down_office:
     target:
       entity_id: switch.office_ceiling_fan_light
     data: {}
+  - service: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: office_fan
+      command: fan_off
+    target:
+      entity_id: remote.office_hub_pro
   mode: single
 patio_next_track:
   alias: Patio Next Track
@@ -841,14 +855,41 @@ garage_off:
   - service: fan.turn_off
     target:
       entity_id: fan.dc
-  - service: media_player.media_stop
-    target:
-      entity_id: media_player.garage
+    data: {}
+  - service: script.drop_garage
+    metadata: {}
+    data: {}
   - service: switch.turn_off
     target:
       entity_id:
       - switch.garage_wall_fan_js_switch
       - switch.garage_portable_fan_js_switch
+    data: {}
+  - service: media_player.media_stop
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.garage
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.jet_air_scrubber_switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.jet_air_scrubber_switch
   mode: single
 jamie_patio_mode:
   alias: Jamie Patio Mode
@@ -874,8 +915,9 @@ bambu_x1c_one_on:
   alias: Bambu X1C - One - On
   sequence:
   - service: switch.turn_on
+    data: {}
     target:
-      entity_id: switch.bambu_x1c_1_js_switch
+      entity_id: switch.bambu_x1c
   mode: single
 drop_family_room:
   alias: Drop family_room from group
@@ -908,7 +950,7 @@ family_room_add_office:
   - service: media_player.join
     data:
       group_members:
-      - media_player.office
+      - media_player.office_sonos
     target:
       entity_id: media_player.family_room
 family_room_add_patio:
@@ -951,7 +993,7 @@ garage_add_office:
   - service: media_player.join
     data:
       group_members:
-      - media_player.office
+      - media_player.office_sonos
     target:
       entity_id: media_player.garage
 garage_add_patio:
@@ -994,7 +1036,7 @@ move_add_office:
   - service: media_player.join
     data:
       group_members:
-      - media_player.office
+      - media_player.office_sonos
     target:
       entity_id: media_player.move
 move_add_patio:
@@ -1012,7 +1054,7 @@ drop_office:
   - service: media_player.unjoin
     data: {}
     target:
-      entity_id: media_player.office
+      entity_id: media_player.office_sonos
 office_add_family_room:
   alias: Add family_room to office
   sequence:
@@ -1021,7 +1063,7 @@ office_add_family_room:
       group_members:
       - media_player.family_room
     target:
-      entity_id: media_player.office
+      entity_id: media_player.office_sonos
 office_add_garage:
   alias: Add garage to office
   sequence:
@@ -1030,7 +1072,7 @@ office_add_garage:
       group_members:
       - media_player.garage
     target:
-      entity_id: media_player.office
+      entity_id: media_player.office_sonos
 office_add_move:
   alias: Add move to office
   sequence:
@@ -1039,7 +1081,7 @@ office_add_move:
       group_members:
       - media_player.move
     target:
-      entity_id: media_player.office
+      entity_id: media_player.office_sonos
 office_add_patio:
   alias: Add patio to office
   sequence:
@@ -1048,7 +1090,7 @@ office_add_patio:
       group_members:
       - media_player.patio
     target:
-      entity_id: media_player.office
+      entity_id: media_player.office_sonos
 drop_patio:
   alias: Drop patio from group
   sequence:
@@ -1089,7 +1131,7 @@ patio_add_office:
   - service: media_player.join
     data:
       group_members:
-      - media_player.office
+      - media_player.office_sonos
     target:
       entity_id: media_player.patio
 family_room_volume_down_5:
@@ -1130,34 +1172,39 @@ theater_watch_apple_tv:
       scene: AppleTV
     target:
       entity_id: media_player.yamaha_receiver_family_room
+  - service: media_player.media_stop
+    target:
+      entity_id:
+      - media_player.family_room
+    data: {}
   mode: single
   icon: mdi:apple
 theater_shut_down:
   alias: Theater - Shut Down
   sequence:
-  - service: yamaha.select_scene
-    target:
+  - target:
       entity_id: media_player.yamaha_receiver_family_room
     data:
       scene: AppleTV
-  - service: media_player.turn_off
-    target:
-      entity_id:
-      - media_player.lg_webos_smart_tv
-    data: {}
-  - service: media_player.turn_off
-    target:
+    action: yamaha.select_scene
+  - target:
       entity_id: media_player.yamaha_receiver_family_room
     data: {}
-  - service: script.theater_projector_power_off
-    data: {}
+    action: media_player.turn_off
+  - data: {}
+    action: script.theater_projector_power_off
   - delay:
       hours: 0
       minutes: 0
       seconds: 2
       milliseconds: 0
-  - service: script.theater_projector_power_off
+  - data: {}
+    action: script.theater_projector_power_off
+  - target:
+      entity_id:
+      - media_player.lg_webos_smart_tv
     data: {}
+    action: media_player.turn_off
   mode: single
   icon: mdi:power-plug-off
 theater_play_ps5:
@@ -1428,5 +1475,61 @@ turn_off_office_fan_light:
       data:
         level: warning
         message: Executed Turn Off Office Fan Light
+  description: ''
+  icon: mdi:ceiling-fan-light
+toggle_jet_air_scrubber:
+  alias: Toggle Jet Air Scrubber
+  sequence:
+  - service: remote.send_command
+    metadata: {}
+    data:
+      device: jet_air_scrubber
+      command: toggle_power
+    target:
+      entity_id: remote.office_hub_pro
+  description: ''
+  icon: mdi:ceiling-fan-light
+turn_on_jet_air_scrubber:
+  alias: Turn On Jet Air Scrubber
+  sequence:
+  - if:
+    - condition: state
+      entity_id: input_boolean.jet_air_scrubber
+      state: 'off'
+    then:
+    - service: script.toggle_jet_air_scrubber
+      metadata: {}
+      data: {}
+    - service: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.jet_air_scrubber
+    - service: system_log.write
+      data:
+        level: warning
+        message: Executed Turn On Jet Air Scrubber
+  description: ''
+  icon: mdi:ceiling-fan-light
+turn_off_jet_air_scrubber:
+  alias: Turn Off Jet Air Scrubber
+  sequence:
+  - if:
+    - condition: state
+      entity_id: input_boolean.jet_air_scrubber
+      state: 'off'
+    then:
+    - service: script.toggle_jet_air_scrubber
+      metadata: {}
+      data: {}
+    - service: input_boolean.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.jet_air_scrubber
+    - service: system_log.write
+      data:
+        level: warning
+        message: Executed Turn Off Jet Air Scrubber
   description: ''
   icon: mdi:ceiling-fan-light

@@ -25,6 +25,12 @@ homeassistant:
 frontend:
 
 recorder:
+  auto_purge: true
+  purge_keep_days: 60
+  auto_repack: true
+  exclude:
+    domains:
+      - automation
 
 default_config:
 
@@ -72,15 +78,6 @@ logbook:
 # Track the sun
 sun:
 
-# JRS-TMP weather:
-# JRS-TMP   - platform: pirateweather
-# JRS-TMP     api_key: !secret pirate_weather_api_key
-# JRS-TMP     # Additional optional values:
-# JRS-TMP     latitude: !secret latitude
-# JRS-TMP     longitude: !secret longitude
-# JRS-TMP     mode: hourly
-# JRS-TMP     name: Pirate Weather Matthews
-    
 # Weather prediction
 
 # Text to speech
@@ -150,3 +147,14 @@ switch:
         turn_off:
           service: script.turn_on
           entity_id: script.turn_off_office_fan_light
+
+  - platform: template
+    switches:
+      jet_air_scrubber:
+        value_template: "{{ is_state('input_boolean.jet_air_scrubber', 'on') }}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.turn_on_jet_air_scrubber
+        turn_off:
+          service: script.turn_on
+          entity_id: script.turn_off_jet_air_scrubber

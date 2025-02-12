@@ -9,15 +9,6 @@
       - 'time_utc'
 #      - 'beat'
 
-  # JRS-TMP - platform: time_date
-  # JRS-TMP   display_options:
-  # JRS-TMP     - 'time'
-  # JRS-TMP     - 'date'
-  # JRS-TMP     - 'date_time'
-  # JRS-TMP     - 'time_date'
-  # JRS-TMP     - 'time_utc'
-  # JRS-TMP     - 'beat'
-    
   - platform: pirateweather
     api_key: !secret pirate_weather_api_key
     scan_interval: '00:30:00'
