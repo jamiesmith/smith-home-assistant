@@ -1,0 +1,33 @@
+blueprint:
+  name: Denon AVR Quick Select Buttons
+  description: Create buttons to trigger Quick Select options (1-4) on Denon AVR devices.
+  domain: automation
+  input:
+    denon_entity:
+      name: Denon AVR Entity
+      description: The entity ID of your Denon AVR.
+      selector:
+        entity:
+          domain:
+          - media_player
+          multiple: false
+    quick_select:
+      name: Quick Select Option
+      description: The Quick Select option to trigger (1 to 4).
+      selector:
+        number:
+          min: 1.0
+          max: 4.0
+          mode: slider
+          step: 1.0
+  source_url: https://gist.github.com/dotWee/147366eb064bdf9934f4e2531140c1ad
+mode: single
+trigger:
+  platform: state
+  entity_id: !input denon_entity
+action:
+- service: denonavr.get_command
+  data:
+    entity_id: !input denon_entity
+    command: "{% if is_number(quick_select) %}\n  /goform/formiPhoneAppDirect.xml?MSQUICK{{
+      quick_select | int }}\n{% endif %}"

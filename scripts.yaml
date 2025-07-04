@@ -452,7 +452,7 @@ jamie_bedtime_music:
   alias: Turn on Jamies bedtime music
   sequence:
   - data:
-      source: CH 78 - Symphony Hall
+      source: 23 - Grateful Dead
     target:
       entity_id: media_player.guest_room
     action: media_player.select_source
@@ -558,12 +558,15 @@ theater_projector_power_off:
 theater_projector_power_on:
   alias: Projector power on
   sequence:
-  - service: remote.send_command
-    data:
+  - data:
       device: family_room_projector
       command: power_on
     target:
       entity_id: remote.family_room_broadlink_remote
+    action: remote.send_command
+  - action: script.home_theater_denon_hdmi_out_projector
+    metadata: {}
+    data: {}
   mode: single
 watch_apple_tv:
   alias: Watch Apple TV
@@ -583,32 +586,6 @@ watch_apple_tv:
       entity_id: media_player.yamaha_receiver_family_room
       port: hdmi1
       enabled: true
-  mode: single
-watch_apple_tv_big_screen:
-  alias: Watch Apple TV (Big Screen)
-  sequence:
-  - service: script.theater_tv_power_off
-  - service: yamaha.select_scene
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
-      scene: AppleTV (Big Screen)
-  - service: yamaha.enable_output
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
-      port: hdmi2
-      enabled: true
-  - service: yamaha.enable_output
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
-      port: hdmi1
-      enabled: false
-  - service: remote.send_command
-    data:
-      device: family_room_projector
-      command: power_on
-    target:
-      entity_id: remote.family_room_broadlink_remote
-  - service: script.big_screen_movie_time
   mode: single
 office_turn_on:
   alias: Turn on Office
@@ -721,65 +698,24 @@ family_room_sonos_previous_track:
   sequence:
   - service: media_player.media_previous_track
     entity_id: media_player.family_room
-family_room_turn_on:
-  alias: Turn on Family Room
-  sequence:
-  - service: media_player.turn_on
-    entity_id: media_player.yamaha_receiver_family_room
 family_room_turn_off:
   alias: Turn off Family Room
   sequence:
-  - service: media_player.turn_off
-    entity_id: media_player.yamaha_receiver_family_room
-  - service: media_player.media_stop
-    entity_id: media_player.family_room
+  - action: media_player.turn_off
+    data: {}
+    target:
+      entity_id: media_player.home_theater
+  - entity_id: media_player.family_room
+    action: media_player.media_stop
 family_room_receiver_toggle_mute:
   alias: Family Room Receiver Toggle Mute
   sequence:
-  - service: media_player.volume_mute
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
+  - data:
+      entity_id: media_player.home_theater
     data_template:
-      is_volume_muted: '{{ not states.media_player.yamaha_receiver_family_room.attributes.is_volume_muted
+      is_volume_muted: '{{ not states.media_player.home_theater.attributes.is_volume_muted
         }}'
-family_room_receiver_volume_up:
-  sequence:
-    service: media_player.volume_set
-    entity_id: media_player.yamaha_receiver_family_room
-    data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
-        | float + 0.02 }}'
-family_room_receiver_volume_down:
-  sequence:
-    service: media_player.volume_set
-    entity_id: media_player.yamaha_receiver_family_room
-    data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
-        | float - 0.02 }}'
-family_room_receiver_input_sonos:
-  alias: Turn On Family Room Sonos
-  sequence:
-  - service: script.family_room_turn_on
-  - service: media_player.select_source
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
-      source: AUDIO3
-theater_sonos_scene:
-  alias: Theater Scene - Sonos
-  sequence:
-  - service: yamaha.select_scene
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
-      scene: Sonos
-  mode: single
-theater_roon_scene:
-  alias: Theater Scene - Roon
-  sequence:
-  - service: yamaha.select_scene
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
-      scene: Roon
-  mode: single
+    action: media_player.volume_mute
 compare_track_back:
   alias: Compare - track back
   sequence:
@@ -852,64 +788,47 @@ patio_next_track:
 garage_off:
   alias: Garage Turn Off
   sequence:
-  - service: fan.turn_off
+  - metadata: {}
+    data: {}
     target:
+      entity_id: media_player.garage
+    action: media_player.media_stop
+  - target:
       entity_id: fan.dc
     data: {}
-  - service: script.drop_garage
-    metadata: {}
+    action: fan.turn_off
+  - metadata: {}
     data: {}
-  - service: switch.turn_off
-    target:
+    action: script.drop_garage
+  - target:
       entity_id:
       - switch.garage_wall_fan_js_switch
       - switch.garage_portable_fan_js_switch
     data: {}
-  - service: media_player.media_stop
+    action: switch.turn_off
+  - action: script.cycle_jet_air_scrubber
     metadata: {}
     data: {}
-    target:
-      entity_id: media_player.garage
-  - delay:
-      hours: 0
-      minutes: 15
-      seconds: 0
-      milliseconds: 0
-  - service: switch.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.jet_air_scrubber_switch
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 10
-      milliseconds: 0
-  - service: switch.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.jet_air_scrubber_switch
   mode: single
 jamie_patio_mode:
   alias: Jamie Patio Mode
   sequence:
-  - service: script.patio_fan_speed_high
-    data: {}
-  - service: media_player.select_source
-    target:
+  - data: {}
+    action: script.patio_fan_speed_high
+  - target:
       entity_id: media_player.patio
     data:
-      source: Rockwall
-  - service: switch.turn_on
-    target:
+      source: 25 - Classic Rewind
+    action: media_player.select_source
+  - target:
       entity_id: switch.patio_party_lights_js_switch
     data: {}
-  - service: switch.turn_on
-    target:
+    action: switch.turn_on
+  - target:
       entity_id: switch.patio_temp_fan_js_switch
     data: {}
     enabled: false
+    action: switch.turn_on
   mode: single
 bambu_x1c_one_on:
   alias: Bambu X1C - One - On
@@ -1137,20 +1056,20 @@ patio_add_office:
 family_room_volume_down_5:
   alias: Family Room Receiver Volume Down 5
   sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.yamaha_receiver_family_room
+  - entity_id: media_player.home_theater
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
-        | float - 0.05 }}'
+      volume_level: '{{ states.media_player.home_theater.attributes.volume_level |
+        float - 0.05 }}'
+    action: media_player.volume_set
   mode: single
 family_room_volume_up_5:
   alias: Family Room Receiver Volume Up 5
   sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.yamaha_receiver_family_room
+  - entity_id: media_player.home_theater
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
-        | float + 0.05 }}'
+      volume_level: '{{ states.media_player.home_theater.attributes.volume_level |
+        float + 0.05 }}'
+    action: media_player.volume_set
   mode: single
 garage_next_track:
   alias: Garage Next Track
@@ -1163,34 +1082,23 @@ garage_next_track:
 theater_watch_apple_tv:
   alias: Theater - Watch Apple TV
   sequence:
-  - service: media_player.turn_on
-    target:
+  - target:
       entity_id: media_player.lg_webos_smart_tv
     data: {}
-  - service: yamaha.select_scene
-    data:
-      scene: AppleTV
-    target:
-      entity_id: media_player.yamaha_receiver_family_room
-  - service: media_player.media_stop
-    target:
+    action: media_player.turn_on
+  - target:
       entity_id:
       - media_player.family_room
+    data: {}
+    action: media_player.media_stop
+  - action: script.home_theater_denon_qs_apple_tv
+    metadata: {}
     data: {}
   mode: single
   icon: mdi:apple
 theater_shut_down:
   alias: Theater - Shut Down
   sequence:
-  - target:
-      entity_id: media_player.yamaha_receiver_family_room
-    data:
-      scene: AppleTV
-    action: yamaha.select_scene
-  - target:
-      entity_id: media_player.yamaha_receiver_family_room
-    data: {}
-    action: media_player.turn_off
   - data: {}
     action: script.theater_projector_power_off
   - delay:
@@ -1205,34 +1113,42 @@ theater_shut_down:
       - media_player.lg_webos_smart_tv
     data: {}
     action: media_player.turn_off
+  - action: media_player.media_stop
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.family_room
+  - action: media_player.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.home_theater
   mode: single
   icon: mdi:power-plug-off
 theater_play_ps5:
   alias: Theater - Play PS5
   sequence:
-  - service: media_player.turn_on
-    target:
+  - target:
       entity_id: media_player.lg_webos_smart_tv
     data: {}
-  - service: yamaha.select_scene
-    data:
-      scene: PS5
-    target:
-      entity_id: media_player.yamaha_receiver_family_room
+    action: media_player.turn_on
+    enabled: true
+  - action: script.home_theater_denon_qs_ps5
+    metadata: {}
+    data: {}
   mode: single
   icon: mdi:sony-playstation
 theater_play_xbox:
   alias: Theater - Play XBOX
   sequence:
-  - service: media_player.turn_on
-    target:
+  - target:
       entity_id: media_player.lg_webos_smart_tv
     data: {}
-  - service: yamaha.select_scene
-    data:
-      scene: XBOX
-    target:
-      entity_id: media_player.yamaha_receiver_family_room
+    action: media_player.turn_on
+    enabled: true
+  - action: script.home_theater_denon_input_xbox
+    metadata: {}
+    data: {}
   mode: single
   icon: mdi:microsoft-xbox
 bar_table_toggle_strip:
@@ -1243,23 +1159,23 @@ bar_table_toggle_strip:
       device_id: 8ddc6a2340466ffff05b57e62c7692a0
     data: {}
   description: ''
-family_room_receiver_volume_up_2:
+family_room_receiver_volume_up:
   alias: Family Room Receiver Volume Up
   sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.yamaha_receiver_family_room
+  - entity_id: media_player.home_theater
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
-        | float + 0.005 }}'
+      volume_level: '{{ states.media_player.home_theater.attributes.volume_level |
+        float + 0.005 }}'
+    action: media_player.volume_set
   description: ''
-family_room_receiver_volume_down_2:
+family_room_receiver_volume_down:
   alias: Family Room Receiver Volume Down
   sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.yamaha_receiver_family_room
+  - entity_id: media_player.home_theater
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_family_room.attributes.volume_level
-        | float - 0.005 }}'
+      volume_level: '{{ states.media_player.home_theater.attributes.volume_level |
+        float - 0.005 }}'
+    action: media_player.volume_set
   description: ''
 raise_downstairs_target_a_c_temp:
   alias: Thermostat - Downstairs - Raise Target A/C Temp
@@ -1326,8 +1242,7 @@ theater_play_rockwell:
 theater_play_bluray:
   alias: Theater - Play BluRay
   sequence:
-  - service: remote.send_command
-    data:
+  - data:
       num_repeats: 1
       delay_secs: 0.4
       hold_secs: 0
@@ -1335,11 +1250,10 @@ theater_play_bluray:
       command: power_on
     target:
       device_id: 470172182f10a455c534dd62fd96bfd1
-  - service: yamaha.select_scene
-    data:
-      scene: BluRay
-    target:
-      entity_id: media_player.yamaha_receiver_family_room
+    action: remote.send_command
+  - action: script.home_theater_denon_qs_bluray
+    metadata: {}
+    data: {}
   mode: single
   icon: mdi:disc-player
   description: ''
@@ -1368,8 +1282,7 @@ theater_tv_turn_off:
 theater_watch_apple_tv_big_screen:
   alias: Theater - Watch Apple TV (Big Screen)
   sequence:
-  - service: remote.send_command
-    target:
+  - target:
       device_id: 470172182f10a455c534dd62fd96bfd1
     data:
       num_repeats: 1
@@ -1377,19 +1290,20 @@ theater_watch_apple_tv_big_screen:
       hold_secs: 0
       device: family_room_projector
       command: power_on
-  - service: yamaha.select_scene
-    data:
-      scene: AppleTV (Big Screen)
-    target:
-      entity_id: media_player.yamaha_receiver_family_room
+    action: remote.send_command
+  - action: script.home_theater_denon_qs_apple_tv
+    metadata: {}
+    data: {}
+  - action: script.theater_projector_power_on
+    metadata: {}
+    data: {}
   mode: single
   icon: mdi:apple
   description: ''
 theater_play_bluray_big_screen:
   alias: Theater - Play BluRay (Big Screen)
   sequence:
-  - service: remote.send_command
-    data:
+  - data:
       num_repeats: 1
       delay_secs: 0.4
       hold_secs: 0
@@ -1397,26 +1311,26 @@ theater_play_bluray_big_screen:
       command: power_on
     target:
       device_id: 470172182f10a455c534dd62fd96bfd1
-  - service: yamaha.select_scene
-    data:
-      scene: BluRay (Big Screen)
-    target:
-      entity_id: media_player.yamaha_receiver_family_room
+    action: remote.send_command
+  - action: script.home_theater_denon_qs_bluray
+    metadata: {}
+    data: {}
+  - action: script.theater_projector_power_on
+    metadata: {}
+    data: {}
   mode: single
   icon: mdi:disc-player
   description: ''
 theater_play_switch:
   alias: Theater - Play Switch
   sequence:
-  - service: media_player.turn_on
-    target:
+  - target:
       entity_id: media_player.lg_webos_smart_tv
     data: {}
-  - service: yamaha.select_scene
-    data:
-      scene: Switch
-    target:
-      entity_id: media_player.yamaha_receiver_family_room
+    action: media_player.turn_on
+  - action: script.home_theater_denon_input_switch
+    metadata: {}
+    data: {}
   mode: single
   icon: mdi:nintendo-switch
   description: ''
@@ -1533,3 +1447,277 @@ turn_off_jet_air_scrubber:
         message: Executed Turn Off Jet Air Scrubber
   description: ''
   icon: mdi:ceiling-fan-light
+cycle_jet_air_scrubber:
+  sequence:
+  - metadata: {}
+    data: {}
+    target:
+      entity_id: switch.jet_air_scrubber_switch
+    action: switch.turn_off
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - metadata: {}
+    data: {}
+    target:
+      entity_id: switch.jet_air_scrubber_switch
+    action: switch.turn_on
+  alias: Cycle Jet Air Scrubber
+  description: ''
+theater_watch_roku:
+  sequence:
+  - target:
+      entity_id: media_player.lg_webos_smart_tv
+    data: {}
+    action: media_player.turn_on
+  - target:
+      entity_id:
+      - media_player.family_room
+    data: {}
+    action: media_player.media_stop
+  - action: script.home_theater_denon_qs_roku_4k
+    metadata: {}
+    data: {}
+  alias: Theater - Watch Roku
+  mode: single
+  icon: mdi:apple
+  description: ''
+home_theater_denon_qs_apple_tv:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK1
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS Apple TV
+  description: ''
+home_theater_denon_qs_roku_4k:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK3
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS Roku 4k
+  description: ''
+home_theater_denon_qs_bluray:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK2
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS BluRay
+  description: ''
+home_theater_denon_qs_sonos:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK4
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS Sonos
+  description: ''
+home_theater_denon_qs_ps5:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK5
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS PS5
+  description: ''
+home_theater_denon_hdmi_out_projector:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?VSMONI2
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - HDMI Out - Projector
+  description: ''
+home_theater_denon_hdmi_out_lg:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?VSMONI1
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - HDMI Out - LG
+  description: ''
+home_theater_denon_qs_ps5_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK5%20MEMORY
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS PS5 (set)
+  description: ''
+home_theater_denon_input_roon:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?SITV
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Input - Roon
+  description: ''
+home_theater_denon_input_switch:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?SIAUX1
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Input - Switch
+  description: ''
+home_theater_denon_info:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MNINF
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Info
+  description: ''
+home_theater_denon_surround_movie:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSMOVIE
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Surround (movie)
+  description: ''
+home_theater_denon_surround_music:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSMUSIC
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Surround (music)
+  description: ''
+home_theater_denon_surround_direct:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSDIRECT
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Surround (direct)
+  description: ''
+home_theater_denon_surround_pure_direct:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSPIURE%20DIRECT
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Surround (pure direct)
+  description: ''
+home_theater_denon_surround_dolby_digital:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSDOLBY%20DIGITAL
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Surround (dolby digital)
+  description: ''
+home_theater_denon_surround_dts:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSDTS%20SURROUND
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Surround (dts)
+  description: ''
+home_theater_denon_surround_auro3d:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSAURO3D
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Surround (auro3d)
+  description: ''
+home_theater_denon_surround_multi_channel_stereo:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSMCH%20STEREO
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Surround (Multi-channel stereo)
+  description: ''
+home_theater_denon_volume_up:
+  sequence:
+  - action: script.family_room_volume_down_5
+    metadata: {}
+    data: {}
+  alias: Home Theater Denon - Volume Up
+  description: ''
+home_theater_denon_volume_down:
+  sequence:
+  - action: script.family_room_volume_down
+    metadata: {}
+    data: {}
+  alias: Home Theater Denon - Volume Down
+  description: ''
+home_theater_denon_volume_80:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MV80
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Volume 80
+  description: ''
+home_theater_denon_volume_down_5:
+  sequence:
+  - action: script.family_room_volume_down_5
+    metadata: {}
+    data: {}
+  alias: Home Theater Denon - Volume Down 5
+  description: ''
+home_theater_denon_volume_up_5:
+  sequence:
+  - action: script.family_room_volume_up_5
+    metadata: {}
+    data: {}
+  alias: Home Theater Denon - Volume Up 5
+  description: ''
+home_theater_denon_input_xbox:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?SIGAME
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - Input - xbox
+  description: ''

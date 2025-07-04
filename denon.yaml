@@ -1,0 +1,96 @@
+home_theater_denon_apple_tv:
+  widget_type: script
+  entity: "script.home_theater_denon_apple_tv"
+  title: Apple Tv
+home_theater_denon_roku_4k:
+  widget_type: script
+  entity: "script.home_theater_denon_roku_4k"
+  title: Roku 4k
+home_theater_denon_bluray:
+  widget_type: script
+  entity: "script.home_theater_denon_bluray"
+  title: Bluray
+home_theater_denon_sonos:
+  widget_type: script
+  entity: "script.home_theater_denon_sonos"
+  title: Sonos
+home_theater_denon_ps5:
+  widget_type: script
+  entity: "script.home_theater_denon_ps5"
+  title: Ps5
+home_theater_denon_hdmi_out_projector:
+  widget_type: script
+  entity: "script.home_theater_denon_hdmi_out_projector"
+  title: Hdmi Out Projector
+home_theater_denon_hdmi_out_lg:
+  widget_type: script
+  entity: "script.home_theater_denon_hdmi_out_lg"
+  title: Hdmi Out Lg
+home_theater_denon_ps5_set:
+  widget_type: script
+  entity: "script.home_theater_denon_ps5_set"
+  title: Ps5 Set
+home_theater_denon_input_roon:
+  widget_type: script
+  entity: "script.home_theater_denon_input_roon"
+  title: Input Roon
+home_theater_denon_input_switch:
+  widget_type: script
+  entity: "script.home_theater_denon_input_switch"
+  title: Input Switch
+home_theater_denon_info:
+  widget_type: script
+  entity: "script.home_theater_denon_info"
+  title: Info
+home_theater_denon_surround_movie:
+  widget_type: script
+  entity: "script.home_theater_denon_surround_movie"
+  title: Surround Movie
+home_theater_denon_surround_music:
+  widget_type: script
+  entity: "script.home_theater_denon_surround_music"
+  title: Surround Music
+home_theater_denon_surround_direct:
+  widget_type: script
+  entity: "script.home_theater_denon_surround_direct"
+  title: Surround Direct
+home_theater_denon_surround_pure_direct:
+  widget_type: script
+  entity: "script.home_theater_denon_surround_pure_direct"
+  title: Surround Pure Direct
+home_theater_denon_surround_dolby_digital:
+  widget_type: script
+  entity: "script.home_theater_denon_surround_dolby_digital"
+  title: Surround Dolby Digital
+home_theater_denon_surround_dts:
+  widget_type: script
+  entity: "script.home_theater_denon_surround_dts"
+  title: Surround Dts
+home_theater_denon_surround_auro3d:
+  widget_type: script
+  entity: "script.home_theater_denon_surround_auro3d"
+  title: Surround Auro3d
+home_theater_denon_surround_multi_channel_stereo:
+  widget_type: script
+  entity: "script.home_theater_denon_surround_multi_channel_stereo"
+  title: Surround Multi Channel Stereo
+home_theater_denon_volume_up:
+  widget_type: script
+  entity: "script.home_theater_denon_volume_up"
+  title: Volume Up
+home_theater_denon_volume_down:
+  widget_type: script
+  entity: "script.home_theater_denon_volume_down"
+  title: Volume Down
+home_theater_denon_volume_80:
+  widget_type: script
+  entity: "script.home_theater_denon_volume_80"
+  title: Volume 80
+home_theater_denon_volume_down_5:
+  widget_type: script
+  entity: "script.home_theater_denon_volume_down_5"
+  title: Volume Down 5
+home_theater_denon_volume_up_5:
+  widget_type: script
+  entity: "script.home_theater_denon_volume_up_5"
+  title: Volume Up 5

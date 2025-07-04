@@ -26,11 +26,25 @@ frontend:
 
 recorder:
   auto_purge: true
-  purge_keep_days: 60
+  purge_keep_days: 7
   auto_repack: true
   exclude:
     domains:
       - automation
+      - device_tracker
+      - media_player
+      - uptime
+      - time_date
+      - worldclock
+    entity_globs:
+      - sensor.clock*
+      - sensor.date*
+      - sensor.glances*
+      - sensor.load_*m
+      - sensor.time*
+      - sensor.uptime*
+      - sensor.*_current_consumption
+      - sensor.*_voltage
 
 default_config:
 
@@ -114,7 +128,7 @@ media_player:
       - "Zone_4"
       - "zone_4"
     zone_names:
-      Main_Zone: "Family Room"
+      Main_Zone: "Guest Room"
         
   - platform: yamaha
     host: 192.168.1.30

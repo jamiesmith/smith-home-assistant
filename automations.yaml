@@ -26,27 +26,26 @@
   mode: single
 - id: turn_on_family_room_receiver_for_sonos
   alias: Turn on Family Room Receiver for Sonos
-  trigger:
+  triggers:
   - entity_id: media_player.family_room
-    platform: state
     to: playing
-  condition:
+    trigger: state
+  conditions:
   - condition: or
     conditions:
     - condition: state
-      entity_id: media_player.yamaha_receiver_family_room
+      entity_id: media_player.home_theater
       state: 'off'
     - condition: not
       conditions:
       - condition: state
-        entity_id: media_player.yamaha_receiver_family_room
+        entity_id: media_player.home_theater
         attribute: source
         state: AUDIO3
-  action:
-  - service: yamaha.select_scene
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
-      scene: Sonos
+  actions:
+  - action: script.home_theater_denon_qs_sonos
+    metadata: {}
+    data: {}
   mode: single
 - id: accent_lighting_on_sunset
   alias: Turn On Accent Lighting at 4pm
@@ -126,32 +125,33 @@
     service: homeassistant.turn_off
 - id: foyer_light_on
   alias: Foyer Light On
-  trigger:
+  triggers:
   - event: sunset
     offset: -00:30:00
-    platform: sun
-  - platform: time
-    at: '17:00:00'
-  - platform: time
-    at: 06:15:00
-  condition: []
-  action:
+    trigger: sun
+  - at: '17:00:00'
+    trigger: time
+  - at: 06:15:00
+    trigger: time
+  conditions: []
+  actions:
   - data:
       entity_id: switch.foyer_outlet_js_switch
-    service: switch.turn_on
+    action: switch.turn_on
 - id: foyer_light_off
   alias: Foyer Light Off
-  trigger:
-  - at: '23:00:00'
-    platform: time
-  - platform: sun
-    event: sunrise
-  condition: []
-  action:
+  triggers:
+  - at: '22:30:00'
+    trigger: time
+  - event: sunrise
+    trigger: sun
+    offset: 01:00:00
+  conditions: []
+  actions:
   - data: {}
-    service: switch.turn_off
     target:
       entity_id: switch.foyer_outlet_js_switch
+    action: switch.turn_off
 - id: turn_off_accent_lights_at_bedtime
   alias: Turn off accent lighting at bedtime
   trigger:
@@ -363,21 +363,20 @@
 - id: '1659105207295'
   alias: Turn on Family Room Receiver for Theater Roon
   description: ''
-  trigger:
+  triggers:
   - entity_id: media_player.theater_roon
-    platform: state
     to: playing
-  condition: []
-  action:
-  - service: yamaha.select_scene
-    data:
-      entity_id: media_player.yamaha_receiver_family_room
-      scene: Roon
-  - service: media_player.volume_set
+    trigger: state
+  conditions: []
+  actions:
+  - action: script.home_theater_denon_input_roon
+    metadata: {}
+    data: {}
+  - data:
+      volume_level: 0.55
+    action: media_player.volume_set
     target:
-      entity_id: media_player.yamaha_receiver_family_room
-    data:
-      volume_level: 0.85
+      entity_id: media_player.home_theater
   mode: single
 - id: '1696550493840'
   alias: Liquor Cabinet Quad Blueprints
@@ -519,18 +518,17 @@
     input:
       minoston_s2_device: 905bb3588c56246f48dc43704667edd8
       button_1_pressed:
-      - service: switch.turn_on
-        target:
+      - target:
           entity_id: switch.office_ceiling_fan_light
         data: {}
+        action: switch.turn_on
       button_2_pressed:
-      - service: switch.turn_off
-        target:
+      - target:
           entity_id: switch.office_ceiling_fan_light
         data: {}
+        action: switch.turn_off
       button_3_pressed:
-      - service: remote.send_command
-        metadata: {}
+      - metadata: {}
         data:
           num_repeats: 1
           delay_secs: 0.4
@@ -539,9 +537,9 @@
           command: fan_off
         target:
           entity_id: remote.office_hub_pro
+        action: remote.send_command
       button_4_pressed:
-      - service: remote.send_command
-        metadata: {}
+      - metadata: {}
         data:
           num_repeats: 1
           delay_secs: 0.4
@@ -550,9 +548,9 @@
           command: fan_speed_3
         target:
           device_id: 4928730243bc7b4ff9dc433e68348526
+        action: remote.send_command
       button_4_pressed_2x:
-      - service: remote.send_command
-        metadata: {}
+      - metadata: {}
         data:
           num_repeats: 1
           delay_secs: 0.4
@@ -561,9 +559,9 @@
           command: fan_speed_5
         target:
           device_id: 4928730243bc7b4ff9dc433e68348526
+        action: remote.send_command
       button_4_pressed_3x:
-      - service: remote.send_command
-        metadata: {}
+      - metadata: {}
         data:
           num_repeats: 1
           delay_secs: 0.4
@@ -572,21 +570,45 @@
           command: fan_breeze_mode
         target:
           device_id: 4928730243bc7b4ff9dc433e68348526
+        action: remote.send_command
       button_3_pressed_2x:
-      - service: script.shut_down_office
-        metadata: {}
+      - metadata: {}
         data: {}
+        action: script.shut_down_office
       button_3_pressed_3x: []
       button_1_pressed_2x:
-      - service: switch.turn_on
+      - action: switch.turn_on
         metadata: {}
         data: {}
         target:
-          device_id: 1fde1a448c9379091c3b0a5f8fdbfaae
+          entity_id: switch.office_ceiling_fan_light
+      - action: remote.send_command
+        metadata: {}
+        data:
+          num_repeats: 1
+          delay_secs: 0.4
+          hold_secs: 0
+          device: office_fan
+          command: fan_speed_4
+        target:
+          entity_id: remote.office_hub_pro
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 100
+        target:
+          entity_id: light.hue_lightstrip_plus_1
       button_2_pressed_2x:
-      - service: script.shut_down_office
+      - metadata: {}
+        data: {}
+        action: script.shut_down_office
+      button_2_pressed_3x:
+      - action: light.turn_on
         metadata: {}
         data: {}
+        target:
+          entity_id: light.hue_lightstrip_plus_1
+      button_1_pressed_3x: []
 - id: '1731246564466'
   alias: Turn on patio lights with fan or heater
   description: ''
@@ -643,37 +665,37 @@
     input:
       minoston_s2_device: 65308885ff3854d359f04759e4cd5311
       button_1_pressed:
-      - service: number.set_value
-        metadata: {}
-        data:
-          value: '42'
-        target:
-          entity_id: number.jamies_bed_head_position
-      button_1_pressed_2x:
-      - service: number.set_value
-        metadata: {}
+      - metadata: {}
         data:
           value: '16'
         target:
           entity_id: number.jamies_bed_head_position
+        action: number.set_value
+      button_1_pressed_2x:
+      - metadata: {}
+        data:
+          value: '42'
+        target:
+          entity_id: number.jamies_bed_head_position
+        action: number.set_value
       button_2_pressed:
-      - service: number.set_value
-        metadata: {}
+      - metadata: {}
         data:
           value: '0'
         target:
           entity_id: number.jamies_bed_head_position
+        action: number.set_value
       button_3_pressed:
-      - service: media_player.select_source
-        metadata: {}
+      - metadata: {}
         data:
           source: 30 - Dave Matthews Band Radio
         target:
           entity_id: media_player.guest_room
+        action: media_player.select_source
       button_4_pressed:
-      - service: media_player.select_source
-        metadata: {}
+      - metadata: {}
         data:
-          source: 23 - Grateful Dead
+          source: 20 - E Street Radio
         target:
           entity_id: media_player.guest_room
+        action: media_player.select_source
