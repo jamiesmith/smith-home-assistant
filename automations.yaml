@@ -8,21 +8,18 @@
   mode: single
 - id: turn_on_office_receiver_for_sonos
   alias: Turn on Office Receiver for Sonos
-  trigger:
+  triggers:
   - entity_id: media_player.office_sonos
-    platform: state
     to: playing
-  condition: []
-  action:
-  - service: yamaha.select_scene
+    trigger: state
+  conditions: []
+  actions:
+  - action: denonavr.get_command
+    metadata: {}
     data:
-      entity_id: media_player.yamaha_receiver_office
-      scene: SONOS
-  - service: media_player.volume_set
-    data:
-      volume_level: 0.85
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK3
     target:
-      entity_id: media_player.yamaha_receiver_office
+      entity_id: media_player.denon_office
   mode: single
 - id: turn_on_family_room_receiver_for_sonos
   alias: Turn on Family Room Receiver for Sonos
@@ -41,7 +38,7 @@
       - condition: state
         entity_id: media_player.home_theater
         attribute: source
-        state: AUDIO3
+        state: Sonos
   actions:
   - action: script.home_theater_denon_qs_sonos
     metadata: {}
@@ -49,21 +46,24 @@
   mode: single
 - id: accent_lighting_on_sunset
   alias: Turn On Accent Lighting at 4pm
-  trigger:
+  triggers:
   - at: '16:00:00'
-    platform: time
+    trigger: time
   - event_data:
       entity_id: zwave.kitchen_light
       scene_data: 4
       scene_id: 1
     event_type: zwave.scene_activated
-    platform: event
-  - platform: time
-    at: '16:05:00'
-  action:
+    trigger: event
+  - at: '16:05:00'
+    trigger: time
+  conditions:
+  - condition: template
+    value_template: '{{ now().strftime(''%m-%d'') != "10-31" }}'
+  actions:
   - data:
       entity_id: light.accent_lighting
-    service: homeassistant.turn_on
+    action: homeassistant.turn_on
   mode: single
 - id: jamie_bedtime_music
   alias: Start Jamies Bedtime Music
@@ -76,13 +76,16 @@
   mode: single
 - id: landscape_lighting_on
   alias: Turn On Landscape Lighting at sunset
-  trigger:
+  triggers:
   - event: sunset
-    platform: sun
-  action:
+    trigger: sun
+  conditions:
+  - condition: template
+    value_template: '{{ now().strftime(''%m-%d'') != "10-31" }}'
+  actions:
   - data:
       entity_id: switch.landscape_lights
-    service: homeassistant.turn_on
+    action: homeassistant.turn_on
   mode: single
 - id: landscape_lighting_off
   alias: Turn Off Landscape Lighting at midnight
@@ -133,7 +136,9 @@
     trigger: time
   - at: 06:15:00
     trigger: time
-  conditions: []
+  conditions:
+  - condition: template
+    value_template: '{{ now().strftime(''%m-%d'') != "10-31" }}'
   actions:
   - data:
       entity_id: switch.foyer_outlet_js_switch
@@ -154,25 +159,31 @@
     action: switch.turn_off
 - id: turn_off_accent_lights_at_bedtime
   alias: Turn off accent lighting at bedtime
-  trigger:
+  triggers:
   - at: '22:15:00'
-    platform: time
+    trigger: time
   - event_data:
       entity_id: zwave.kitchen_light
       scene_data: 4
       scene_id: 2
     event_type: zwave.scene_activated
-    platform: event
-  - platform: time
-    at: '22:20:00'
-  condition: []
-  action:
+    trigger: event
+  - at: '22:20:00'
+    trigger: time
+  conditions: []
+  actions:
   - data:
       entity_id: light.accent_lighting
-    service: homeassistant.turn_off
-  - service: fan.turn_off
-    target:
+    action: homeassistant.turn_off
+  - target:
       entity_id: fan.patio_ceiling_fan
+    action: fan.turn_off
+    data: {}
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.by_locker_room
   mode: single
 - id: holiday_lights_on
   alias: Holiday - Turn On Holiday Lights around sunset
@@ -349,16 +360,22 @@
 - id: '1658435235779'
   alias: Turn on Office Receiver for Office Roon
   description: ''
-  trigger:
+  triggers:
   - entity_id: media_player.office_roon
-    platform: state
     to: playing
-  condition: []
-  action:
-  - service: yamaha.select_scene
-    data:
+    trigger: state
+  conditions: []
+  actions:
+  - data:
       entity_id: media_player.yamaha_receiver_office
       scene: Roon
+    action: yamaha.select_scene
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK5
+    target:
+      entity_id: media_player.denon_office
   mode: single
 - id: '1659105207295'
   alias: Turn on Family Room Receiver for Theater Roon
@@ -528,16 +545,9 @@
         data: {}
         action: switch.turn_off
       button_3_pressed:
-      - metadata: {}
-        data:
-          num_repeats: 1
-          delay_secs: 0.4
-          hold_secs: 0
-          device: office_fan
-          command: fan_off
-        target:
-          entity_id: remote.office_hub_pro
-        action: remote.send_command
+      - action: script.shut_down_office
+        metadata: {}
+        data: {}
       button_4_pressed:
       - metadata: {}
         data:
@@ -561,20 +571,20 @@
           device_id: 4928730243bc7b4ff9dc433e68348526
         action: remote.send_command
       button_4_pressed_3x:
+      - action: script.turn_off_accent_lighting
+        metadata: {}
+        data: {}
+      button_3_pressed_2x:
       - metadata: {}
         data:
           num_repeats: 1
           delay_secs: 0.4
           hold_secs: 0
           device: office_fan
-          command: fan_breeze_mode
+          command: fan_off
         target:
-          device_id: 4928730243bc7b4ff9dc433e68348526
+          entity_id: remote.office_hub_pro
         action: remote.send_command
-      button_3_pressed_2x:
-      - metadata: {}
-        data: {}
-        action: script.shut_down_office
       button_3_pressed_3x: []
       button_1_pressed_2x:
       - action: switch.turn_on
@@ -592,6 +602,7 @@
           command: fan_speed_4
         target:
           entity_id: remote.office_hub_pro
+        enabled: false
       - action: light.turn_on
         metadata: {}
         data:
@@ -645,17 +656,17 @@
 - id: '1738339957486'
   alias: Jamie's Bed TV Position
   description: ''
-  trigger:
-  - platform: time
-    at: '21:00:00'
-  condition: []
-  action:
-  - service: number.set_value
-    metadata: {}
+  triggers:
+  - at: '21:00:00'
+    trigger: time
+  conditions: []
+  actions:
+  - metadata: {}
     data:
-      value: '42'
+      value: '60'
     target:
       entity_id: number.jamies_bed_head_position
+    action: number.set_value
   mode: single
 - id: '1738535171777'
   alias: Guest Room S2
@@ -674,7 +685,7 @@
       button_1_pressed_2x:
       - metadata: {}
         data:
-          value: '42'
+          value: '65'
         target:
           entity_id: number.jamies_bed_head_position
         action: number.set_value
@@ -699,3 +710,48 @@
         target:
           entity_id: media_player.guest_room
         action: media_player.select_source
+      button_2_pressed_2x:
+      - action: script.turn_off_accent_lighting
+        metadata: {}
+        data: {}
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.foyer_outlet_js_switch
+      button_3_pressed_2x:
+      - action: script.guest_room_avr_input_appletv
+        metadata: {}
+        data: {}
+      button_4_pressed_2x:
+      - action: script.guest_room_avr_input_xbox
+        metadata: {}
+        data: {}
+- id: '1764526199313'
+  alias: 'Bug Fix: Turn office receiver OFF'
+  description: ''
+  triggers:
+  - trigger: time
+    at: 06:00:00
+  conditions: []
+  actions:
+  - action: media_player.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.yamaha_receiver_office
+  mode: single
+- id: '1764526271181'
+  alias: 'Bug Fix: Turn office receiver ON'
+  description: ''
+  triggers:
+  - trigger: time
+    at: 06:05:00
+  conditions: []
+  actions:
+  - action: media_player.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.yamaha_receiver_office
+  mode: single

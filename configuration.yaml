@@ -121,7 +121,7 @@ cloud:
 media_player:
   - platform: yamaha
     host: 192.168.1.31
-    # name: 'Family Room Receiver'
+    # name: 'Guest Room Receiver'
     zone_ignore:
       - "Zone_2"
       - "Zone_3"
@@ -130,17 +130,6 @@ media_player:
     zone_names:
       Main_Zone: "Guest Room"
         
-  - platform: yamaha
-    host: 192.168.1.30
-    # name: 'Office Receiver'
-    zone_ignore:
-      - "Zone_2"
-      - "Zone_3"
-      - "Zone_4"
-      - "zone_4"
-    zone_names:
-      Main_Zone: "Office"
-
 group: !include groups.yaml
 automation: !include automations.yaml
 # automation: !include_dir_merge_list automations

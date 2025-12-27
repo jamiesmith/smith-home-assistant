@@ -69,11 +69,11 @@ garage_volume_up_10:
 garage_volume_up_5:
   alias: Garage Volume Up 5
   sequence:
-  - service: media_player.volume_set
-    entity_id:
+  - entity_id:
     - media_player.garage
     data_template:
       volume_level: '{{ states.media_player.garage.attributes.volume_level + 0.05}}'
+    action: media_player.volume_set
 garage_volume_up:
   alias: Garage Volume Up
   sequence:
@@ -512,18 +512,28 @@ dust_collector_off:
 big_screen_movie_time:
   alias: Big-screen movie time
   sequence:
-  - service: homeassistant.turn_off
-    data: {}
+  - data: {}
     target:
       entity_id: switch.cabinet_lighting
-  - service: homeassistant.turn_off
-    target:
+    action: homeassistant.turn_off
+  - target:
       entity_id: light.morning_room_js_sconce
     data: {}
-  - service: homeassistant.turn_off
-    target:
+    action: homeassistant.turn_off
+  - target:
       entity_id: light.kitchen_light_level_js
     data: {}
+    action: homeassistant.turn_off
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.morning_room_back_wall
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.bar_table_js_switch
   mode: single
 theater_tv_power_on:
   alias: Family room TV power on
@@ -602,26 +612,26 @@ office_turn_off:
 office_receiver_toggle_mute:
   alias: Office Receiver Toggle Mute
   sequence:
-  - service: media_player.volume_mute
-    data:
-      entity_id: media_player.yamaha_receiver_office
+  - data:
+      entity_id: media_player.denon_office
     data_template:
-      is_volume_muted: '{{ not states.media_player.yamaha_receiver_office.attributes.is_volume_muted
+      is_volume_muted: '{{ not states.media_player.denon_office.attributes.is_volume_muted
         }}'
+    action: media_player.volume_mute
 office_receiver_volume_up:
   sequence:
-    service: media_player.volume_set
-    entity_id: media_player.yamaha_receiver_office
+  - entity_id: media_player.denon_office
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_office.attributes.volume_level
-        | float + 0.02 }}'
+      volume_level: '{{ (state_attr(''media_player.denon_office'',''volume_level'')
+        | float(0)) + 0.01 }}'
+    action: media_player.volume_set
 office_receiver_volume_down:
   sequence:
-    service: media_player.volume_set
-    entity_id: media_player.yamaha_receiver_office
+  - entity_id: media_player.denon_office
     data_template:
-      volume_level: '{{ states.media_player.yamaha_receiver_office.attributes.volume_level
-        | float - 0.02 }}'
+      volume_level: '{{ (state_attr(''media_player.denon_office'',''volume_level'')
+        | float(0)) - 0.01 }}'
+    action: media_player.volume_set
 office_input_sonos:
   alias: Turn On Office Sonos
   sequence:
@@ -633,11 +643,14 @@ office_input_sonos:
 office_input_mac:
   alias: Office Input Mac
   sequence:
-  - service: script.office_turn_on
-  - service: yamaha.select_scene
+  - action: script.office_turn_on
+    data: {}
+  - action: denonavr.get_command
+    metadata: {}
     data:
-      entity_id: media_player.yamaha_receiver_office
-      scene: Crowley
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK1
+    target:
+      entity_id: media_player.denon_office
 office_input_orion:
   alias: Office Input Orion
   sequence:
@@ -686,8 +699,12 @@ turn_on_accent_lighting:
       - switch.holiday_all
 turn_off_accent_lighting:
   sequence:
-  - service: homeassistant.turn_off
-    entity_id: group.accent_lighting
+  - data: {}
+    target:
+      entity_id:
+      - light.accent_lighting
+      - switch.holiday_all
+    action: homeassistant.turn_off
 family_room_sonos_next_track:
   alias: Family Room Next Track
   sequence:
@@ -738,37 +755,36 @@ turn_on_all_holiday_lights:
 shut_down_office:
   alias: Shut Down Office
   sequence:
-  - service: light.turn_off
-    target:
+  - target:
       entity_id: light.hue_lightstrip_plus_1
     data: {}
-  - service: light.turn_off
-    target:
+    action: light.turn_off
+  - target:
       entity_id: light.hue_color_lamp_1
     data: {}
-  - service: switch.turn_off
-    target:
+    action: light.turn_off
+  - target:
       entity_id: switch.front_webcam_js_switch
     data: {}
-  - service: media_player.turn_off
-    target:
-      entity_id: media_player.yamaha_receiver_office
+    action: switch.turn_off
+  - target:
+      entity_id: media_player.denon_office
     data: {}
+    action: media_player.turn_off
   - type: turn_off
     device_id: 558bf20c8cb19b9bd51413af95dad13e
     entity_id: light.elgato_key_light_air
     domain: light
-  - service: switch.turn_off
-    metadata: {}
+  - metadata: {}
     data: {}
     target:
       device_id: 1fde1a448c9379091c3b0a5f8fdbfaae
-  - service: switch.turn_off
-    target:
+    action: switch.turn_off
+  - target:
       entity_id: switch.office_ceiling_fan_light
     data: {}
-  - service: remote.send_command
-    metadata: {}
+    action: switch.turn_off
+  - metadata: {}
     data:
       num_repeats: 1
       delay_secs: 0.4
@@ -777,6 +793,7 @@ shut_down_office:
       command: fan_off
     target:
       entity_id: remote.office_hub_pro
+    action: remote.send_command
   mode: single
 patio_next_track:
   alias: Patio Next Track
@@ -1123,6 +1140,11 @@ theater_shut_down:
     data: {}
     target:
       entity_id: media_player.home_theater
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.by_locker_room
   mode: single
   icon: mdi:power-plug-off
 theater_play_ps5:
@@ -1146,6 +1168,11 @@ theater_play_xbox:
     data: {}
     action: media_player.turn_on
     enabled: true
+  - target:
+      entity_id:
+      - media_player.family_room
+    data: {}
+    action: media_player.media_stop
   - action: script.home_theater_denon_input_xbox
     metadata: {}
     data: {}
@@ -1282,6 +1309,9 @@ theater_tv_turn_off:
 theater_watch_apple_tv_big_screen:
   alias: Theater - Watch Apple TV (Big Screen)
   sequence:
+  - action: script.theater_projector_power_on
+    metadata: {}
+    data: {}
   - target:
       device_id: 470172182f10a455c534dd62fd96bfd1
     data:
@@ -1294,7 +1324,7 @@ theater_watch_apple_tv_big_screen:
   - action: script.home_theater_denon_qs_apple_tv
     metadata: {}
     data: {}
-  - action: script.theater_projector_power_on
+  - action: script.home_theater_denon_hdmi_out_projector
     metadata: {}
     data: {}
   mode: single
@@ -1553,16 +1583,6 @@ home_theater_denon_hdmi_out_lg:
       entity_id: media_player.home_theater
   alias: Home Theater Denon - HDMI Out - LG
   description: ''
-home_theater_denon_qs_ps5_set:
-  sequence:
-  - action: denonavr.get_command
-    metadata: {}
-    data:
-      command: /goform/formiPhoneAppDirect.xml?MSQUICK5%20MEMORY
-    target:
-      entity_id: media_player.home_theater
-  alias: Home Theater Denon - QS PS5 (set)
-  description: ''
 home_theater_denon_input_roon:
   sequence:
   - action: denonavr.get_command
@@ -1720,4 +1740,194 @@ home_theater_denon_input_xbox:
     target:
       entity_id: media_player.home_theater
   alias: Home Theater Denon - Input - xbox
+  description: ''
+cocktail_anyone:
+  sequence:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: false
+      qos: '2'
+      topic: say/amy
+      payload: Can I get you something?
+  alias: Cocktail Anyone?
+  description: ''
+guest_room_tv_appletv:
+  sequence:
+  - type: turn_on
+    device_id: 6b7cc46425fe61638a451e7dafa0faa9
+    entity_id: 9243fc421396e704949e77c71ebcab53
+    domain: remote
+  - action: yamaha.select_scene
+    metadata: {}
+    data:
+      scene: AppleTV
+    target:
+      entity_id: media_player.yamaha_receiver_guest_room
+  alias: Guest Room TV - AppleTV
+  description: ''
+guest_room_shut_down:
+  sequence:
+  - type: turn_off
+    device_id: 6b7cc46425fe61638a451e7dafa0faa9
+    entity_id: 9243fc421396e704949e77c71ebcab53
+    domain: remote
+  - action: media_player.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.yamaha_receiver_guest_room
+  alias: Guest Room - Shut Down
+  description: ''
+home_theater_denon_qs1_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK1%20MEMORY
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS1 (set)
+  description: ''
+home_theater_denon_qs2_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK2%20MEMORY
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS2 (set)
+  description: ''
+home_theater_denon_qs3_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK3%20MEMORY
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS3 (set)
+  description: ''
+home_theater_denon_qs4_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK4%20MEMORY
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS4 (set)
+  description: ''
+home_theater_denon_qs5_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK5%20MEMORY
+    target:
+      entity_id: media_player.home_theater
+  alias: Home Theater Denon - QS5 (set)
+  description: ''
+office_volume_down_5:
+  sequence:
+  - entity_id: media_player.denon_office
+    data_template:
+      volume_level: '{{ (state_attr(''media_player.denon_office'',''volume_level'')
+        | float(0)) - 0.05 }}'
+    action: media_player.volume_set
+  alias: Office Volume Down 5
+  description: ''
+office_volume_up_5:
+  sequence:
+  - entity_id: media_player.denon_office
+    data_template:
+      volume_level: '{{ (state_attr(''media_player.denon_office'',''volume_level'')
+        | float(0)) + 0.05 }}'
+    action: media_player.volume_set
+  alias: Office Volume Up 5
+  description: ''
+office_play_pause:
+  sequence:
+  - entity_id:
+    - media_player.office_sonos
+    action: media_player.media_play_pause
+  alias: Office Play/Pause
+  description: ''
+office_next_track:
+  sequence:
+  - target:
+      entity_id: media_player.office_sonos
+    data: {}
+    action: media_player.media_next_track
+  alias: Office Next Track
+  mode: single
+  description: ''
+guest_room_tv_xbox:
+  sequence:
+  - type: turn_on
+    device_id: 6b7cc46425fe61638a451e7dafa0faa9
+    entity_id: 9243fc421396e704949e77c71ebcab53
+    domain: remote
+  - action: yamaha.select_scene
+    metadata: {}
+    data:
+      scene: XBOX
+    target:
+      entity_id: media_player.yamaha_receiver_guest_room
+  alias: Guest Room TV - XBOX
+  description: ''
+guest_room_tv_ps5:
+  sequence:
+  - type: turn_on
+    device_id: 6b7cc46425fe61638a451e7dafa0faa9
+    entity_id: 9243fc421396e704949e77c71ebcab53
+    domain: remote
+  - action: yamaha.select_scene
+    metadata: {}
+    data:
+      scene: PS5
+    target:
+      entity_id: media_player.yamaha_receiver_guest_room
+  alias: Guest Room TV - PS5
+  description: ''
+guest_room_avr_input_xbox:
+  sequence:
+  - action: media_player.select_source
+    metadata: {}
+    data:
+      source: AV1
+    target:
+      entity_id: media_player.yamaha_receiver_guest_room
+  alias: Guest Room AVR - Input - XBOX
+  description: ''
+guest_room_avr_input_appletv:
+  sequence:
+  - action: media_player.select_source
+    metadata: {}
+    data:
+      source: AV6
+    target:
+      entity_id: media_player.yamaha_receiver_guest_room
+  alias: Guest Room AVR - Input - AppleTV
+  description: ''
+guest_room_avr_input_playstation:
+  sequence:
+  - action: media_player.select_source
+    metadata: {}
+    data:
+      source: AV4
+    target:
+      entity_id: media_player.yamaha_receiver_guest_room
+  alias: Guest Room AVR - Input - PlayStation
+  description: ''
+guest_room_avr_input_roku:
+  sequence:
+  - action: media_player.select_source
+    metadata: {}
+    data:
+      source: AV2
+    target:
+      entity_id: media_player.yamaha_receiver_guest_room
+  alias: Guest Room AVR - Input - Roku
   description: ''
