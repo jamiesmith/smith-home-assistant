@@ -443,11 +443,6 @@ move_turn_off:
   - service: media_player.media_stop
     entity_id:
     - media_player.move
-turn_off_office:
-  alias: Turn off Office
-  sequence:
-  - service: media_player.turn_off
-    entity_id: media_player.yamaha_receiver_office
 jamie_bedtime_music:
   alias: Turn on Jamies bedtime music
   sequence:
@@ -600,15 +595,19 @@ watch_apple_tv:
 office_turn_on:
   alias: Turn on Office
   sequence:
-  - service: media_player.turn_on
-    entity_id: media_player.yamaha_receiver_office
+  - action: media_player.turn_on
+    data: {}
+    target:
+      device_id: dee8917ec9f544351cfef26c0361e775
 office_turn_off:
   alias: Turn off Office
   sequence:
-  - service: media_player.turn_off
-    entity_id: media_player.yamaha_receiver_office
-  - service: media_player.media_stop
-    entity_id: media_player.office_sonos
+  - action: media_player.turn_off
+    data: {}
+    target:
+      device_id: dee8917ec9f544351cfef26c0361e775
+  - entity_id: media_player.office_sonos
+    action: media_player.media_stop
 office_receiver_toggle_mute:
   alias: Office Receiver Toggle Mute
   sequence:
@@ -1358,6 +1357,9 @@ theater_play_switch:
       entity_id: media_player.lg_webos_smart_tv
     data: {}
     action: media_player.turn_on
+  - action: script.theater_watch_apple_tv
+    metadata: {}
+    data: {}
   - action: script.home_theater_denon_input_switch
     metadata: {}
     data: {}
@@ -1930,4 +1932,184 @@ guest_room_avr_input_roku:
     target:
       entity_id: media_player.yamaha_receiver_guest_room
   alias: Guest Room AVR - Input - Roku
+  description: ''
+
+office_denon_info:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MNINF
+    target:
+      entity_id: media_player.office_denon
+  alias: Office Denon - Info
+  description: ''
+office_denon_surround_movie:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSMOVIE
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Surround (movie)
+  description: ''
+office_denon_surround_music:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSMUSIC
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Surround (music)
+  description: ''
+office_denon_surround_direct:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSDIRECT
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Surround (direct)
+  description: ''
+office_denon_surround_pure_direct:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSPIURE%20DIRECT
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Surround (pure direct)
+  description: ''
+office_denon_surround_dolby_digital:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSDOLBY%20DIGITAL
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Surround (dolby digital)
+  description: ''
+office_denon_surround_dts:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSDTS%20SURROUND
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Surround (dts)
+  description: ''
+office_denon_surround_auro3d:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSAURO3D
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Surround (auro3d)
+  description: ''
+office_denon_surround_multi_channel_stereo:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSMCH%20STEREO
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Surround (Multi-channel stereo)
+  description: ''
+office_denon_volume_up:
+  sequence:
+  - action: script.family_room_volume_down_5
+    metadata: {}
+    data: {}
+  alias: Office Denon - Volume Up
+  description: ''
+office_denon_volume_down:
+  sequence:
+  - action: script.family_room_volume_down
+    metadata: {}
+    data: {}
+  alias: Office Denon - Volume Down
+  description: ''
+office_denon_volume_80:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MV80
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Volume 80
+  description: ''
+office_denon_volume_down_5:
+  sequence:
+  - action: script.family_room_volume_down_5
+    metadata: {}
+    data: {}
+  alias: Office Denon - Volume Down 5
+  description: ''
+office_denon_volume_up_5:
+  sequence:
+  - action: script.family_room_volume_up_5
+    metadata: {}
+    data: {}
+  alias: Office Denon - Volume Up 5
+  description: ''
+
+office_denon_qs1_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK1%20MEMORY
+    target:
+      entity_id: media_player.office_denon
+  alias: Office Denon - QS1 (set)
+  description: ''
+office_denon_qs2_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK2%20MEMORY
+    target:
+      entity_id: media_player.office_denon
+  alias: Office Denon - QS2 (set)
+  description: ''
+office_denon_qs3_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK3%20MEMORY
+    target:
+      entity_id: media_player.office_denon
+  alias: Office Denon - QS3 (set)
+  description: ''
+office_denon_qs4_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK4%20MEMORY
+    target:
+      entity_id: media_player.office_denon
+  alias: Office Denon - QS4 (set)
+  description: ''
+office_denon_qs5_set:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK5%20MEMORY
+    target:
+      entity_id: media_player.office_denon
+  alias: Office Denon - QS5 (set)
   description: ''

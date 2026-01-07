@@ -366,10 +366,6 @@
     trigger: state
   conditions: []
   actions:
-  - data:
-      entity_id: media_player.yamaha_receiver_office
-      scene: Roon
-    action: yamaha.select_scene
   - action: denonavr.get_command
     metadata: {}
     data:
@@ -727,31 +723,30 @@
       - action: script.guest_room_avr_input_xbox
         metadata: {}
         data: {}
-- id: '1764526199313'
-  alias: 'Bug Fix: Turn office receiver OFF'
+- id: '1767017835988'
+  alias: Upstairs Hallway S2
   description: ''
-  triggers:
-  - trigger: time
-    at: 06:00:00
-  conditions: []
-  actions:
-  - action: media_player.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: media_player.yamaha_receiver_office
-  mode: single
-- id: '1764526271181'
-  alias: 'Bug Fix: Turn office receiver ON'
-  description: ''
-  triggers:
-  - trigger: time
-    at: 06:05:00
-  conditions: []
-  actions:
-  - action: media_player.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: media_player.yamaha_receiver_office
-  mode: single
+  use_blueprint:
+    path: homeassistant/minoston_s2.yaml
+    input:
+      minoston_s2_device: cc7aed559c77b454abbe4a4c30f48974
+      button_1_pressed:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.foyer_outlet_js_switch
+      button_2_pressed:
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.foyer_outlet_js_switch
+      button_1_pressed_2x:
+      - action: script.turn_on_accent_lighting
+        metadata: {}
+        data: {}
+      button_3_pressed:
+      - action: script.turn_off_accent_lighting
+        metadata: {}
+        data: {}
