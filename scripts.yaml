@@ -1933,7 +1933,6 @@ guest_room_avr_input_roku:
       entity_id: media_player.yamaha_receiver_guest_room
   alias: Guest Room AVR - Input - Roku
   description: ''
-
 office_denon_info:
   sequence:
   - action: denonavr.get_command
@@ -2062,7 +2061,6 @@ office_denon_volume_up_5:
     data: {}
   alias: Office Denon - Volume Up 5
   description: ''
-
 office_denon_qs1_set:
   sequence:
   - action: denonavr.get_command
@@ -2112,4 +2110,14 @@ office_denon_qs5_set:
     target:
       entity_id: media_player.office_denon
   alias: Office Denon - QS5 (set)
+  description: ''
+office_denon_surround_stereo:
+  sequence:
+  - action: denonavr.get_command
+    metadata: {}
+    data:
+      command: /goform/formiPhoneAppDirect.xml?MSSTEREO
+    target:
+      entity_id: media_player.denon_office
+  alias: Office Denon - Surround (Stereo)
   description: ''
