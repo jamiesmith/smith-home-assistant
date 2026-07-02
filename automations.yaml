@@ -238,30 +238,32 @@
 - id: '1637446244454'
   alias: Turn on Espresso Machine in the morning
   description: ''
-  trigger:
-  - platform: time
-    at: 06:00:00
-  - platform: time
-    at: 06:01:00
-  condition: []
-  action:
-  - type: turn_on
-    device_id: cb3681f41d15a9b766d7d961e2c559f7
-    entity_id: switch.espresso_machine_js_switch
-    domain: switch
+  triggers:
+  - at: 06:00:00
+    trigger: time
+  - at: 06:01:00
+    trigger: time
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.espresso_machine_js_switch
   mode: single
 - id: '1637446290014'
   alias: Turn off Espresso Machine daily
   description: ''
-  trigger:
-  - platform: time
-    at: '13:00:00'
-  condition: []
-  action:
-  - type: turn_off
-    device_id: cb3681f41d15a9b766d7d961e2c559f7
-    entity_id: switch.espresso_machine_js_switch
-    domain: switch
+  triggers:
+  - at: '13:00:00'
+    trigger: time
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.espresso_machine_js_switch
   mode: single
 - id: '1642711242692'
   alias: 'SAY: Can I get you something'
@@ -657,12 +659,9 @@
     trigger: time
   conditions: []
   actions:
-  - metadata: {}
-    data:
-      value: '60'
-    target:
-      entity_id: number.jamies_bed_head_position
-    action: number.set_value
+  - action: script.set_jamie_s_bed_for_tv
+    metadata: {}
+    data: {}
   mode: single
 - id: '1738535171777'
   alias: Guest Room S2
@@ -679,12 +678,9 @@
           entity_id: number.jamies_bed_head_position
         action: number.set_value
       button_1_pressed_2x:
-      - metadata: {}
-        data:
-          value: '65'
-        target:
-          entity_id: number.jamies_bed_head_position
-        action: number.set_value
+      - action: script.set_jamie_s_bed_for_tv
+        metadata: {}
+        data: {}
       button_2_pressed:
       - metadata: {}
         data:
@@ -723,6 +719,12 @@
       - action: script.guest_room_avr_input_xbox
         metadata: {}
         data: {}
+      button_2_pressed_3x:
+      - action: sonos.play_queue
+        metadata: {}
+        data: {}
+        target:
+          entity_id: media_player.guest_room
 - id: '1767017835988'
   alias: Upstairs Hallway S2
   description: ''

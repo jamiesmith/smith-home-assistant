@@ -822,6 +822,11 @@ garage_off:
       - switch.garage_portable_fan_js_switch
     data: {}
     action: switch.turn_off
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.exhaust_fan
   - action: script.cycle_jet_air_scrubber
     metadata: {}
     data: {}
@@ -1191,7 +1196,7 @@ family_room_receiver_volume_up:
   - entity_id: media_player.home_theater
     data_template:
       volume_level: '{{ states.media_player.home_theater.attributes.volume_level |
-        float + 0.005 }}'
+        float + 0.01 }}'
     action: media_player.volume_set
   description: ''
 family_room_receiver_volume_down:
@@ -1200,7 +1205,7 @@ family_room_receiver_volume_down:
   - entity_id: media_player.home_theater
     data_template:
       volume_level: '{{ states.media_player.home_theater.attributes.volume_level |
-        float - 0.005 }}'
+        float - 0.01 }}'
     action: media_player.volume_set
   description: ''
 raise_downstairs_target_a_c_temp:
@@ -1488,8 +1493,8 @@ cycle_jet_air_scrubber:
     action: switch.turn_off
   - delay:
       hours: 0
-      minutes: 5
-      seconds: 0
+      minutes: 0
+      seconds: 10
   - metadata: {}
     data: {}
     target:
@@ -2120,4 +2125,106 @@ office_denon_surround_stereo:
     target:
       entity_id: media_player.denon_office
   alias: Office Denon - Surround (Stereo)
+  description: ''
+set_jamie_s_bed_for_tv:
+  sequence:
+  - metadata: {}
+    data:
+      value: '73'
+    target:
+      entity_id: number.jamies_bed_head_position
+    action: number.set_value
+  alias: Set Jamie's Bed for TV
+  description: ''
+appletv_select:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      hold_secs: 0
+      command: select
+    target:
+      entity_id: remote.family_room_apple_tv
+  alias: AppleTV Select
+  description: ''
+appletv_play_pause:
+  sequence:
+  - action: media_player.media_play_pause
+    target:
+      entity_id: media_player.family_room_apple_tv
+    data: {}
+  alias: AppleTV Play/Pause
+  description: ''
+theater_appletv_up:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      hold_secs: 0
+      command: up
+    target:
+      entity_id: remote.family_room_apple_tv
+  alias: Theater AppleTV - Up
+  description: ''
+theater_appletv_down:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      hold_secs: 0
+      command: down
+    target:
+      entity_id: remote.family_room_apple_tv
+  alias: Theater AppleTV - Down
+  description: ''
+theater_appletv_left:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      hold_secs: 0
+      command: left
+    target:
+      entity_id: remote.family_room_apple_tv
+  alias: Theater AppleTV - Left
+  description: ''
+theater_appletv_right:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      hold_secs: 0
+      command: right
+    target:
+      entity_id: remote.family_room_apple_tv
+  alias: Theater AppleTV - Right
+  description: ''
+theater_appletv_menu:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      hold_secs: 0
+      command: menu
+    target:
+      entity_id: remote.family_room_apple_tv
+  alias: Theater AppleTV - Menu
+  description: ''
+theater_appletv_top_menu:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      hold_secs: 0
+      command: top_menu
+    target:
+      entity_id: remote.family_room_apple_tv
+  alias: Theater AppleTV - Top Menu
   description: ''
