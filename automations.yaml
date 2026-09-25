@@ -752,3 +752,108 @@
       - action: script.turn_off_accent_lighting
         metadata: {}
         data: {}
+- id: '1790181780569'
+  alias: Motion Test Office
+  description: ''
+  use_blueprint:
+    path: Didgeridrew/motion-activated-light-and-switches.yaml
+    input:
+      motion_entity: binary_sensor.garage_motion_sensor_motion_detection
+      light_target:
+      - switch.office_test
+      - switch.small_garage_door_power
+- id: '1790358134960'
+  alias: Garage Motion Lights
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.garage_house_door_sensor_intrusion
+    to: 'on'
+  - trigger: state
+    entity_id: binary_sensor.garage_motion_sensor_motion_detection
+    to: 'on'
+  - trigger: state
+    entity_id: binary_sensor.garage_motion_sensor_motion_detection
+    to: 'off'
+    for: 00:01:00
+    id: vacant
+  - trigger: state
+    entity_id:
+    - switch.small_garage_door_power
+    - switch.office_test
+    - switch.garage_motion_light_big_door
+    - switch.garage_motion_light_small_door
+    to: 'on'
+    for: 00:01:00
+    id: vacant
+  actions:
+  - choose:
+    - alias: Vacant - turn lights off
+      conditions:
+      - condition: trigger
+        id: vacant
+      - condition: state
+        entity_id: binary_sensor.garage_motion_sensor_motion_detection
+        state: 'off'
+        for: 00:01:00
+      sequence:
+      - variables:
+          msg: turning OFF - no motion for 1 minute (checked by {{ trigger.to_state.name
+            }})
+      - action: logbook.log
+        data:
+          name: Garage Lights
+          message: '{{ msg }}'
+          entity_id: switch.office_test
+      - action: system_log.write
+        data:
+          logger: garage_lights
+          level: warning
+          message: '{{ msg }}'
+      - action: switch.turn_off
+        target:
+          entity_id:
+          - switch.small_garage_door_power
+          - switch.office_test
+          - switch.garage_motion_light_big_door
+          - switch.garage_motion_light_small_door
+    - alias: Vacancy check failed - keep lights on
+      conditions:
+      - condition: trigger
+        id: vacant
+      sequence:
+      - variables:
+          msg: staying ON - vacancy check by {{ trigger.to_state.name }} skipped,
+            motion seen within the last minute
+      - action: logbook.log
+        data:
+          name: Garage Lights
+          message: '{{ msg }}'
+          entity_id: switch.office_test
+      - action: system_log.write
+        data:
+          logger: garage_lights
+          level: warning
+          message: '{{ msg }}'
+    default:
+    - variables:
+        msg: '{% if is_state(''switch.office_test'', ''on'') %} already ON - {{ trigger.to_state.name
+          }} kept them on {% else %} turning ON - triggered by {{ trigger.to_state.name
+          }} {% endif %}'
+    - action: logbook.log
+      data:
+        name: Garage Lights
+        message: '{{ msg }}'
+        entity_id: switch.office_test
+    - action: system_log.write
+      data:
+        logger: garage_lights
+        level: warning
+        message: '{{ msg }}'
+    - action: switch.turn_on
+      target:
+        entity_id:
+        - switch.small_garage_door_power
+        - switch.office_test
+        - switch.garage_motion_light_big_door
+        - switch.garage_motion_light_small_door
+  mode: restart

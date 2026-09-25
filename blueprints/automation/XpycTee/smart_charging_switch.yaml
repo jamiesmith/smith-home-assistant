@@ -1,0 +1,100 @@
+blueprint:
+  name: "Smart Charging (switch) \U0001F50C\U0001F4F1"
+  description: 'Automatically turns the socket on and off for phone charging. If the
+    battery level is low — the socket turns on, or based on a schedule. When the battery
+    reaches 100%, the socket turns off.
+
+    '
+  domain: automation
+  input:
+    charge_socket:
+      name: "Charging Socket \U0001F50C"
+      description: The socket where your phone charger is plugged in
+      selector:
+        entity:
+          domain:
+          - switch
+          multiple: false
+    phone_battery_level:
+      name: "Phone Battery Level \U0001F50B"
+      description: Battery level sensor from the Home Assistant companion app on your
+        phone
+      selector:
+        entity:
+          domain:
+          - sensor
+          multiple: false
+    min_battery_level:
+      name: Minimum Battery Level ⚠️
+      description: Minimum battery level at which charging turns on
+      default: 20
+      selector:
+        number:
+          min: 0.0
+          max: 49.0
+          step: 1.0
+          mode: slider
+          unit_of_measurement: '%'
+    max_battery_level:
+      name: Maximum Battery Level ⛔
+      description: Maximum battery level after which scheduled charging won’t turn
+        on
+      default: 80
+      selector:
+        number:
+          min: 50.0
+          max: 100.0
+          step: 1.0
+          mode: slider
+          unit_of_measurement: '%'
+    manual_charge_time_start:
+      name: "Scheduled Charging Start Time \U0001F555"
+      description: Time when charging is allowed to start if battery is below the
+        max threshold
+      default: '6:00:00'
+      selector:
+        time: {}
+    manual_charge_time_stop:
+      name: "Scheduled Charging Stop Time \U0001F557"
+      description: Time by which scheduled charging must stop
+      default: '8:00:00'
+      selector:
+        time: {}
+  source_url: https://gist.github.com/XpycTee/7ade6921bbd6b24a582c2e7933128ac8
+trigger:
+- platform: time_pattern
+  minutes: '*'
+condition: []
+action:
+- choose:
+  - conditions:
+    - condition: numeric_state
+      entity_id: !input phone_battery_level
+      above: 99
+    sequence:
+    - action: switch.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id: !input charge_socket
+  - conditions:
+    - condition: or
+      conditions:
+      - condition: and
+        conditions:
+        - condition: numeric_state
+          entity_id: !input phone_battery_level
+          below: !input max_battery_level
+        - condition: time
+          after: !input manual_charge_time_start
+          before: !input manual_charge_time_stop
+      - condition: numeric_state
+        entity_id: !input phone_battery_level
+        below: !input min_battery_level
+    sequence:
+    - action: switch.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: !input charge_socket
+mode: single

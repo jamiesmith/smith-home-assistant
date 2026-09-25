@@ -1,0 +1,60 @@
+blueprint:
+  name: Motion-activated Light and Switch
+  description: Turn on a light and/or switch when motion is detected.
+  domain: automation
+  input:
+    motion_entity:
+      name: Motion or Occupancy Sensor
+      selector:
+        entity:
+          multiple: false
+          filter:
+          - device_class:
+            - occupancy
+            domain:
+            - binary_sensor
+          - device_class:
+            - motion
+            domain:
+            - binary_sensor
+    light_target:
+      name: Light
+      selector:
+        entity:
+          multiple: true
+          filter:
+          - domain:
+            - light
+            - switch
+    no_motion_wait:
+      name: Wait time
+      description: Number of seconds motion must be undetected for the light to be
+        turned off.
+      default: 120
+      selector:
+        number:
+          min: 0.0
+          max: 3600.0
+          unit_of_measurement: seconds
+          step: 1.0
+          mode: slider
+  source_url: https://community.home-assistant.io/t/motion-activated-light-and-switches/810611
+max_exceeded: silent
+triggers:
+- trigger: state
+  entity_id: !input motion_entity
+  from: 'off'
+  to: 'on'
+  id: 'on'
+- trigger: state
+  entity_id: !input motion_entity
+  from: 'on'
+  to: 'off'
+  for:
+    seconds: !input no_motion_wait
+  id: 'off'
+actions:
+- alias: Turn the light on or off based on motion trigger ID
+  action: homeassistant.turn_{{ trigger.id }}
+  target:
+    entity_id: !input light_target

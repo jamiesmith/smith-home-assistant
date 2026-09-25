@@ -1743,6 +1743,16 @@ home_theater_denon_input_xbox:
   - action: denonavr.get_command
     metadata: {}
     data:
+      command: /goform/formiPhoneAppDirect.xml?MSQUICK5
+    target:
+      entity_id: media_player.home_theater
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+  - action: denonavr.get_command
+    metadata: {}
+    data:
       command: /goform/formiPhoneAppDirect.xml?SIGAME
     target:
       entity_id: media_player.home_theater
@@ -2227,4 +2237,13 @@ theater_appletv_top_menu:
     target:
       entity_id: remote.family_room_apple_tv
   alias: Theater AppleTV - Top Menu
+  description: ''
+lg_oled_drinks:
+  sequence:
+  - action: notify.lg_webos_smart_tv
+    metadata: {}
+    data:
+      message: Looks like you could use a drink...
+      title: I need a drinks!
+  alias: LG OLED - Drinks
   description: ''
