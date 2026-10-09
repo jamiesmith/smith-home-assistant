@@ -31,3 +31,5 @@ HAL
 custom_components
 .dccache
 backups
+.cache/
+.ha_run.lock

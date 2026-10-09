@@ -2247,3 +2247,206 @@ lg_oled_drinks:
       title: I need a drinks!
   alias: LG OLED - Drinks
   description: ''
+test_voice:
+  sequence:
+  - action: siren.turn_on
+    metadata: {}
+    data:
+      tone: sorry-we-are-out-of.mp3
+      volume_level: 0.75
+    target:
+      entity_id: siren.downstairs_siren_play_tone
+  alias: Test Voice
+  description: ''
+say:
+  alias: Say
+  icon: mdi:message-text
+  mode: queued
+  max: 10
+  fields:
+    message:
+      name: Message
+      description: Text to speak
+      required: true
+      example: Package at the front door
+      selector:
+        text:
+    volume:
+      name: Volume
+      description: Optional, 0.0 to 1.0. Defaults to 0.8.
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1
+          step: 0.05
+    speaker:
+      name: Speaker
+      description: Optional. Defaults to the Move.
+      required: false
+      selector:
+        entity:
+          domain: media_player
+  variables:
+    tts_entity: tts.piper_jarvis
+    tts_voice: en_GB-daniel_big_9479-medium
+    tts_language: en_GB
+    default_volume: 0.8
+    chars_per_second: 15
+    tail_seconds: 1
+    target_player: '{{ speaker | default(''media_player.move'', true) }}'
+    was_playing: '{{ is_state(target_player, ''playing'') }}'
+    old_volume: '{{ state_attr(target_player, ''volume_level'') }}'
+    speak_volume: "{{ volume if (volume is defined and volume not in [none, ''])\n
+      \  else default_volume }}"
+  sequence:
+  - condition: template
+    value_template: '{{ states(target_player) not in [''unavailable'', ''unknown'']
+      }}'
+  - if:
+    - condition: template
+      value_template: '{{ was_playing }}'
+    then:
+    - action: media_player.media_pause
+      target:
+        entity_id: '{{ target_player }}'
+    - wait_template: '{{ not is_state(target_player, ''playing'') }}'
+      timeout: 00:00:05
+      continue_on_timeout: true
+    - delay: 00:00:01
+  - action: media_player.volume_set
+    target:
+      entity_id: '{{ target_player }}'
+    data:
+      volume_level: '{{ speak_volume | float }}'
+  - action: tts.speak
+    continue_on_error: true
+    target:
+      entity_id: '{{ tts_entity }}'
+    data:
+      media_player_entity_id: '{{ target_player }}'
+      message: '{{ message }}'
+      language: '{{ tts_language }}'
+      cache: true
+      options:
+        voice: '{{ tts_voice }}'
+  - delay:
+      seconds: '{{ (message | length / chars_per_second) + tail_seconds }}'
+  - if:
+    - condition: template
+      value_template: '{{ old_volume is not none }}'
+    then:
+    - action: media_player.volume_set
+      target:
+        entity_id: '{{ target_player }}'
+      data:
+        volume_level: '{{ old_volume | float }}'
+  - if:
+    - condition: template
+      value_template: '{{ was_playing }}'
+    then:
+    - action: media_player.media_play
+      target:
+        entity_id: '{{ target_player }}'
+warm_tts_cache:
+  alias: Warm TTS cache
+  mode: single
+  variables:
+    tts_entity: tts.piper
+    tts_voice: daniel
+    target_player: media_player.move
+    seconds_per_phrase: 10
+    phrases:
+    - A scotch perhaps? Peated or unpeated?
+    - Are you doing happy hour?
+    - Are you walking?
+    - bartender
+    - Big garage door just closed
+    - Big garage door just opened
+    - Both garage doors closed
+    - Can I get you something?
+    - Great googly moogly
+    - Holy fishpaste, thats a guy
+    - I look good today
+    - I love you
+    - it is not time to eat
+    - lies
+    - Package at the front door
+    - Small garage door just closed
+    - Small garage door just opened
+    - Sorry, we are out of that
+    - What can I get you?
+    - Would you like an espresso?
+    - You look real good today
+    - you sit on a throne of lies
+    old_volume: '{{ state_attr(target_player, ''volume_level'') }}'
+  sequence:
+  - condition: template
+    value_template: '{{ not is_state(target_player, ''playing'') }}'
+  - action: media_player.volume_set
+    target:
+      entity_id: '{{ target_player }}'
+    data:
+      volume_level: 0
+  - repeat:
+      for_each: '{{ phrases }}'
+      sequence:
+      - action: tts.speak
+        continue_on_error: true
+        target:
+          entity_id: '{{ tts_entity }}'
+        data:
+          media_player_entity_id: '{{ target_player }}'
+          message: '{{ repeat.item }}'
+          language: en
+          cache: true
+          options:
+            voice: '{{ tts_voice }}'
+      - delay:
+          seconds: '{{ seconds_per_phrase }}'
+  - if:
+    - condition: template
+      value_template: '{{ old_volume is not none }}'
+    then:
+    - action: media_player.volume_set
+      target:
+        entity_id: '{{ target_player }}'
+      data:
+        volume_level: '{{ old_volume | float }}'
+janda_announce:
+  alias: JANDA-Announce
+  icon: mdi:bullhorn
+  description: Single entry point for spoken announcements. Change the action below
+    to swap  out the delivery method.
+  mode: queued
+  max: 10
+  fields:
+    message:
+      name: Message
+      description: Text to announce
+      required: true
+      example: Package at the front door
+      selector:
+        text:
+    volume:
+      name: Volume
+      description: Optional, 0.0 to 1.0
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1
+          step: 0.05
+    speaker:
+      name: Speaker
+      description: Optional media player
+      required: false
+      selector:
+        entity:
+          domain: media_player
+  sequence:
+  - action: script.say
+    data:
+      message: '{{ message }}'
+      volume: '{{ volume | default(none) }}'
+      speaker: '{{ speaker | default(none) }}'

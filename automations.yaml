@@ -342,23 +342,6 @@
     target:
       entity_id: switch.short_cabinets_lower_js_switch
   mode: single
-- id: '1655585778504'
-  alias: 'SAY: Holy Fishpaste'
-  description: ''
-  trigger:
-  - platform: event
-    event_type: zwave.scene_activated
-    event_data:
-      entity_id: zwave.coffeequad
-      scene_data: 0
-      scene_id: 2
-  condition: []
-  action:
-  - service: mqtt.publish
-    data:
-      topic: say/amy
-      payload: Holy fishpaste, thats a guy
-  mode: single
 - id: '1658435235779'
   alias: Turn on Office Receiver for Office Roon
   description: ''
@@ -769,22 +752,32 @@
     entity_id: binary_sensor.garage_house_door_sensor_intrusion
     to: 'on'
   - trigger: state
-    entity_id: binary_sensor.garage_motion_sensor_motion_detection
+    entity_id:
+    - binary_sensor.garage_motion_sensor_motion_detection
+    - binary_sensor.garage_camera_motion
     to: 'on'
   - trigger: state
-    entity_id: binary_sensor.garage_motion_sensor_motion_detection
+    entity_id:
+    - binary_sensor.garage_motion_sensor_motion_detection
+    - binary_sensor.garage_camera_motion
     to: 'off'
-    for: 00:01:00
+    for: 00:05:00
     id: vacant
   - trigger: state
     entity_id:
-    - switch.small_garage_door_power
-    - switch.office_test
     - switch.garage_motion_light_big_door
     - switch.garage_motion_light_small_door
+    - switch.garage_motion_light_windows
     to: 'on'
-    for: 00:01:00
+    for: 00:05:00
     id: vacant
+  - trigger: state
+    entity_id:
+    - cover.small_garage_door
+    - cover.big_garage_door
+    to:
+    - opening
+    - open
   actions:
   - choose:
     - alias: Vacant - turn lights off
@@ -792,18 +785,20 @@
       - condition: trigger
         id: vacant
       - condition: state
-        entity_id: binary_sensor.garage_motion_sensor_motion_detection
+        entity_id:
+        - binary_sensor.garage_motion_sensor_motion_detection
+        - binary_sensor.garage_camera_motion
         state: 'off'
-        for: 00:01:00
+        for: 00:05:00
       sequence:
       - variables:
-          msg: turning OFF - no motion for 1 minute (checked by {{ trigger.to_state.name
-            }})
+          msg: turning OFF - no motion (sensor or camera) for 5 minutes (checked by
+            {{ trigger.to_state.name }})
       - action: logbook.log
         data:
           name: Garage Lights
           message: '{{ msg }}'
-          entity_id: switch.office_test
+          entity_id: switch.garage_motion_light_big_door
       - action: system_log.write
         data:
           logger: garage_lights
@@ -812,10 +807,10 @@
       - action: switch.turn_off
         target:
           entity_id:
-          - switch.small_garage_door_power
-          - switch.office_test
           - switch.garage_motion_light_big_door
           - switch.garage_motion_light_small_door
+          - switch.garage_motion_light_windows
+        data: {}
     - alias: Vacancy check failed - keep lights on
       conditions:
       - condition: trigger
@@ -823,12 +818,12 @@
       sequence:
       - variables:
           msg: staying ON - vacancy check by {{ trigger.to_state.name }} skipped,
-            motion seen within the last minute
+            motion sensor or camera was active within the last 5 minutes
       - action: logbook.log
         data:
           name: Garage Lights
           message: '{{ msg }}'
-          entity_id: switch.office_test
+          entity_id: switch.garage_motion_light_big_door
       - action: system_log.write
         data:
           logger: garage_lights
@@ -836,14 +831,14 @@
           message: '{{ msg }}'
     default:
     - variables:
-        msg: '{% if is_state(''switch.office_test'', ''on'') %} already ON - {{ trigger.to_state.name
-          }} kept them on {% else %} turning ON - triggered by {{ trigger.to_state.name
-          }} {% endif %}'
+        msg: '{% if is_state(''switch.garage_motion_light_big_door'', ''on'') %} already
+          ON - {{ trigger.to_state.name }} kept them on {% else %} turning ON - triggered
+          by {{ trigger.to_state.name }} {% endif %}'
     - action: logbook.log
       data:
         name: Garage Lights
         message: '{{ msg }}'
-        entity_id: switch.office_test
+        entity_id: switch.garage_motion_light_big_door
     - action: system_log.write
       data:
         logger: garage_lights
@@ -852,8 +847,118 @@
     - action: switch.turn_on
       target:
         entity_id:
-        - switch.small_garage_door_power
-        - switch.office_test
         - switch.garage_motion_light_big_door
         - switch.garage_motion_light_small_door
+        - switch.garage_motion_light_windows
+      data: {}
   mode: restart
+- id: '1791315329025'
+  alias: Garage door announcements
+  triggers:
+  - trigger: state
+    entity_id: cover.big_garage_door
+    from: closed
+    to:
+    - opening
+    - open
+    id: big_opened
+  - trigger: state
+    entity_id: cover.small_garage_door
+    from: closed
+    to:
+    - opening
+    - open
+    id: small_opened
+  - trigger: state
+    entity_id:
+    - cover.big_garage_door
+    - cover.small_garage_door
+    to: closed
+    id: closed
+  conditions:
+  - condition: time
+    after: 07:00:00
+    before: '21:00:00'
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: big_opened
+      sequence:
+      - action: script.janda_announce
+        data:
+          message: Big garage door just opened
+    - conditions:
+      - condition: trigger
+        id: small_opened
+      sequence:
+      - action: script.janda_announce
+        data:
+          message: Small garage door just opened
+    - conditions:
+      - condition: trigger
+        id: closed
+      - condition: state
+        entity_id:
+        - cover.big_garage_door
+        - cover.small_garage_door
+        state: closed
+      sequence:
+      - action: script.janda_announce
+        data:
+          message: Both garage doors closed
+  mode: queued
+- id: '1791317145919'
+  alias: Package detected announcement
+  triggers:
+  - trigger: state
+    entity_id:
+    - event.front_door_package
+  conditions:
+  - condition: time
+    after: 07:00:00
+    before: '21:00:00'
+  actions:
+  - action: script.say
+    data:
+      message: Package at the front door
+  - action: notify.mobile_app_jamies_iphone
+    metadata: {}
+    data:
+      message: Package at the front door
+  mode: single
+- id: '1791475798934'
+  alias: MQTT say
+  description: Speak messages published to say/tts-daniel
+  triggers:
+  - trigger: mqtt
+    topic: say/tts-daniel
+  actions:
+  - variables:
+      payload_data: "{{ trigger.payload_json if trigger.payload.startswith('{')\n
+        \  else {'message': trigger.payload} }}"
+  - action: script.janda_announce
+    data:
+      message: '{{ payload_data.get(''message'', '''') }}'
+      volume: '{{ payload_data.get(''volume'', 0.8) }}'
+      speaker: '{{ payload_data.get(''speaker'') }}'
+  mode: queued
+  max: 10
+- id: '1791486778484'
+  alias: MQTT say (Jarvis)
+  description: Speak messages published to say/tts-jarvis
+  triggers:
+  - trigger: mqtt
+    topic: say/tts-jarvis
+  actions:
+  - variables:
+      payload_data: "{{ trigger.payload_json if trigger.payload.startswith('{')\n
+        \  else {'message': trigger.payload} }}"
+  - action: script.janda_announce
+    data:
+      message: '{{ payload_data.get(''message'', '''') }}'
+      engine: jarvis
+      volume: '{{ payload_data.get(''volume'', 0.8) }}'
+      speaker: '{{ payload_data.get(''speaker'') }}'
+  mode: queued
+  max: 10
