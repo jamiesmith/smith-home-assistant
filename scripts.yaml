@@ -208,27 +208,6 @@ move_volume_down:
   - service: media_player.volume_down
     entity_id:
     - media_player.move
-mqtt_publish_bartender:
-  alias: MQTT Publish Bartender
-  sequence:
-    service: mqtt.publish
-    data:
-      topic: say/amy
-      payload: bartender
-mqtt_publish_lies:
-  alias: MQTT Publish Lies
-  sequence:
-    service: mqtt.publish
-    data:
-      topic: say/amy
-      payload: lies
-mqtt_publish_walking:
-  alias: MQTT Publish walking
-  sequence:
-    service: mqtt.publish
-    data:
-      topic: say/amy
-      payload: walking
 office_play_grateful_dead:
   alias: Play Greatful Dead in the Office
   sequence:
@@ -2289,12 +2268,12 @@ say:
           domain: media_player
   variables:
     tts_entity: tts.piper_jarvis
-    tts_voice: en_GB-daniel_big_9479-medium
+    tts_voice: en_GB-daniel_big_9734-medium
     tts_language: en_GB
     default_volume: 0.8
     chars_per_second: 15
     tail_seconds: 1
-    target_player: '{{ speaker | default(''media_player.move'', true) }}'
+    target_player: '{{ speaker | default(''media_player.kitchen_jeeves'', true) }}'
     was_playing: '{{ is_state(target_player, ''playing'') }}'
     old_volume: '{{ state_attr(target_player, ''volume_level'') }}'
     speak_volume: "{{ volume if (volume is defined and volume not in [none, ''])\n
