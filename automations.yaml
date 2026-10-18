@@ -626,19 +626,19 @@
           entity_id: number.jamies_bed_head_position
         action: number.set_value
       button_3_pressed:
-      - metadata: {}
-        data:
-          source: 30 - Dave Matthews Band Radio
-        target:
-          entity_id: media_player.guest_room
-        action: media_player.select_source
+      - action: script.guest_room_tv_power_on
+        metadata: {}
+        data: {}
+      - action: script.guest_room_tv_appletv
+        metadata: {}
+        data: {}
       button_4_pressed:
-      - metadata: {}
-        data:
-          source: 20 - E Street Radio
-        target:
-          entity_id: media_player.guest_room
-        action: media_player.select_source
+      - action: script.guest_room_shut_down
+        metadata: {}
+        data: {}
+      - action: script.guest_room_tv_power_off
+        metadata: {}
+        data: {}
       button_2_pressed_2x:
       - action: script.turn_off_accent_lighting
         metadata: {}
@@ -662,6 +662,20 @@
         data: {}
         target:
           entity_id: media_player.guest_room
+      button_3_pressed_3x:
+      - metadata: {}
+        data:
+          source: 30 - Dave Matthews Band Radio
+        target:
+          entity_id: media_player.guest_room
+        action: media_player.select_source
+      button_4_pressed_3x:
+      - metadata: {}
+        data:
+          source: 20 - E Street Radio
+        target:
+          entity_id: media_player.guest_room
+        action: media_player.select_source
 - id: '1767017835988'
   alias: Upstairs Hallway S2
   description: ''
@@ -868,16 +882,22 @@
   - trigger: state
     entity_id:
     - event.front_door_package
+    not_to:
+    - unavailable
+    - unknown
   conditions:
   - condition: time
     after: 07:00:00
     before: '21:00:00'
+  - condition: template
+    value_template: "{{ trigger.to_state.attributes.event_type == 'detected'\n   and
+      (now() - as_datetime(trigger.to_state.state)).total_seconds() < 60 }}"
   actions:
-  - action: script.say
-    data:
-      message: Package at the front door
   - action: notify.mobile_app_jamies_iphone
     metadata: {}
+    data:
+      message: Package at the front door
+  - action: script.janda_announce
     data:
       message: Package at the front door
   mode: single
@@ -894,7 +914,7 @@
   - action: script.janda_announce
     data:
       message: '{{ payload_data.get(''message'', '''') }}'
-      volume: '{{ payload_data.get(''volume'', 0.8) }}'
+      volume: '{{ payload_data.get(''volume'', 0.6) }}'
       speaker: '{{ payload_data.get(''speaker'') }}'
   mode: queued
   max: 10

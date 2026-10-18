@@ -1739,13 +1739,10 @@ home_theater_denon_input_xbox:
   description: ''
 cocktail_anyone:
   sequence:
-  - action: mqtt.publish
+  - action: script.janda_announce
     metadata: {}
     data:
-      evaluate_payload: false
-      qos: '2'
-      topic: say/amy
-      payload: Can I get you something?
+      message: Can I get you something?
   alias: Cocktail Anyone?
   description: ''
 guest_room_tv_appletv:
@@ -2270,7 +2267,7 @@ say:
     tts_entity: tts.piper_jarvis
     tts_voice: en_GB-daniel_big_9734-medium
     tts_language: en_GB
-    default_volume: 0.8
+    default_volume: 0.6
     chars_per_second: 15
     tail_seconds: 1
     target_player: '{{ speaker | default(''media_player.kitchen_jeeves'', true) }}'
@@ -2429,3 +2426,23 @@ janda_announce:
       message: '{{ message }}'
       volume: '{{ volume | default(none) }}'
       speaker: '{{ speaker | default(none) }}'
+guest_room_tv_power_off:
+  sequence:
+  - data:
+      device: guest_room_samsung
+      command: power_off
+    target:
+      entity_id: remote.office_remote_remote
+    action: remote.send_command
+  alias: Guest Room TV Power Off
+  mode: single
+guest_room_tv_power_on:
+  sequence:
+  - data:
+      device: guest_room_samsung
+      command: power_on
+    target:
+      entity_id: remote.office_remote_remote
+    action: remote.send_command
+  alias: Guest Room TV Power On
+  mode: single
